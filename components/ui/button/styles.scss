@@ -1,0 +1,122 @@
+@use 'sass:list';
+@use '../../../styles/mixins' as *;
+@use '../../../styles/variables' as *;
+
+$button-types: 'filled', 'outlined', 'ghost', 'link';
+$button-colors: 'primary', 'secondary';
+
+/* prettier-ignore */
+$button-variants: [
+  [
+    'primary',
+    (
+      'color': $color-white,
+      'background': $color-green-500,
+      'hover-background': $color-green-400,
+      'active-background': $color-gray-600,
+    )
+  ],
+  [
+    'secondary',
+    (
+      'color': $color-green-500,
+      'background': $color-gray-300,
+      'hover-background': $color-gray-400,
+      'active-background': $color-gray-500,
+    )
+  ],
+  [
+    'promo',
+    (
+      'color': $color-black,
+      'background': $color-lemon-500,
+      'hover-background': $color-lemon-400,
+      'active-background': $color-lemon-500,
+    )
+  ]
+];
+
+.ui-button {
+  $self: &;
+
+  @include font(16px, 500, 20px);
+
+  --spinner-size: 20px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+
+  padding: 13px 23px;
+  background: var(--button-background, transparent);
+  color: var(--button-color, inherit);
+  border-radius: 12px;
+  width: var(--button-width, unset);
+  height: var(--button-height, 48px);
+  border: 1px solid var(--button-border-color, transparent);
+  white-space: nowrap;
+  transition: $transition-duration $transition-easing;
+  transition-property: background-color, border-color, color, opacity;
+
+  &:visited {
+    color: var(--button-color, inherit);
+  }
+
+  &:hover,
+  &:focus-visible {
+    --button-icon-color: var(--button-hover-color, var(--button-color));
+
+    background: var(--button-hover-background, var(--button-background));
+    color: var(--button-hover-color, var(--button-color));
+    border-color: var(--button-hover-border-color, transparent);
+  }
+
+  &:active {
+    --button-icon-color: var(--button-active-color, var(--button-color));
+
+    background: var(--button-active-background, var(--button-background));
+    color: var(--button-active-color, var(--button-color));
+    border-color: var(--button-active-border-color, transparent);
+  }
+
+  &.is-disabled {
+    background: var(--button-disabled-background, transparent);
+    color: var(--button-disabled-color);
+    border-color: var(--button-disabled-border-color, transparent);
+    cursor: not-allowed;
+  }
+
+  &__icon {
+    color: var(--button-icon-color, inherit);
+    line-height: 1;
+    transition: color $transition-duration $transition-easing;
+
+    #{$self}.is-one-icon-only:not(#{$self}--link) & {
+      color: inherit;
+    }
+  }
+
+  &.is-one-icon-only {
+    padding: 0;
+
+    width: var(--button-width, var(--button-height, 40px));
+  }
+
+  @each $variant in $button-variants {
+    $color: list.nth($variant, 1);
+    $scheme: list.nth($variant, 2);
+
+    &--#{$color} {
+      @each $property, $value in $scheme {
+        --button-#{$property}: var(--button-#{$color}-#{$property});
+      }
+    }
+
+    /* prettier-ignore */
+    @include element-variant('button', $color, $scheme);
+  }
+}

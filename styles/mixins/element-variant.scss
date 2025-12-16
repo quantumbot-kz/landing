@@ -1,0 +1,45 @@
+@use 'sass:meta';
+@use 'sass:list';
+@use 'sass:string';
+
+@mixin element-variant($namespace, $variant: '', $map: ()) {
+  @if meta.type-of($map) == 'map' {
+    $withDarkVariant: false;
+    $variantPrefix: if(string.length($variant) > 0, '-' + $variant, '');
+
+    @at-root {
+      :root,
+      .light-theme {
+        @each $property, $value in $map {
+          @if meta.type-of($value) == 'list' {
+            @if $withDarkVariant == false and list.length($value) > 1 {
+              $withDarkVariant: true;
+            }
+
+            $value: list.nth($value, 1);
+          }
+
+          --#{$namespace}#{$variantPrefix}-#{$property}: #{$value};
+        }
+      }
+
+      @if $withDarkVariant {
+        .dark-theme {
+          @each $property, $value in $map {
+            @if meta.type-of($value) == 'list' and list.length($value) > 1 {
+              --#{$namespace}#{$variantPrefix}-#{$property}: #{list.nth($value, 2)};
+            }
+          }
+        }
+      }
+    }
+
+    @if (string.length($variant) > 0) {
+      &-#{$variantPrefix} {
+        @each $property, $value in $map {
+          --#{$namespace}-#{$property}: var(--#{$namespace}#{$variantPrefix}-#{$property});
+        }
+      }
+    }
+  }
+}

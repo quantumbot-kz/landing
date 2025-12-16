@@ -1,0 +1,24 @@
+@use '../../../styles/variables' as *;
+
+.ui-collapse-transition {
+  transition-property: height, padding-top, padding-bottom;
+  transition-timing-function: var(--collapse-transition-easing, $transition-easing);
+  transition-duration: var(--collapse-transition-duration, $transition-duration);
+}
+
+.ui-collapse-transition-leave-active,
+.ui-collapse-transition-enter-active {
+  transition-property: max-height, padding-top, padding-bottom, opacity;
+  transition-timing-function: var(--collapse-transition-easing, $transition-easing);
+  transition-duration: var(--collapse-transition-duration, $transition-duration);
+}
+
+.ui-collapse-transition-enter-to,
+.ui-collapse-transition-leave-from {
+  opacity: 1;
+}
+
+.ui-collapse-transition-enter-from,
+.ui-collapse-transition-leave-to {
+  opacity: 0;
+}

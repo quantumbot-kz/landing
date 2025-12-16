@@ -1,0 +1,18 @@
+@use 'mixins' as *;
+@use 'variables/color' as *;
+
+/* Tooltip */
+
+.v-popper--theme-tooltip .v-popper__inner {
+  @include font(11px, 500, 14px);
+
+  text-align: left;
+  border-radius: 8px;
+  padding: 4px 8px;
+  background-color: $color-black;
+  color: $color-gray-200;
+}
+
+.v-popper--theme-tooltip .v-popper__arrow-outer {
+  border-color: $color-black;
+}

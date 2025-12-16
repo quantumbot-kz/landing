@@ -1,0 +1,66 @@
+@use 'floating-vue/dist/style.css';
+@use '@splidejs/vue-splide/css/core';
+
+@use 'mixins';
+@use 'normalize';
+@use 'utility';
+@use 'floating-vue';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+body {
+  @include font(16px, 400, 20px);
+
+  font-family: 'Onest', sans-serif;
+  color: $color-black;
+  background-color: $color-white;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+a {
+  color: $color-green-500;
+  text-decoration: none;
+  transition: color $transition-duration $transition-easing;
+  outline: none;
+
+  &:focus,
+  &:hover {
+    color: $color-green-400;
+  }
+
+  &:active {
+    color: $color-green-500;
+  }
+}
+
+button {
+  outline: none;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-inline: 20px;
+
+  @include mobile {
+    padding-inline: 16px;
+  }
+}

@@ -1,0 +1,112 @@
+<template>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__documents">
+          <a href="/documents/privacy-policy.pdf" target="_blank">Политика конфиденциальности</a>
+          <a href="/documents/policy.pdf" target="_blank">Публичная оферта</a>
+          <a href="/documents/payment-policy.pdf" target="_blank">Политика оплаты</a>
+        </div>
+
+        <div class="footer__copyright">
+          @ 2024-2025 ТОО Quantum Technology. Все права защищены
+        </div>
+
+        <div class="footer__socials">
+          <SocialLink :href="app.instagramUrl">
+            <IMonoInstagram />
+          </SocialLink>
+          <SocialLink :href="app.telegramUrl">
+            <IMonoTelegram />
+          </SocialLink>
+          <SocialLink :href="app.whatsappUrl">
+            <IMonoWhatsapp />
+          </SocialLink>
+        </div>
+
+        <a class="footer__dev" href="https://4keller.com/" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" height="29" viewBox="0 0 75 30">
+            <path fill="currentColor" d="M26.465 10.712H23.93l-4.174 9.176v-9.176h-2.317v18.465h2.317v-4.871l1.77-3.58l2.863 8.451h2.644L22.859 18.03zm3.125 0h-1.203v18.465h7.649V26.89h-5.332v-5.732h4.72V18.87h-4.72V13h5.332v-2.289zm10.599.001h-2.316v18.465h7.386V26.89h-5.07zm9.244 0h-2.338v18.465h7.408V26.89h-5.07zm8.108 0h-1.202v18.465h7.626V26.89h-5.31v-5.732h4.699V18.87h-4.699V13h5.31v-2.289zM75 29.177l-2.622-8.292c.022 0 .022-.023.043-.023a3.55 3.55 0 0 0 1.552-1.472c.35-.657.524-1.428.524-2.334v-2.152c0-.884-.174-1.631-.524-2.266a3.34 3.34 0 0 0-1.552-1.427c-.677-.317-1.486-.499-2.447-.499H65.8v18.465h2.316v-7.816h1.989l2.316 7.816zm-6.862-16.199h2.054c.416 0 .765.09 1.071.25c.306.158.525.407.678.747c.153.317.24.725.24 1.178v1.88c0 .43-.087.793-.24 1.11a1.6 1.6 0 0 1-.678.703c-.306.159-.656.25-1.07.25h-2.055zM0 .2v22.09L5.18.2zm3.65 23.155h4.72v-10.83h3.627v10.83h1.333V.2H8.916zm9.702 4.35h-1.355v1.472h1.355zm-4.982 0H0v1.472h8.37zM19.23.268h-1.813v7.295h1.814q.49 0 .852-.204c.24-.136.437-.317.546-.543q.197-.375.197-.884v-4.01c0-.521-.131-.929-.415-1.2c-.284-.295-.678-.454-1.18-.454m.372 5.528a.67.67 0 0 1-.131.43c-.087.114-.218.16-.372.16h-.502V1.468h.502c.154 0 .285.045.372.158a.67.67 0 0 1 .131.43zM25.087.268h-.524v7.295h3.125v-1.2h-1.923V4.55h1.682v-1.2h-1.682V1.49h1.923V.268zm9.201 3.738a2 2 0 0 0-.416-.34l-.459-.272c-.174-.09-.35-.181-.502-.272a1.8 1.8 0 0 1-.394-.294a.56.56 0 0 1-.153-.408v-.476c0-.158.044-.294.153-.385q.164-.136.394-.136c.175 0 .284.045.393.159a.67.67 0 0 1 .131.43v.408l1.202-.023V1.99c0-.567-.153-1.02-.459-1.315C33.872.358 33.458.2 32.911.2s-.984.158-1.29.475c-.305.318-.458.748-.458 1.315v.385c0 .294.043.543.13.77q.132.306.328.544a3.6 3.6 0 0 0 .438.385c.152.113.327.204.48.272c.175.09.328.158.46.249c.13.09.261.181.349.272a.6.6 0 0 1 .13.385v.634c0 .182-.043.318-.152.43c-.087.114-.24.16-.415.16s-.306-.046-.416-.16c-.109-.112-.152-.248-.152-.43v-.385H31.14v.385c0 .386.065.703.218.975c.131.271.35.475.612.611s.59.204.962.204c.546 0 .983-.158 1.289-.476s.459-.747.459-1.336v-.612c0-.295-.044-.544-.11-.725a1.2 1.2 0 0 0-.283-.521M39.532.268H38.33v7.295h1.202zm5.508 4.554h.59v.997c0 .18-.044.317-.154.407a.63.63 0 0 1-.415.159q-.262 0-.393-.136c-.11-.09-.153-.226-.153-.385V2.08c0-.18.044-.34.13-.453c.088-.113.22-.158.394-.158c.153 0 .262.045.35.158c.087.09.131.25.131.408v.566h1.224v-.566c0-.385-.066-.702-.197-.997a1.5 1.5 0 0 0-.59-.634a2 2 0 0 0-.918-.227c-.371 0-.677.068-.94.227a1.5 1.5 0 0 0-.59.634q-.196.408-.196 1.02v3.806c0 .385.065.702.218.951c.132.272.35.476.612.612c.263.136.59.204.962.204c.371 0 .677-.068.94-.226c.262-.136.458-.363.59-.635c.13-.272.196-.612.196-.997V3.598h-1.77v1.224zm7.954-.068L51.486.268h-.962v7.295h1.115V3.327l1.508 4.236h.961V.268h-1.114zM65.21 3.78c.328-.068.568-.182.765-.408q.261-.306.262-.816v-.77c0-.476-.131-.838-.393-1.11C65.58.404 65.21.29 64.729.29h-1.814v7.295h1.923c.481 0 .853-.136 1.093-.408c.262-.272.393-.634.393-1.133v-.997c0-.362-.087-.657-.284-.86a1.4 1.4 0 0 0-.83-.408m-.612-2.334c.131 0 .24.045.328.113c.087.09.109.204.109.34v.793a.7.7 0 0 1-.11.408a.44.44 0 0 1-.327.136h-.48v-1.79zm.524 4.486c0 .136-.043.272-.13.34c-.088.09-.198.113-.35.113h-.547V4.369h.525c.153 0 .284.045.371.158c.088.09.131.25.131.43zM71.984.268l-.612 3.036l-.677-3.036h-1.246l1.333 4.509v2.786h1.18V4.777l1.29-4.509z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+</template>
+
+<script setup lang="ts">
+const app = useAppConfig()
+</script>
+
+<style lang="scss">
+.footer {
+  padding-bottom: 60px;
+  margin-top: 100px;
+
+  @include mobile {
+    margin-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'documents copyright'
+      'socials dev';
+    padding-inline: 60px;
+    gap: 32px;
+
+    @include mobile {
+      grid-template-areas:
+        'documents documents'
+        'copyright copyright'
+        'socials dev';
+      padding-inline: 16px;
+      column-gap: 16px;
+    }
+  }
+
+  &__documents {
+    grid-area: documents;
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+
+    @include mobile {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  &__copyright {
+    @include font(16px, 400, 20px);
+
+    grid-area: copyright;
+    justify-self: flex-end;
+    color: $color-gray-600;
+
+    @include mobile {
+      @include font(14px, 400, 18px);
+
+      text-align: center;
+      justify-self: stretch;
+    }
+  }
+
+  &__socials {
+    grid-area: socials;
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    padding-inline: 12px;
+    font-size: 24px;
+  }
+
+  &__dev {
+    grid-area: dev;
+    justify-self: flex-end;
+    color: $color-gray-600;
+  }
+}
+</style>

@@ -1,0 +1,89 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.ui-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ui-accordion-item {
+  $self: &;
+
+  border-radius: 12px;
+  background-color: $color-white;
+  transition: outline-color $transition-duration $transition-easing;
+  -webkit-tap-highlight-color: transparent;
+  outline: 1px solid $color-gray-500;
+  outline-offset: -1px;
+
+  &:focus,
+  &:hover,
+  &.is-active {
+    outline-width: 2px;
+    outline-offset: -2px;
+  }
+
+  &.is-active {
+    outline-color: $color-gray-600;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    padding: 24px;
+    background: transparent;
+    transition: padding $transition-duration $transition-easing;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    color: $color-black;
+
+    @include mobile {
+      padding: 16px;
+    }
+
+    #{$self}.is-active & {
+      padding: 24px 24px 4px;
+
+      @include mobile {
+        padding: 16px 16px 4px;
+      }
+    }
+  }
+
+  &__title {
+    @include font(18px, 600, 23px);
+
+    @include mobile {
+      @include font(13px, 600, 17px);
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    font-size: 24px;
+    color: $color-gray-600;
+  }
+
+  &__wrapper {
+    will-change: height;
+    overflow: hidden;
+  }
+
+  &__content {
+    @include font(14px, 400, 18px);
+
+    color: $color-gray-700;
+    padding: 0 24px 24px;
+
+    @include mobile {
+      padding: 0 16px 16px;
+    }
+  }
+}
