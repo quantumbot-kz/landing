@@ -42,7 +42,7 @@
 
       <SplideSlide>
         <HomepageOurTeamMember
-          avatar-url="/our-team/igor.png"
+          avatar-url="/our-team/ruslan.png"
           name="Руслан Кошкаров"
           position="CCO"
         >
