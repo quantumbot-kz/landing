@@ -43,7 +43,7 @@
       <SplideSlide>
         <HomepageOurTeamMember
           avatar-url="/our-team/igor.png"
-          name="Игорь Слабуха"
+          name="Руслан Кошкашов Оразов"
           position="CCO"
         >
           <li>5+ лет в продажах</li>
@@ -55,7 +55,7 @@
       <SplideSlide>
         <HomepageOurTeamMember
           avatar-url="/our-team/ruslan.png"
-          name="Руслан Кошкаров"
+          name="Арман "
           position="Key Account Manager"
         >
           <li>6+ лет в клиентском сервисе</li>
