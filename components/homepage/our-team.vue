@@ -43,7 +43,7 @@
       <SplideSlide>
         <HomepageOurTeamMember
           avatar-url="/our-team/igor.png"
-          name="Руслан Кошкашов"
+          name="Руслан Кошкаров"
           position="CCO"
         >
           <li>5+ лет в продажах</li>
