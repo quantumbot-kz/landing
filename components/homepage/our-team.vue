@@ -54,7 +54,7 @@
 
       <SplideSlide>
         <HomepageOurTeamMember
-          avatar-url="/our-team/ruslan.png"
+          avatar-url="/our-team/arman.png"
           name="Арман Оразов"
           position="Key Account Manager"
         >
