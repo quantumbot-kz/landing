@@ -119,7 +119,7 @@ export default defineNuxtConfig({
     scripts: {
       registry: {
         metaPixel: {
-          id: '992723452252630',
+          id: '2310206252799727',
         },
       },
     },
