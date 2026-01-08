@@ -5,7 +5,7 @@ export default defineAppConfig({
   phoneNumber: '+7 747 399 05 82',
   email: 'support@quantumbot.kz',
   appUrl: 'https://app.quantumbot.kz',
-  videoUrl: 'https://www.youtube.com/embed/qngK9wsEAxg',
+  videoUrl: 'https://www.youtube.com/embed/gQkEWI9Cwuw',
   baseUrl: import.meta.env.URL || 'https://quantumbot.kz',
   astanaHubUrl: 'https://astanahub.com/account/company/17721/',
 })
