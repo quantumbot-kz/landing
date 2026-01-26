@@ -6,7 +6,7 @@
   >
     <Splide class="tariff__carousel" :options="splideOptions">
       <SplideSlide>
-        <HomepageTariffCard title="Seller" price-per-month="10 000">
+        <HomepageTariffCard title="Seller" price-per-month="19 990">
           Идеально для небольших <br class="desktop-only">
           или <br class="mobile-only">
           узкоспециализированных магазинов
@@ -25,7 +25,7 @@
       </SplideSlide>
 
       <SplideSlide>
-        <HomepageTariffCard title="Seller Pro" price-per-month="20 000" popular>
+        <HomepageTariffCard title="Seller Pro" price-per-month="39 990" popular>
           Подойдет тем, кто активно торгует на Kaspi
 
           <template #list>
@@ -42,7 +42,7 @@
       </SplideSlide>
 
       <SplideSlide>
-        <HomepageTariffCard title="Seller Ultimate" price-per-month="30 000">
+        <HomepageTariffCard title="Seller Ultimate" price-per-month="54 990">
           Для крупных игроков и магазинов с большим ассортиментом товаров
 
           <template #list>
@@ -62,6 +62,29 @@
           </template>
         </HomepageTariffCard>
       </SplideSlide>
+
+        <SplideSlide>
+        <HomepageTariffCard title="Seller Supreme" price-per-month="79 990">
+          Для крупных игроков и магазинов с большим ассортиментом товаров
+
+          <template #list>
+            <HomepageTariffCardListItem>
+              Автокорректировка цен <br>
+              до <strong>7000 товаров</strong>
+            </HomepageTariffCardListItem>
+            <HomepageTariffCardListItem>Настройка предзаказа</HomepageTariffCardListItem>
+            <HomepageTariffCardListItem hot>
+              <strong>Персональный менеджер</strong>
+            </HomepageTariffCardListItem>
+            <HomepageTariffCardListItem>Не конкурировать со своими магазинами</HomepageTariffCardListItem>
+            <HomepageTariffCardListItem hot>
+              <strong>Турбо</strong> скорость обновления цен
+            </HomepageTariffCardListItem>
+            <HomepageTariffCardListItem>Детальная аналитика продаж на Kaspi.kz</HomepageTariffCardListItem>
+          </template>
+        </HomepageTariffCard>
+      </SplideSlide>
+      
     </Splide>
   </HomepageSection>
 </template>
