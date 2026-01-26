@@ -6,7 +6,7 @@
     <HomepageResults />
     <HomepageHowItWorks />
     <HomepageAnalytics />
-<!--    <HomepageTariff />-->
+    <HomepageTariff />
     <HomepageReferralProgram />
     <HomepageReviews />
     <HomepageFaq />
