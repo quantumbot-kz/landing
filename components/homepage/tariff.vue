@@ -118,8 +118,13 @@ const splideOptions = computed(() => ({
 
       .splide__list {
         display: grid !important;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 32px;
+      }
+
+      .splide__slide {
+        width: auto !important;
+        min-width: 0;
       }
     }
 
