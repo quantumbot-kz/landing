@@ -63,9 +63,9 @@
         </HomepageTariffCard>
       </SplideSlide>
 
-        <SplideSlide>
+      <SplideSlide>
         <HomepageTariffCard title="Seller Supreme" price-per-month="79 990">
-          Для крупных игроков и магазинов с большим ассортиментом товаров
+          Для профессионалов с огромным ассортиментом
 
           <template #list>
             <HomepageTariffCardListItem>
@@ -84,7 +84,6 @@
           </template>
         </HomepageTariffCard>
       </SplideSlide>
-      
     </Splide>
   </HomepageSection>
 </template>
@@ -119,12 +118,25 @@ const splideOptions = computed(() => ({
       .splide__list {
         display: grid !important;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 32px;
+        gap: 24px;
       }
 
       .splide__slide {
         width: auto !important;
         min-width: 0;
+      }
+
+      .tariff-card {
+        padding: 28px;
+      }
+
+      .tariff-card__title {
+        font-size: 26px;
+      }
+
+      .tariff-card__price {
+        font-size: 46px;
+        line-height: 1;
       }
     }
 
