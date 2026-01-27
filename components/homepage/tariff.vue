@@ -25,7 +25,7 @@
       </SplideSlide>
 
       <SplideSlide>
-        <HomepageTariffCard title="Seller Pro" price-per-month="39 990" popular>
+        <HomepageTariffCard title="Seller Pro" price-per-month="39 990">
           Подойдет тем, кто активно торгует на Kaspi
 
           <template #list>
@@ -42,7 +42,7 @@
       </SplideSlide>
 
       <SplideSlide>
-        <HomepageTariffCard title="Seller Ultimate" price-per-month="54 990">
+        <HomepageTariffCard title="Seller Ultimate" price-per-month="54 990" popular>
           Для крупных игроков и магазинов с большим ассортиментом товаров
 
           <template #list>
@@ -117,8 +117,8 @@ const splideOptions = computed(() => ({
 
       .splide__list {
         display: grid !important;
-        grid-template-columns: repeat(4, minmax(220px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: clamp(16px, 1.6vw, 24px);
       }
 
       .splide__slide {
@@ -127,7 +127,7 @@ const splideOptions = computed(() => ({
       }
 
       .tariff-card {
-        padding: 24px;
+        padding: clamp(20px, 1.6vw, 28px);
       }
 
       .tariff-card__title {
