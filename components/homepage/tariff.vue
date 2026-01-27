@@ -117,8 +117,8 @@ const splideOptions = computed(() => ({
 
       .splide__list {
         display: grid !important;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 24px;
+        grid-template-columns: repeat(4, minmax(220px, 1fr));
+        gap: 20px;
       }
 
       .splide__slide {
@@ -127,16 +127,20 @@ const splideOptions = computed(() => ({
       }
 
       .tariff-card {
-        padding: 28px;
+        padding: 24px;
       }
 
       .tariff-card__title {
-        font-size: 26px;
+        font-size: clamp(22px, 1.6vw, 26px);
       }
 
       .tariff-card__price {
-        font-size: 46px;
-        line-height: 1;
+        font-size: clamp(34px, 2.4vw, 46px);
+        line-height: 1.05;
+      }
+
+      .tariff-card__price sub {
+        font-size: clamp(14px, 1vw, 20px);
       }
     }
 
