@@ -37,19 +37,26 @@
     </div>
 
     <div class="hero__media">
-      <div class="hero__frame">
+      <div class="hero__device">
         <NuxtImg
           class="hero__image hero__image--desktop"
           src="/hero-desktop.png"
-          height="650"
+          width="4096"
+          height="2474"
+          sizes="sm:100vw md:100vw lg:1100px"
           draggable="false"
           format="webp"
-          alt="Интерфейс QuantumBot: таблица товаров с автокорректировкой цен"
+          alt="QuantumBot на ноутбуке: управление товарами и автокорректировка цен на Kaspi.kz"
         />
+      </div>
+
+      <div class="hero__frame">
         <NuxtImg
           class="hero__image hero__image--mobile"
           src="/hero-mobile.png"
-          height="650"
+          width="472"
+          height="1024"
+          sizes="sm:100vw md:100vw"
           draggable="false"
           format="webp"
           alt="Интерфейс QuantumBot на мобильном устройстве"
@@ -186,35 +193,40 @@ const benefits = [
     }
   }
 
-  // The screenshot is the proof, so it gets the only ambient elevation on the
-  // page and a masked bottom edge instead of being chopped by the fold.
+  // Laptop cut-out already has a baked-in shadow — no card frame around it.
+  &__device {
+    max-width: 1100px;
+    margin-inline: auto;
+
+    @include compact {
+      display: none;
+    }
+  }
+
+  // Flat mobile screenshot still needs the framed treatment.
   &__frame {
-    max-width: 1060px;
+    display: none;
+    max-width: 360px;
     margin-inline: auto;
     padding: 8px;
     border: 1px solid $color-hairline;
     border-radius: calc(#{$radius-panel} + 8px);
     background-color: rgba($color-linen, 0.7);
     box-shadow: $shadow-panel;
+
+    @include compact {
+      display: block;
+    }
   }
 
   &__image {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: $radius-panel;
-    border: 1px solid $color-hairline;
-
-    &--desktop {
-      @include compact {
-        display: none;
-      }
-    }
 
     &--mobile {
-      @include from($bp-md) {
-        display: none;
-      }
+      border-radius: $radius-panel;
+      border: 1px solid $color-hairline;
     }
   }
 

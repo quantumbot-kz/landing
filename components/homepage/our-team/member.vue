@@ -31,19 +31,18 @@ defineProps<{
   display: flex;
   flex-direction: column;
 
-  // Square full-bleed crops on a shared surface: the portraits arrive with
-  // different studio backdrops, and circular masks made the mismatch obvious.
   &__photo {
     aspect-ratio: 1;
-    border-radius: $radius-card;
+    border-radius: 50%;
     overflow: hidden;
-    background-color: $color-linen;
+    background-color: transparent;
 
     img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
     }
   }
 
@@ -52,6 +51,7 @@ defineProps<{
 
     margin-top: 16px;
     color: $color-ink;
+    text-align: center;
   }
 
   &__position {
@@ -59,6 +59,7 @@ defineProps<{
 
     margin-top: 2px;
     color: $color-slate;
+    text-align: center;
   }
 
   &__experience {

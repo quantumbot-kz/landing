@@ -2,7 +2,6 @@
   <HomepageSection
     id="analytics"
     class="analytics"
-    surface="band"
     eyebrow="Данные"
     title="Аналитика продаж на Kaspi.kz"
     description="Получите полную картину по продажам на Kaspi.kz с помощью нашего сервиса! Наша аналитика – на 100% точная"
@@ -11,13 +10,13 @@
       <div class="analytics__visual">
         <NuxtImg
           src="/analytics-bg.png"
-          width="1400"
-          height="1108"
-          sizes="sm:100vw md:100vw lg:520px"
+          width="2888"
+          height="1716"
+          sizes="sm:100vw md:100vw lg:560px"
           format="webp"
           draggable="false"
           loading="lazy"
-          alt="Дашборд аналитики продаж QuantumBot"
+          alt="Дашборд аналитики QuantumBot: график заказов, выручки и среднего чека на Kaspi.kz"
         />
       </div>
 
@@ -63,8 +62,6 @@ const insights = [
     }
   }
 
-  // The asset is a cut-out isometric device render with its own shadow, so a card
-  // frame around it would read as a box inside a box. It sits on the band directly.
   &__visual {
     display: flex;
     align-items: center;

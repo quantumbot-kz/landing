@@ -131,13 +131,18 @@ const app = useAppConfig()
     color: $color-slate;
   }
 
+  // One line, flex-centred. The previous white-space:normal + line-height:1
+  // wrap left Cyrillic sitting high in the pill.
   &__action.ui-button {
     margin-top: 20px;
     width: 100%;
+    height: 46px;
     min-height: 46px;
-    padding: 13px 12px;
-    font-size: 14px;
-    white-space: normal;
+    padding: 0 10px;
+    font-size: 13px;
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
   }
 
   &__list {

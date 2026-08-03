@@ -5,6 +5,7 @@
     <HomepageHero />
     <HomepageResults />
     <HomepageHowItWorks />
+    <HomepageProducts />
     <HomepageAnalytics />
     <HomepageTariff />
     <HomepageFaq />

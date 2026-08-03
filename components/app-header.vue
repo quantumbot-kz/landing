@@ -106,8 +106,8 @@
 const app = useAppConfig()
 
 const navLinks = [
+  { href: '#products', label: 'Продукты' },
   { href: '#how-it-works', label: 'Как работает' },
-  { href: '#analytics', label: 'Аналитика' },
   { href: '#tariffs', label: 'Тарифы' },
   { href: '#faq', label: 'Вопросы' },
 ]

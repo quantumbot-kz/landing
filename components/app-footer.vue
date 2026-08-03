@@ -32,8 +32,8 @@
             Разделы
           </p>
 
+          <a href="#products">Продукты</a>
           <a href="#how-it-works">Как работает</a>
-          <a href="#analytics">Аналитика</a>
           <a href="#tariffs">Тарифы</a>
           <a href="#faq">Вопросы</a>
         </nav>
