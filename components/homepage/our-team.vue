@@ -51,30 +51,6 @@
           <li>Опыт работы с международными IT-компаниями</li>
         </HomepageOurTeamMember>
       </SplideSlide>
-
-      <SplideSlide>
-        <HomepageOurTeamMember
-          avatar-url="/our-team/arman.png"
-          name="Арман Оразов"
-          position="Key Account Manager"
-        >
-          <li>6+ лет в клиентском сервисе</li>
-          <li>Опыт в IT и обучении пользователей</li>
-          <li>Специализация: системы поддержки</li>
-        </HomepageOurTeamMember>
-      </SplideSlide>
-
-      <SplideSlide>
-        <HomepageOurTeamMember
-          avatar-url="/our-team/anton.png"
-          name="Антон Келлер"
-          position="Product designer"
-        >
-          <li>6 лет в продуктовом дизайне</li>
-          <li>Победитель Ozon fintech contest</li>
-          <li>Эксперт по эвристическому методу оценки интерфейсов</li>
-        </HomepageOurTeamMember>
-      </SplideSlide>
     </Splide>
   </HomepageSection>
 </template>
@@ -109,7 +85,18 @@ const splideOptions = computed(() => ({
       .splide__list {
         display: flex !important;
         justify-content: center;
-        gap: 16px;
+        align-items: stretch;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .splide__slide {
+        display: flex;
+        width: auto !important;
+      }
+
+      .our-team-member {
+        height: 100%;
       }
     }
 

@@ -78,25 +78,21 @@ import InfoButton from '~/components/info-button.vue'
   &__cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    gap: 16px;
 
     @include mobile {
-      display: flex;
-      flex-direction: column;
+      grid-template-columns: 1fr;
     }
   }
 
   &__contact-us {
-    margin-top: 40px;
+    margin-top: 32px;
 
     @include desktop {
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-
-    @include mobile {
-      margin-top: 32px;
+      gap: 24px;
     }
   }
 }
@@ -104,28 +100,30 @@ import InfoButton from '~/components/info-button.vue'
 .result-card {
   position: relative;
   padding: 24px;
-  background-color: $color-gray-300;
-  border-radius: 12px;
+  background-color: $color-white;
+  border: 1px solid $color-hairline;
+  border-radius: $radius-card;
+  overflow: hidden;
 
   @include desktop {
-    height: 200px;
+    min-height: 200px;
   }
 
   @include mobile {
     display: grid;
     grid-template-columns: 50px 1fr;
     grid-template-rows: auto 1fr;
-    column-gap: 24px;
+    column-gap: 16px;
     padding: 16px;
   }
 
   &__text {
-    @include font(18px, 800, 25px);
+    @include font(16px, 500, 1.35);
 
-    text-transform: uppercase;
+    color: $color-ink;
 
     @include mobile {
-      @include font(15px, 800, 21px);
+      @include font(15px, 500, 1.35);
 
       grid-row: 1;
       grid-column: 2;
@@ -133,10 +131,14 @@ import InfoButton from '~/components/info-button.vue'
   }
 
   &__sub {
-    @include font(18px, 500, 25px);
+    @include font(28px, 300, 1.2);
+
+    letter-spacing: -0.02em;
+    margin-top: 8px;
+    color: $color-quantum-green;
 
     @include mobile {
-      @include font(15px, 500, 21px);
+      @include font(22px, 300, 1.2);
 
       grid-column: 2;
       grid-row: 2;
@@ -147,7 +149,8 @@ import InfoButton from '~/components/info-button.vue'
     @include desktop {
       position: absolute;
       bottom: 12px;
-      right: 24px;
+      right: 16px;
+      opacity: 0.9;
     }
 
     @include mobile {
@@ -159,27 +162,24 @@ import InfoButton from '~/components/info-button.vue'
 }
 
 .results-contact-us {
-  background-color: $color-gray-200;
-  border-radius: 12px;
-  padding: 32px 40px;
+  background-color: $color-mint-wash;
+  border-radius: $radius-card;
+  padding: 28px 32px;
 
   @include mobile {
-    padding: 16px;
+    padding: 20px 16px;
   }
 
   &__left {
     display: grid;
-    grid-template-columns: 59px 1fr;
-    column-gap: 24px;
-
-    @include mobile {
-      column-gap: 12px;
-      row-gap: 16px;
-    }
+    grid-template-columns: 48px 1fr;
+    column-gap: 16px;
+    row-gap: 8px;
   }
 
   &__icon {
-    font-size: 59px;
+    font-size: 48px;
+    color: $color-quantum-green;
 
     @include desktop {
       grid-row: span 2;
@@ -187,20 +187,24 @@ import InfoButton from '~/components/info-button.vue'
   }
 
   &__title {
-    @include font(22px, 700, 31px);
+    @include font(22px, 500, 1.3);
+
+    color: $color-ink;
 
     @include mobile {
-      @include font(20px, 600, 24px);
+      @include font(18px, 500, 1.3);
 
       align-self: center;
     }
   }
 
   &__description {
-    @include font(20px, 300, 28px);
+    @include font(15px, 400, 1.5);
+
+    color: $color-carbon;
 
     @include mobile {
-      @include font(14px, 300, 17px);
+      @include font(14px, 400, 1.45);
 
       grid-column: span 2;
     }
@@ -208,7 +212,7 @@ import InfoButton from '~/components/info-button.vue'
 
   &__action {
     @include mobile {
-      margin-top: 24px;
+      margin-top: 20px;
     }
   }
 }

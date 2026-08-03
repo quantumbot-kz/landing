@@ -10,16 +10,17 @@ const cn = useClassname('ui-badge')
 
 <style lang="scss">
 .ui-badge {
-  @include font(15px, 500, 15px);
+  @include font(12px, 500, 1);
 
   display: inline-block;
-  border-radius: 3px;
-  padding: 4px 8px;
-  color: $color-gray-700;
-  background-color: $color-gray-400;
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: $color-carbon;
+  background-color: $color-linen;
+  letter-spacing: 0.02em;
 
   @include mobile {
-    @include font(10px, 500, 15px);
+    @include font(11px, 500, 1);
   }
 }
 </style>

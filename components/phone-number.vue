@@ -19,8 +19,9 @@ const app = useAppConfig()
   gap: 8px;
 
   &__icon {
-    font-size: 24px;
+    font-size: 20px;
     flex-shrink: 0;
+    color: $color-quantum-green;
 
     @include mobile {
       display: none;
@@ -28,9 +29,13 @@ const app = useAppConfig()
   }
 
   &__number {
-    @include font(14px, 700, 18px, 'phone-number');
+    @include font(14px, 500, 1.3, 'phone-number');
 
-    color: $color-black;
+    color: $color-ink;
+
+    &:hover {
+      color: $color-quantum-green;
+    }
   }
 }
 </style>

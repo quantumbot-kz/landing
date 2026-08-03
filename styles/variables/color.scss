@@ -1,15 +1,46 @@
-$color-gray-200: #f9faff;
-$color-gray-300: #f6f7fb;
-$color-gray-400: #e7eaf3;
-$color-gray-500: #cfd5f0;
-$color-gray-600: #8890b8;
-$color-gray-700: #505a8a;
+// QuantumBot design tokens — amp system remapped to brand green
 
+$color-quantum-green: #008574;
+$color-quantum-glow: #5cb8a8;
+$color-mint-wash: #d8f0eb;
+
+$color-ink: #0a0a0a;
+$color-carbon: #292b2a;
+$color-slate: #7a7b7b;
+$color-ash: #a2a3a2;
+$color-hairline: #e5e5e5;
+$color-fog: #dfe0df;
+$color-bone: #e5e7eb;
+$color-linen: #f3f4f3;
+$color-charcoal: #202120;
+$color-smoke: #3c3e3d;
+
+$color-white: #ffffff;
+$color-black: #0a0a0a;
+
+// Brand greens (legacy names kept for existing selectors)
 $color-green-400: #008574;
 $color-green-500: #056e62;
 
-$color-white: #ffffff;
-$color-black: #021d54;
+// Soft highlight (replaces lemon — never a second accent)
+$color-lemon-400: #d8f0eb;
+$color-lemon-500: #b8e5db;
 
-$color-lemon-400: #e8ff8a;
-$color-lemon-500: #e0ff5f;
+// Neutral ladder remapped to amp surfaces
+$color-gray-200: #ffffff;
+$color-gray-300: #f3f4f3;
+$color-gray-400: #e5e5e5;
+$color-gray-500: #e5e5e5;
+$color-gray-600: #7a7b7b;
+$color-gray-700: #292b2a;
+
+$shadow-cta: rgba(0, 133, 116, 0.45) 1px 6px 14px 0px, rgba(0, 0, 0, 0.06) 0px 1px 4px 0px;
+
+$radius-card: 5px;
+$radius-image: 8px;
+$radius-secondary: 24px;
+$radius-pill: 50px;
+$radius-nav: 40px;
+
+$page-max-width: 1200px;
+$section-gap: 80px;

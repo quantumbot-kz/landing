@@ -1,10 +1,11 @@
 <template>
-  <div class="faq">
+  <div id="faq" class="faq">
     <div class="container">
       <div class="faq__inner">
-        <div class="faq__title">
+        <h2 class="faq__title">
           Вопросы и ответы
-        </div>
+        </h2>
+        <div class="faq__rule" aria-hidden="true" />
 
         <div class="faq__items">
           <UiAccordion>
@@ -33,24 +34,35 @@
 <style lang="scss">
 .faq {
   &__inner {
-    border-radius: 12px;
-    padding: 40px;
-    background-color: $color-gray-200;
+    border-radius: $radius-card;
+    padding: 48px;
+    background-color: $color-linen;
+    border: 1px solid $color-hairline;
 
     @include mobile {
-      padding: 16px;
+      padding: 20px 16px;
     }
   }
 
   &__title {
-    @include font(32px, 900, 45px);
+    @include font(40px, 300, 1.2);
 
-    text-transform: uppercase;
-    margin-bottom: 40px;
+    letter-spacing: -0.03em;
+    color: $color-ink;
+    margin-bottom: 0;
 
     @include mobile {
-      @include font(20px, 900, 28px);
+      @include font(28px, 300, 1.2);
+    }
+  }
 
+  &__rule {
+    width: 80px;
+    height: 2px;
+    margin: 20px 0 32px;
+    background: $color-quantum-green;
+
+    @include mobile {
       margin-bottom: 24px;
     }
   }

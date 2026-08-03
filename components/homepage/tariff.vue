@@ -1,5 +1,6 @@
 <template>
   <HomepageSection
+    id="tariffs"
     class="tariff"
     title="Тарифы"
     description="Выберите тариф, подходящий под потребности Вашего бизнеса"
@@ -7,9 +8,7 @@
     <Splide class="tariff__carousel" :options="splideOptions">
       <SplideSlide>
         <HomepageTariffCard title="Seller" price-per-month="19 990">
-          Идеально для небольших <br class="desktop-only">
-          или <br class="mobile-only">
-          узкоспециализированных магазинов
+          Идеально для небольших или узкоспециализированных магазинов
 
           <template #list>
             <HomepageTariffCardListItem>
@@ -122,11 +121,13 @@ const splideOptions = computed(() => ({
       }
 
       .splide__slide {
+        display: flex;
         width: auto !important;
         min-width: 0;
       }
 
       .tariff-card {
+        flex: 1;
         padding: clamp(20px, 1.6vw, 28px);
       }
 
@@ -134,13 +135,13 @@ const splideOptions = computed(() => ({
         font-size: clamp(22px, 1.6vw, 26px);
       }
 
-      .tariff-card__price {
-        font-size: clamp(34px, 2.4vw, 46px);
+      .tariff-card__amount {
+        font-size: clamp(32px, 2.2vw, 42px);
         line-height: 1.05;
       }
 
-      .tariff-card__price sub {
-        font-size: clamp(14px, 1vw, 20px);
+      .tariff-card__period {
+        font-size: clamp(13px, 0.95vw, 16px);
       }
     }
 

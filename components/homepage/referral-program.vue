@@ -3,12 +3,14 @@
     <div class="container">
       <div class="referral-program__inner">
         <div class="referral-program__header">
-          <NuxtImg class="mobile-only" src="/referral-program-bg-mobile.png" height="80px" format="webp" draggable="false" />
+          <NuxtImg class="mobile-only" src="/referral-program-bg-mobile.png" height="80px" format="webp" draggable="false" alt="" />
 
-          <div class="referral-program__title">
+          <h2 class="referral-program__title">
             Реферальная программа
-          </div>
+          </h2>
         </div>
+
+        <div class="referral-program__rule" aria-hidden="true" />
 
         <p class="referral-program__description">
           Получайте вознаграждение за пополнение пользователей,<br>
@@ -26,7 +28,6 @@
 </template>
 
 <script setup>
-const app = useAppConfig()
 const img = useImage()
 
 const desktopBg = computed(() => {
@@ -41,24 +42,40 @@ const desktopBg = computed(() => {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 16px 100px;
-    border-radius: 12px;
-    height: 407px;
+    padding: 56px 64px;
+    border-radius: $radius-card;
+    min-height: 360px;
     color: $color-white;
+    background-color: $color-charcoal;
+    position: relative;
+    overflow: hidden;
 
     @include desktop {
-      background-image: v-bind(desktopBg), linear-gradient(260.36deg, #21dac2 0%, #008574 86.86%);
+      background-image: v-bind(desktopBg);
       background-repeat: no-repeat;
-      background-position:
-        center right 100px,
-        center;
+      background-position: center right 48px;
+      background-size: contain;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba($color-charcoal, 0.96) 0%, rgba($color-charcoal, 0.88) 48%, rgba($color-charcoal, 0.55) 100%);
+      pointer-events: none;
+
+      @include mobile {
+        background: rgba($color-charcoal, 0.92);
+      }
+    }
+
+    > * {
+      position: relative;
     }
 
     @include mobile {
-      background-color: $color-green-400;
-      background-image: none;
-      padding: 16px;
-      height: unset;
+      padding: 24px 16px;
+      min-height: unset;
     }
   }
 
@@ -69,60 +86,71 @@ const desktopBg = computed(() => {
   }
 
   &__title {
-    @include font(32px, 700, 45px);
+    @include font(40px, 300, 1.15);
+
+    letter-spacing: -0.03em;
 
     @include mobile {
-      @include font(20px, 700, 28px);
+      @include font(26px, 300, 1.2);
     }
   }
 
-  &__description {
-    @include font(18px, 400, 32px);
+  &__rule {
+    width: 80px;
+    height: 2px;
+    margin-top: 16px;
+    background: $color-quantum-green;
+  }
 
-    margin-top: 24px;
+  &__description {
+    @include font(16px, 400, 1.55);
+
+    margin-top: 20px;
+    color: rgba($color-white, 0.82);
+    max-width: 42ch;
 
     @include mobile {
-      @include font(12px, 400, 22px);
+      @include font(14px, 400, 1.5);
 
       margin-top: 16px;
     }
   }
 
   &__list {
-    @include font(15px, 600, 15px);
+    @include font(15px, 400, 1.4);
 
     list-style: none;
-    margin-top: 24px;
+    margin-top: 28px;
     padding-left: 0;
 
     @include mobile {
-      @include font(12px, 600, 15px);
+      @include font(13px, 400, 1.4);
 
-      margin-top: 16px;
+      margin-top: 20px;
     }
 
     li {
       position: relative;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       counter-increment: referral-program-item;
 
       &:not(:last-child) {
-        margin-bottom: 21px;
+        margin-bottom: 16px;
 
         &::after {
           content: '';
           position: absolute;
-          left: 16px;
-          top: 36px;
-          height: 13px;
-          border-left: 1px dashed $color-lemon-500;
+          left: 15px;
+          top: 34px;
+          height: 12px;
+          border-left: 1px dashed rgba($color-quantum-glow, 0.7);
         }
       }
 
       &::before {
-        @include font(16px, 600, 32px);
+        @include font(13px, 500, 32px);
 
         display: block;
         content: counter(referral-program-item);
@@ -130,8 +158,8 @@ const desktopBg = computed(() => {
         width: 32px;
         flex-shrink: 0;
         text-align: center;
-        background-color: $color-lemon-500;
-        color: $color-black;
+        background-color: $color-quantum-green;
+        color: $color-white;
         border-radius: 8px;
       }
     }

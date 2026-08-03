@@ -38,13 +38,14 @@ const app = useAppConfig()
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 56px 60px;
-    border-radius: 12px;
-    background-color: $color-gray-200;
+    padding: 40px 48px;
+    border-radius: $radius-card;
+    background-color: $color-white;
+    border: 1px solid $color-hairline;
 
     @include mobile {
       flex-direction: column;
-      align-items: unset;
+      align-items: flex-start;
       gap: 24px;
       padding: 24px 16px;
     }
@@ -53,54 +54,49 @@ const app = useAppConfig()
   &__left {
     display: flex;
     align-items: center;
-    gap: 32px;
-
-    @include mobile {
-      gap: 12px;
-    }
+    gap: 20px;
   }
 
   &__icon {
     flex-shrink: 0;
-    font-size: 69px;
+    font-size: 48px;
+    color: $color-quantum-green;
   }
 
   &__title {
-    @include font(32px, 600, 41px);
+    @include font(28px, 300, 1.2);
 
-    color: $color-black;
-    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: $color-ink;
 
     @include mobile {
-      @include font(20px, 600, 24px);
-
-      text-transform: unset;
+      @include font(22px, 300, 1.2);
     }
   }
 
   &__link {
-    @include font(16px, 400, 20px);
+    @include font(15px, 400, 1.4);
 
-    color: $color-gray-600;
+    color: $color-slate;
+    display: inline-block;
+    margin-top: 6px;
 
     @include mobile {
-      @include font(14px, 300, 17px);
+      @include font(14px, 400, 1.4);
     }
   }
 
-  &__right {
-  }
-
   &__call-us {
-    color: $color-gray-600;
+    color: $color-slate;
     margin-bottom: 8px;
+    font-size: 14px;
   }
 
   &__phone-number {
-    @include font(20px, 700, 26px, 'phone-number', true);
+    @include font(20px, 500, 1.3, 'phone-number', true);
 
     @include mobile {
-      @include font(16px, 700, 20px, 'phone-number', true);
+      @include font(16px, 500, 1.3, 'phone-number', true);
     }
   }
 }

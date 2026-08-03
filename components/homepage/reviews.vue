@@ -7,10 +7,10 @@
     <div class="reviews__inner">
       <div class="reviews-navigation-card desktop-only">
         <div class="reviews-navigation-card__arrows">
-          <button class="reviews-navigation-card__arrow" type="button" @click="move('<')">
+          <button class="reviews-navigation-card__arrow" type="button" aria-label="Предыдущий отзыв" @click="move('<')">
             <IMonoChevronLeft />
           </button>
-          <button class="reviews-navigation-card__arrow" type="button" @click="move('>')">
+          <button class="reviews-navigation-card__arrow" type="button" aria-label="Следующий отзыв" @click="move('>')">
             <IMonoChevronRight />
           </button>
         </div>
@@ -40,7 +40,7 @@
 
       <Splide ref="splideEl" class="reviews__carousel" :options="splideOptions">
         <SplideSlide v-for="i in 6" :key="i">
-          <NuxtImg class="reviews__review" :src="`/reviews/${i}.png`" height="416" format="webp" draggable="false" />
+          <NuxtImg class="reviews__review" :src="`/reviews/${i}.png`" height="416" format="webp" draggable="false" :alt="`Отзыв ${i}`" />
         </SplideSlide>
       </Splide>
 
@@ -56,18 +56,18 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide'
 const splideEl = ref()
 
 const splideOptions = computed(() => ({
-  gap: 40,
+  gap: 16,
   autoWidth: true,
   focus: 0,
   omitEnd: true,
   arrows: false,
   pagination: false,
-  padding: { right: 40 },
+  padding: { right: 24 },
   type: 'loop',
   breakpoints: {
     480: {
       padding: 0,
-      gap: 16,
+      gap: 12,
     },
   },
 } as SplideOptions))
@@ -80,14 +80,15 @@ function move(dir: '<' | '>'): void {
 <style lang="scss">
 .reviews {
   &__inner {
-    background-color: $color-gray-300;
-    border-radius: 12px;
+    background-color: $color-linen;
+    border: 1px solid $color-hairline;
+    border-radius: $radius-card;
 
     @include desktop {
       display: grid;
-      grid-template-columns: 270px 1fr;
+      grid-template-columns: 260px 1fr;
       gap: 24px;
-      padding: 40px 0 40px 40px;
+      padding: 32px 0 32px 32px;
     }
 
     @include mobile {
@@ -96,24 +97,26 @@ function move(dir: '<' | '>'): void {
   }
 
   &__title {
-    @include font(32px, 700, 38px);
+    @include font(36px, 300, 1.1);
 
-    color: $color-gray-700;
+    letter-spacing: -0.03em;
+    color: $color-ink;
   }
 
   &__subtitle {
-    @include font(14px, 400, 17px);
+    @include font(14px, 400, 1.4);
 
-    color: $color-gray-600;
-    margin-bottom: 24px;
+    color: $color-slate;
+    margin-bottom: 20px;
   }
 
   &__review {
-    border-radius: 15px;
+    border-radius: $radius-image;
+    border: 1px solid $color-hairline;
   }
 
   &__action {
-    margin-top: 24px;
+    margin-top: 20px;
   }
 }
 
@@ -121,9 +124,10 @@ function move(dir: '<' | '>'): void {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: $color-gray-200;
-  border: 1px solid $color-gray-400;
-  border-radius: 15px;
+  gap: 24px;
+  background-color: $color-white;
+  border: 1px solid $color-hairline;
+  border-radius: $radius-card;
   padding: 24px;
 
   &__arrows {
@@ -133,33 +137,38 @@ function move(dir: '<' | '>'): void {
 
   &__arrow {
     cursor: pointer;
-    color: $color-gray-700;
-    transition: color $transition-duration $transition-easing;
-    font-size: 24px;
-    background: none;
-    border: none;
+    color: $color-carbon;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    font-size: 20px;
+    background: $color-linen;
+    border: 1px solid $color-hairline;
+    border-radius: $radius-secondary;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 0;
 
     &:hover,
-    &:focus {
-      color: $color-green-400;
-    }
-
-    &:active {
-      color: $color-green-500;
+    &:focus-visible {
+      color: $color-quantum-green;
+      border-color: $color-quantum-green;
     }
   }
 
   &__title {
-    @include font(48px, 700, 58px);
+    @include font(48px, 300, 1);
 
-    color: $color-gray-700;
+    letter-spacing: -0.036em;
+    color: $color-ink;
   }
 
   &__subtitle {
-    @include font(20px, 400, 24px);
+    @include font(16px, 400, 1.4);
 
-    color: $color-gray-600;
+    color: $color-slate;
+    margin-top: 8px;
   }
 }
 </style>

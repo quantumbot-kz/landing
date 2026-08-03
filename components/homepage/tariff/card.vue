@@ -14,12 +14,13 @@
     </div>
 
     <div class="tariff-card__price">
-      ₸ {{ pricePerMonth }}<sub>/месяц</sub>
+      <span class="tariff-card__amount">₸ {{ pricePerMonth }}</span>
+      <span class="tariff-card__period">/месяц</span>
     </div>
 
     <UiButton
       class="tariff-card__action"
-      :type="popular ? 'promo' : 'primary'"
+      :type="popular ? 'primary' : 'secondary'"
       :href="app.appUrl"
       rel="noopener noreferrer"
     >
@@ -46,10 +47,12 @@ const app = useAppConfig()
 .tariff-card {
   $self: &;
 
-  padding: 40px;
-  border-radius: 12px;
-  border: 1px solid $color-gray-500;
-  background-color: $color-gray-200;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border-radius: $radius-card;
+  border: 1px solid $color-hairline;
+  background-color: $color-white;
   height: 100%;
 
   @include mobile {
@@ -58,100 +61,85 @@ const app = useAppConfig()
   }
 
   &--popular {
-    position: relative;
-    color: $color-white;
-    background-color: $color-green-500;
-    border-width: 0;
-
-    @include desktop {
-      box-shadow: 0px 40px 50px 0px #056e6266;
-    }
-
-    &::before {
-      pointer-events: none;
-      inset: 0;
-      content: '';
-      display: block;
-      position: absolute;
-      background-image: url(/strips.png);
-      background-size: cover;
-      opacity: 0.05;
-    }
+    background-color: $color-mint-wash;
+    border-color: $color-quantum-green;
   }
 
   &__title {
-    @include font(30px, 700, 1);
+    @include font(24px, 500, 1.2);
+
+    color: $color-ink;
 
     @include mobile {
-      @include font(20px, 700, 26px);
+      @include font(20px, 500, 1.2);
     }
   }
 
   &__description {
-    @include font(17px, 400, 22px);
+    @include font(14px, 400, 1.45);
 
-    color: $color-gray-700;
-    min-height: 44px;
+    color: $color-slate;
+    // 3 lines — longest copy in the row; keeps price/CTA/list on one baseline
+    min-height: calc(1.45em * 3);
+    margin-top: 8px;
 
     @include mobile {
-      @include font(12px, 400, 15px);
+      @include font(12px, 400, 1.4);
 
-      min-height: 30px;
-    }
-
-    #{$self}--popular & {
-      color: $color-gray-400;
+      min-height: calc(1.4em * 3);
     }
   }
 
   &__price {
-    @include font(55px, 600, 39px);
-
-    height: 39px;
-    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 28px;
+    color: $color-ink;
 
     @include mobile {
-      @include font(37px, 700, 26px);
-
-      height: 26px;
       margin-top: 16px;
-    }
-
-    sub {
-      @include font(20px, 600, 26px);
-
-      color: $color-gray-700;
-      vertical-align: unset;
-      bottom: 0.3em;
-      margin-left: 8px;
-
-      #{$self}--popular & {
-        color: $color-gray-400;
-      }
-
-      @include mobile {
-        @include font(13px, 600, 17px);
-
-        height: 26px;
-      }
+      gap: 4px;
     }
   }
 
-  &__action {
-    margin-top: 40px;
+  &__amount {
+    @include font(40px, 300, 1.05);
+
+    letter-spacing: -0.03em;
 
     @include mobile {
-      width: 100%;
+      @include font(32px, 300, 1.05);
+    }
+  }
+
+  &__period {
+    @include font(14px, 400, 1);
+
+    color: $color-slate;
+  }
+
+  &__action.ui-button {
+    margin-top: 24px;
+    width: 100%;
+    // Primary/secondary differ (52 vs 48); unify so feature lists share a baseline
+    min-height: 48px;
+    padding: 14px 12px;
+    border-radius: $radius-pill;
+    font-size: 14px;
+    white-space: nowrap;
+
+    @include mobile {
       margin-top: 16px;
-      height: 32px;
-      font-size: 11px;
-      padding: 0;
-      border-radius: 8px;
+      min-height: 40px;
+      font-size: 12px;
+      padding: 10px 14px;
     }
   }
 
   &__list {
-    margin-top: 40px;
+    margin-top: 28px;
     list-style: none;
     padding: 0;
 
@@ -160,8 +148,7 @@ const app = useAppConfig()
     }
 
     #{$self}--popular & {
-      --tariff-card-list-item-color: #{$color-white};
-      --tariff-card-list-item-checkmark-color: #{$color-lemon-500};
+      --tariff-card-list-item-checkmark-color: #{$color-quantum-green};
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <Transition name="scroll-to-top">
-    <button v-show="y > 100" class="scroll-to-top desktop-only" type="button" @click="y = 0">
+    <button v-show="y > 100" class="scroll-to-top desktop-only" type="button" aria-label="Наверх" @click="y = 0">
       <IMonoArrowUp />
     </button>
   </Transition>
@@ -15,33 +15,37 @@ const { y } = useWindowScroll()
 <style lang="scss">
 .scroll-to-top {
   position: fixed;
-  right: 60px;
-  bottom: 60px;
-  border-radius: 16px;
-  color: $color-gray-700;
-  width: 64px;
-  height: 64px;
-  transition: $transition-duration $transition-easing;
-  transition-property: background-color, color;
+  right: 32px;
+  bottom: 32px;
+  border-radius: $radius-secondary;
+  color: $color-carbon;
+  width: 48px;
+  height: 48px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   z-index: 1000;
-  background-color: $color-gray-300;
-  outline: none;
-  border: none;
+  background-color: $color-white;
+  border: 1px solid $color-hairline;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
 
-  &:hover {
-    color: $color-black;
-    background-color: $color-gray-400;
+  &:hover,
+  &:focus-visible {
+    color: $color-quantum-green;
+    border-color: $color-quantum-green;
   }
 }
 
 .scroll-to-top-leave-active,
 .scroll-to-top-enter-active {
-  transition: transform $transition-duration $transition-easing;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .scroll-to-top-enter-from,
 .scroll-to-top-leave-to {
-  transform: scale(0);
+  transform: scale(0.85);
+  opacity: 0;
 }
 </style>

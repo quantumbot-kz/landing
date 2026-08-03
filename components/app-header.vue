@@ -2,17 +2,16 @@
   <header class="header">
     <div class="container">
       <div class="header__inner">
-        <NuxtImg src="/logo.svg" alt="one2one" class="header__logo desktop-only" draggable="false" />
-        <NuxtImg src="/logo-compact.svg" alt="one2one" class="header__logo mobile-only" draggable="false" />
+        <NuxtImg src="/logo.svg" alt="QuantumBot" class="header__logo desktop-only" draggable="false" />
+        <NuxtImg src="/logo-compact.svg" alt="QuantumBot" class="header__logo mobile-only" draggable="false" />
 
-        <hr class="header__divider desktop-only">
+        <nav class="header__nav desktop-only" aria-label="Основная навигация">
+          <a href="#how-it-works">Как работает</a>
+          <a href="#tariffs">Тарифы</a>
+          <a href="#faq">Вопросы</a>
+        </nav>
 
-        <a href="#how-it-works" class="header__demo desktop-only">
-          <IMonoPlay />
-          <span>Демо видео о продукте</span>
-        </a>
-
-        <div class="header__socials">
+        <div class="header__socials desktop-only">
           <SocialLink :href="app.instagramUrl">
             <IMonoInstagram />
           </SocialLink>
@@ -24,9 +23,7 @@
           </SocialLink>
         </div>
 
-        <hr class="header__divider">
-
-        <PhoneNumber />
+        <PhoneNumber class="header__phone desktop-only" />
 
         <UiButton :href="app.appUrl" rel="noopener noreferrer" class="header__sign-in">
           Войти
@@ -44,80 +41,81 @@ const app = useAppConfig()
 .header {
   position: sticky;
   top: 0;
-  background-color: $color-gray-200;
   z-index: 100;
+  background-color: rgba($color-white, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $color-hairline;
 
   &__inner {
     display: flex;
     align-items: center;
-    height: 80px;
-    padding: 16px 24px;
-    justify-content: flex-start;
+    gap: 24px;
+    height: 72px;
 
     @include mobile {
-      padding: 12px 0;
-      height: unset;
+      height: 56px;
+      gap: 12px;
     }
   }
 
   &__logo {
-    height: 21px;
+    height: 22px;
+    flex-shrink: 0;
 
     @include mobile {
       height: 16px;
     }
   }
 
-  &__divider {
-    height: 21px;
-    width: 1px;
-    border: none;
-    background-color: $color-gray-400;
-    margin-inline: 24px;
-
-    @include mobile {
-      margin-inline: 12px;
-    }
-  }
-
-  &__demo {
-    @include font(12px, 500, 15px);
-
+  &__nav {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: $color-gray-700;
+    gap: 28px;
+    margin-left: 16px;
 
-    > svg {
-      font-size: 24px;
-      color: $color-green-500;
+    a {
+      @include font(14px, 400, 1);
+
+      color: $color-carbon;
+
+      &:hover,
+      &:focus-visible {
+        color: $color-ink;
+      }
     }
   }
 
   &__socials {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
     margin-left: auto;
-    font-size: 24px;
+    font-size: 20px;
+    color: $color-carbon;
+  }
 
-    @include mobile {
-      font-size: 16px;
-      gap: 16px;
-    }
+  &__phone {
+    margin-left: 8px;
   }
 
   &__sign-in {
-    height: 40px;
-    padding-block: 9px;
-    margin-left: 24px;
+    margin-left: auto;
+    height: auto;
+    min-height: 40px;
+    padding: 10px 20px;
+    border-radius: $radius-nav;
+    font-size: 14px;
+
+    @include desktop {
+      margin-left: 0;
+    }
 
     @include mobile {
-      @include font(12px, 500, 15px);
+      @include font(13px, 500, 1);
 
-      height: 32px;
-      padding: 7.5px 15px;
-      margin-left: 12px;
+      min-height: 36px;
+      padding: 8px 16px;
+      margin-left: auto;
     }
   }
 }

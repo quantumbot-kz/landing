@@ -27,7 +27,7 @@ defineProps<{
 .tariff-card-list-item {
   @include font(16px, 400, 20px);
 
-  color: var(--tariff-card-list-item-color, $color-gray-700);
+  color: var(--tariff-card-list-item-color, $color-carbon);
   position: relative;
   padding-left: 43px;
   padding-top: 3px;
@@ -59,7 +59,7 @@ defineProps<{
     mask-size: cover;
     width: 24px;
     height: 25px;
-    background-color: var(--tariff-card-list-item-checkmark-color, #3ed37a);
+    background-color: var(--tariff-card-list-item-checkmark-color, #{$color-quantum-green});
 
     @include mobile {
       width: 16px;

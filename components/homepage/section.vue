@@ -1,13 +1,15 @@
 <template>
   <div class="homepage-section">
     <div class="container">
-      <div class="homepage-section__title">
+      <h2 class="homepage-section__title">
         {{ title }}
-      </div>
+      </h2>
 
       <p v-if="description" class="homepage-section__description">
         {{ description }}
       </p>
+
+      <div class="homepage-section__rule" aria-hidden="true" />
 
       <div class="homepage-section__content">
         <slot />
@@ -26,28 +28,50 @@ defineProps<{
 <style lang="scss">
 .homepage-section {
   &__title {
-    @include font(36px, 700, 46px);
+    @include font(48px, 300, 1.2);
 
+    letter-spacing: -0.03em;
     text-align: center;
+    color: $color-ink;
+    max-width: 18ch;
+    margin-inline: auto;
 
     @include mobile {
-      @include font(20px, 700, 26px);
+      @include font(28px, 300, 1.2);
+
+      letter-spacing: -0.02em;
+      max-width: none;
     }
   }
 
   &__description {
-    @include font(14px, 300, 17px);
+    @include font(16px, 400, 1.5);
 
     text-align: center;
-    margin-top: 8px;
+    margin-top: 12px;
+    color: $color-slate;
+    max-width: 48ch;
+    margin-inline: auto;
 
     @include mobile {
-      @include font(13px, 300, 16px);
+      @include font(14px, 400, 1.5);
     }
   }
 
+  &__rule {
+    width: 120px;
+    height: 2px;
+    margin: 24px auto 0;
+    background: $color-quantum-green;
+    border-radius: 2px;
+  }
+
   &__content {
-    margin-top: 40px;
+    margin-top: 48px;
+
+    @include mobile {
+      margin-top: 32px;
+    }
   }
 }
 </style>

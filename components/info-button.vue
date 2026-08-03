@@ -31,7 +31,7 @@ const app = useAppConfig()
   @include desktop {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   &__button {
@@ -40,17 +40,23 @@ const app = useAppConfig()
 
   &__info-trigger {
     flex-shrink: 0;
-    font-size: 24px;
-    color: $color-gray-500;
+    font-size: 22px;
+    color: $color-ash;
     outline: none;
+    cursor: help;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-slate;
+    }
   }
 
   &__hint {
-    @include font(11px, 500, 14px);
+    @include font(12px, 400, 1.4);
 
     text-align: center;
-    margin-top: 8px;
-    color: $color-gray-600;
+    margin-top: 10px;
+    color: $color-slate;
   }
 }
 </style>

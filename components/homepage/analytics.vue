@@ -1,15 +1,22 @@
 <template>
   <HomepageSection
     class="analytics"
-    title="Аналитика продаж "
+    title="Аналитика продаж"
     description="на Kaspi.kz"
   >
     <div class="analytics__inner">
-      <NuxtImg class="analytics__background desktop-only" src="/analytics-bg.png" height="763px" format="webp" draggable="false" />
+      <NuxtImg
+        class="analytics__background desktop-only"
+        src="/analytics-bg.png"
+        height="420px"
+        format="webp"
+        draggable="false"
+        alt=""
+      />
 
       <div class="analytics__content">
         <div class="analytics__header">
-          <NuxtImg class="mobile-only" src="/analytics-bg.png" height="76px" format="webp" draggable="false" />
+          <NuxtImg class="mobile-only" src="/analytics-bg.png" height="76px" format="webp" draggable="false" alt="" />
 
           <div class="analytics__title">
             Получите полную картину по продажам на Kaspi.kz с помощью нашего сервиса! Наша аналитика – на 100% точная
@@ -31,92 +38,85 @@
   </HomepageSection>
 </template>
 
-<script setup>
-const app = useAppConfig()
-const img = useImage()
-</script>
-
 <style lang="scss">
 .analytics {
   &__inner {
     position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    height: 400px;
-    padding: 24px 100px;
-    border-radius: 12px;
-    background-color: $color-gray-200;
+    align-items: center;
+    min-height: 380px;
+    padding: 40px 48px;
+    border-radius: $radius-card;
+    border: 1px solid $color-hairline;
+    background-color: $color-linen;
+    overflow: hidden;
 
     @include mobile {
       padding: 16px;
-      height: unset;
+      min-height: unset;
     }
   }
 
   &__background {
     position: absolute;
-    max-height: unset;
-    max-width: unset;
-    left: 0;
+    left: 24px;
     top: 50%;
     transform: translateY(-50%);
+    max-height: 320px;
+    width: auto;
+    opacity: 0.95;
   }
 
   &__content {
-    width: 610px;
+    position: relative;
+    width: min(560px, 100%);
     margin-left: auto;
+    background: rgba($color-white, 0.92);
+    border: 1px solid $color-hairline;
+    border-radius: $radius-card;
+    padding: 28px;
 
     @include mobile {
-      width: unset;
+      width: 100%;
+      margin-left: 0;
+      padding: 16px;
+      background: $color-white;
     }
   }
 
   &__header {
     display: flex;
     align-items: center;
-    gap: 24px;
-    margin-bottom: 24px;
-
-    @include mobile {
-      align-items: flex-start;
-    }
+    gap: 16px;
+    margin-bottom: 20px;
   }
 
   &__title {
-    @include font(20px, 500, 28px);
+    @include font(18px, 400, 1.5);
+
+    color: $color-ink;
 
     @include mobile {
-      @include font(14px, 500, 20px);
+      @include font(14px, 400, 1.45);
     }
   }
 
   &__list-title {
-    @include font(16px, 700, 29px);
+    @include font(14px, 500, 1.4);
 
-    color: $color-gray-700;
-
-    @include mobile {
-      @include font(12px, 400, 22px);
-    }
+    color: $color-ink;
+    margin-bottom: 8px;
   }
 
   &__list {
-    @include font(16px, 400, 29px);
+    @include font(14px, 400, 1.7);
 
-    color: $color-gray-700;
-
-    @include mobile {
-      @include font(12px, 400, 22px);
-    }
-  }
-
-  &__action {
-    margin-top: 24px;
+    color: $color-slate;
+    margin: 0;
+    padding-left: 1.1em;
 
     @include mobile {
-      width: 100%;
+      @include font(13px, 400, 1.6);
     }
   }
 }
