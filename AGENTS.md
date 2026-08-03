@@ -1,6 +1,8 @@
 # AGENTS.md — QuantumBot Landing
 
-Project skills live in `.agents/skills/` (see `skills-lock.json`).
+Project skills live in `.agents/skills/` (see `skills-lock.json`). Both are
+gitignored — they are installed per machine rather than vendored, so expect to
+install them yourself before relying on the table below.
 
 ## Design / UI / UX stack (curated)
 

@@ -18,6 +18,12 @@ logs
 .fleet
 .idea
 
+# Agent tooling installed per machine, not vendored into the repo.
+# AGENTS.md documents which skills to use; install them locally.
+.agents
+.cursor
+skills-lock.json
+
 # Local env files
 .env
 .env.*
