@@ -200,8 +200,10 @@ export default defineNuxtConfig({
   $production: {
     scripts: {
       registry: {
+        // Defer pixel until after hydration so it does not compete with LCP.
         metaPixel: {
           id: '2310206252799727',
+          trigger: 'onNuxtReady',
         },
       },
     },

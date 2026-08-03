@@ -3,8 +3,8 @@
     class="results"
     surface="band"
     eyebrow="Цифры"
-    title="Результаты наших клиентов"
-    description="Усредненные улучшения, которые отмечают наши клиенты"
+    title="Что отмечают клиенты после подключения"
+    description="Ориентиры по эффекту из обратной связи продавцов Kaspi.kz. Итог зависит от категории, конкуренции и настроек минимумов - не гарантия результата"
   >
     <dl class="results__metrics">
       <div v-for="metric in metrics" :key="metric.label" class="results__metric">
@@ -23,11 +23,11 @@
     <div class="results__cta">
       <div class="results__cta-copy">
         <p class="results__cta-title">
-          Хотите таких же результатов?
+          Проверьте на своём ассортименте
         </p>
 
         <p class="results__cta-text">
-          Подключите наш сервис уже сегодня и начните увеличивать свои продажи на Kaspi.kz
+          3 дня бесплатной подписки после регистрации - без обязательств и скрытых условий
         </p>
       </div>
 
@@ -48,10 +48,10 @@ const app = useAppConfig()
 // One shape for every metric - value, label, optional qualifier. The previous
 // markup put prose in the large-number slot on two of four cards.
 const metrics = [
-  { value: '+100%', label: 'Увеличение продаж' },
-  { value: '+15%', label: 'Увеличение прибыли' },
-  { value: '+30%', label: 'Конверсия заказов' },
-  { value: '10+', label: 'Часов экономии', note: 'в неделю на ручном мониторинге' },
+  { value: 'до +100%', label: 'Рост продаж', note: 'в отдельных категориях' },
+  { value: 'до +15%', label: 'Рост прибыли', note: 'при стабильной марже' },
+  { value: 'до +30%', label: 'Конверсия заказов', note: 'при конкурентной цене' },
+  { value: 'до 10 ч', label: 'Экономия времени', note: 'в неделю без ручного мониторинга' },
 ]
 </script>
 

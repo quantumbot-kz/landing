@@ -7,6 +7,7 @@ export default defineAppConfig({
   appUrl: 'https://app.quantumbot.kz',
   docsUrl: 'https://docs.quantumbot.kz',
   videoUrl: 'https://www.youtube.com/embed/gQkEWI9Cwuw',
+  youtubeUrl: 'https://www.youtube.com/@QuantumBotMedia',
   baseUrl: import.meta.env.URL || 'https://www.quantumbot.kz',
   astanaHubUrl: 'https://astanahub.com/account/company/17721/',
 })
