@@ -3,8 +3,8 @@
     id="tariffs"
     class="tariff"
     eyebrow="Цены"
-    title="Тарифы"
-    description="Выберите тариф, подходящий под потребности Вашего бизнеса"
+    title="Тарифы QuantumBot"
+    description="Подписка на бот автокорректировки цен на Kaspi.kz - выберите объём товаров под ваш магазин"
   >
     <div class="tariff__grid">
       <HomepageTariffCard title="Seller" price-per-month="19 990">

@@ -21,7 +21,7 @@
         v-if="poster"
         class="video-embed__poster"
         :src="poster"
-        alt=""
+        :alt="`Превью: ${title}`"
         loading="lazy"
         draggable="false"
       >

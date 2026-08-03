@@ -4,8 +4,8 @@
     class="products"
     surface="band"
     eyebrow="Продукты"
-    title="Инструменты QuantumBot для Kaspi.kz"
-    description="Ядро подписки и расширения — каждый решает свою задачу."
+    title="Инструменты QuantumBot для продавцов Kaspi.kz"
+    description="Бот цен, закупки с Wildberries и регистрация в НКТ - каждый модуль решает свою задачу."
   >
     <div class="products__list">
       <HomepageProductsItem
@@ -63,7 +63,7 @@ const products = [
       'Массовая регистрация товаров в НКТ',
       'Автопривязка кода к карточке на Kaspi',
       'Регистрация при создании карточки',
-      'Отслеживание статуса заявки — обычно от минут до 24 часов',
+      'Отслеживание статуса заявки - обычно от минут до 24 часов',
     ],
     ctaLabel: 'Подключить',
     ctaHref: app.appUrl,

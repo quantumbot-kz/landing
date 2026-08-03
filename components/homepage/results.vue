@@ -45,7 +45,7 @@
 <script setup lang="ts">
 const app = useAppConfig()
 
-// One shape for every metric — value, label, optional qualifier. The previous
+// One shape for every metric - value, label, optional qualifier. The previous
 // markup put prose in the large-number slot on two of four cards.
 const metrics = [
   { value: '+100%', label: 'Увеличение продаж' },

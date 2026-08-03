@@ -13,7 +13,10 @@ import ViteComponents from 'unplugin-vue-components/vite'
 
 const { resolve } = createResolver(import.meta.url)
 
-const baseUrl = import.meta.env.URL || 'https://quantumbot.kz'
+const baseUrl = import.meta.env.URL || 'https://www.quantumbot.kz'
+
+const siteTitle = 'QuantumBot - бот цен и автоматизация продаж на Kaspi.kz'
+const siteDescription = 'Сервис для продавцов Kaspi.kz в Казахстане: автокорректировка цен, предзаказ, аналитика, закупки с Wildberries и регистрация товаров в НКТ. 3 дня бесплатно.'
 
 const DUO_SECONDARY_TONES = /#E7EAF3|#CFD5F0/gi
 const DUO_PRIMARY_TONES = /#056E62|#008574|#46AEA2/gi
@@ -27,25 +30,29 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        lang: 'ru',
+        lang: 'ru-KZ',
       },
-      title: 'Quantum - бот для автоматизации цен на Kaspi.kz',
+      title: siteTitle,
       meta: [
         {
           name: 'description',
-          content: 'Интеллектуальный сервис для продавцов на Kaspi.kz, который автоматически корректирует цены на товары, помогая оптимизировать продажи и улучшить позиции в выдаче.',
+          content: siteDescription,
+        },
+        {
+          name: 'robots',
+          content: 'index, follow, max-image-preview:large',
         },
         {
           property: 'og:title',
-          content: 'Quantum - бот для автоматизации цен на Kaspi.kz',
+          content: siteTitle,
         },
         {
           property: 'og:description',
-          content: 'Интеллектуальный сервис для продавцов на Kaspi.kz, который автоматически корректирует цены на товары, помогая оптимизировать продажи и улучшить позиции в выдаче.',
+          content: siteDescription,
         },
         {
           property: 'og:url',
-          content: baseUrl,
+          content: `${baseUrl}/`,
         },
         {
           property: 'og:type',
@@ -53,11 +60,43 @@ export default defineNuxtConfig({
         },
         {
           property: 'og:site_name',
-          content: 'Quantum',
+          content: 'QuantumBot',
+        },
+        {
+          property: 'og:locale',
+          content: 'ru_KZ',
         },
         {
           property: 'og:image',
-          content: `${baseUrl}/web-app-manifest-192x192.png`,
+          content: `${baseUrl}/og-image.png`,
+        },
+        {
+          property: 'og:image:width',
+          content: '1200',
+        },
+        {
+          property: 'og:image:height',
+          content: '630',
+        },
+        {
+          property: 'og:image:alt',
+          content: 'Интерфейс QuantumBot: автокорректировка цен на Kaspi.kz',
+        },
+        {
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          name: 'twitter:title',
+          content: siteTitle,
+        },
+        {
+          name: 'twitter:description',
+          content: siteDescription,
+        },
+        {
+          name: 'twitter:image',
+          content: `${baseUrl}/og-image.png`,
         },
         {
           name: 'theme-color',
@@ -65,6 +104,24 @@ export default defineNuxtConfig({
         },
       ],
       link: [
+        {
+          rel: 'canonical',
+          href: `${baseUrl}/`,
+        },
+        {
+          rel: 'icon',
+          href: '/favicon.ico',
+          sizes: 'any',
+        },
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/favicon.svg',
+        },
+        {
+          rel: 'apple-touch-icon',
+          href: '/apple-touch-icon.png',
+        },
         {
           rel: 'manifest',
           href: '/site.webmanifest',

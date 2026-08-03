@@ -4,7 +4,7 @@
     class="analytics"
     eyebrow="Данные"
     title="Аналитика продаж на Kaspi.kz"
-    description="Получите полную картину по продажам на Kaspi.kz с помощью нашего сервиса! Наша аналитика – на 100% точная"
+    description="Графики заказов, выручки и среднего чека по категориям и товарам на Kaspi.kz - в кабинете QuantumBot"
   >
     <div class="analytics__grid">
       <div class="analytics__visual">

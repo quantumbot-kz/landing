@@ -8,25 +8,21 @@
   >
     <div class="faq__items">
       <UiAccordion aria-label="Часто задаваемые вопросы">
-        <UiAccordionItem title="Как подключить сервис к моему аккаунту Kaspi.kz?">
-          Достаточно добавить аккаунт на Kaspi.kz с ограниченными правами и подключить его к нашему сервису. Весь процесс регистрации занимает 2 минуты
-        </UiAccordionItem>
-
-        <UiAccordionItem title="Какой уровень безопасности данных обеспечивает ваш сервис?">
-          Мы обеспечиваем высокий уровень безопасности, используя современные методы шифрования данных. Все ваши учетные данные и информация о товарах надежно защищены и не передаются третьим лицам.
-        </UiAccordionItem>
-
-        <UiAccordionItem title="Подходит ли ваш сервис для всех категорий товаров?">
-          Да, наш сервис поддерживает все категории товаров, представленных на Kaspi.kz. Вы можете регулировать цены как для небольшого ассортимента, так и для крупной базы товаров.
-        </UiAccordionItem>
-
-        <UiAccordionItem title="Как быстро я увижу результаты?">
-          Многие наши клиенты отмечают увеличение продаж уже в первые минуты использования сервиса. Точные результаты зависят от конкуренции в вашей категории и динамики рынка.
+        <UiAccordionItem
+          v-for="item in homepageFaqItems"
+          :key="item.question"
+          :title="item.question"
+        >
+          {{ item.answer }}
         </UiAccordionItem>
       </UiAccordion>
     </div>
   </HomepageSection>
 </template>
+
+<script setup lang="ts">
+import { homepageFaqItems } from '~/utils/homepage-faq'
+</script>
 
 <style lang="scss">
 // Heading column left, answers right. A single 840px stack left the band's right

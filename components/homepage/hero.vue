@@ -16,7 +16,7 @@
       </h1>
 
       <p class="hero__subtitle">
-        Помогаем выгодно закупать товары, автоматизировать продажи и сохранять конкурентоспособность
+        Бот автокорректировки цен на Kaspi.kz, умный предзаказ, закупки с Wildberries и регистрация товаров в НКТ - в одном кабинете
       </p>
 
       <div class="hero__actions">
@@ -193,7 +193,7 @@ const benefits = [
     }
   }
 
-  // Laptop cut-out already has a baked-in shadow — no card frame around it.
+  // Laptop cut-out already has a baked-in shadow - no card frame around it.
   &__device {
     max-width: 1100px;
     margin-inline: auto;

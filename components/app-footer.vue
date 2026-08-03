@@ -34,6 +34,7 @@
 
           <a href="#products">Продукты</a>
           <a href="#how-it-works">Как работает</a>
+          <a href="#analytics">Аналитика</a>
           <a href="#tariffs">Тарифы</a>
           <a href="#faq">Вопросы</a>
         </nav>
@@ -45,6 +46,7 @@
 
           <a :href="`mailto:${app.email}`">{{ app.email }}</a>
           <a :href="`tel:${app.phoneNumber}`">{{ app.phoneNumber }}</a>
+          <a :href="app.docsUrl" target="_blank" rel="noopener noreferrer">Документация</a>
         </div>
 
         <div class="footer__column">
@@ -71,7 +73,7 @@ const app = useAppConfig()
 const COPYRIGHT_START_YEAR = 2024
 const currentYear = new Date().getFullYear()
 const copyrightYears = currentYear > COPYRIGHT_START_YEAR
-  ? `${COPYRIGHT_START_YEAR}–${currentYear}`
+  ? `${COPYRIGHT_START_YEAR}-${currentYear}`
   : String(COPYRIGHT_START_YEAR)
 </script>
 

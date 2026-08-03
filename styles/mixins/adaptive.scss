@@ -36,7 +36,7 @@ $bp-header: 900px;
   }
 }
 
-// Phone plus small tablet — the range where multi-column grids must collapse.
+// Phone plus small tablet - the range where multi-column grids must collapse.
 @mixin compact {
   @include until($bp-md) {
     @content;

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Yandex: ignore typical ad/campaign params so they don't fragment the index
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&gclid&fbclid
+
+Sitemap: https://www.quantumbot.kz/sitemap.xml
