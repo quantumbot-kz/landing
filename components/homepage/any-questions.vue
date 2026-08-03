@@ -1,28 +1,32 @@
 <template>
-  <div class="any-questions">
+  <div class="contact">
     <div class="container">
-      <div class="any-questions__inner">
-        <div class="any-questions__left">
-          <IDuoMail class="any-questions__icon" />
-
-          <div>
-            <div class="any-questions__title">
-              Остались вопросы?
-            </div>
-
-            <a class="any-questions__link" :href="`mailto:${app.email}`">
-              {{ app.email }}
-            </a>
-          </div>
-        </div>
-
-        <div class="any-questions__right">
-          <p class="any-questions__call-us">
-            Позвоните нам
+      <div class="contact__inner">
+        <div class="contact__copy">
+          <p class="contact__eyebrow">
+            Контакты
           </p>
 
-          <PhoneNumber class="any-questions__phone-number" />
+          <p class="contact__title">
+            Остались вопросы?
+          </p>
         </div>
+
+        <dl class="contact__channels">
+          <div class="contact__channel">
+            <dt>Напишите нам</dt>
+            <dd>
+              <a :href="`mailto:${app.email}`">{{ app.email }}</a>
+            </dd>
+          </div>
+
+          <div class="contact__channel">
+            <dt>Позвоните нам</dt>
+            <dd>
+              <a :href="`tel:${app.phoneNumber}`">{{ app.phoneNumber }}</a>
+            </dd>
+          </div>
+        </dl>
       </div>
     </div>
   </div>
@@ -33,70 +37,79 @@ const app = useAppConfig()
 </script>
 
 <style lang="scss">
-.any-questions {
+.contact {
   &__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 40px 48px;
-    border-radius: $radius-card;
-    background-color: $color-white;
-    border: 1px solid $color-hairline;
+    display: grid;
+    gap: clamp(24px, 3vw, 48px);
+    padding: clamp(28px, 3.4vw, 56px);
+    border-radius: $radius-panel;
+    background-color: $color-charcoal;
+    color: $color-white;
 
-    @include mobile {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-      padding: 24px 16px;
+    @include wide {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      column-gap: 64px;
     }
   }
 
-  &__left {
+  &__eyebrow {
+    @include eyebrow;
+
     display: flex;
     align-items: center;
-    gap: 20px;
-  }
+    gap: 8px;
+    color: rgba($color-white, 0.55);
+    margin-bottom: 14px;
 
-  &__icon {
-    flex-shrink: 0;
-    font-size: 48px;
-    color: $color-quantum-green;
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: $color-quantum-glow;
+    }
   }
 
   &__title {
-    @include font(28px, 300, 1.2);
+    @include text(h2);
 
-    letter-spacing: -0.02em;
-    color: $color-ink;
+    color: $color-white;
+    text-wrap: balance;
+    max-width: 22ch;
+  }
 
-    @include mobile {
-      @include font(22px, 300, 1.2);
+  &__channels {
+    display: grid;
+    gap: 20px;
+    margin: 0;
+
+    @include from($bp-md) {
+      grid-auto-flow: column;
+      gap: 48px;
     }
   }
 
-  &__link {
-    @include font(15px, 400, 1.4);
+  &__channel {
+    dt {
+      @include text(caption);
 
-    color: $color-slate;
-    display: inline-block;
-    margin-top: 6px;
-
-    @include mobile {
-      @include font(14px, 400, 1.4);
+      color: rgba($color-white, 0.55);
     }
-  }
 
-  &__call-us {
-    color: $color-slate;
-    margin-bottom: 8px;
-    font-size: 14px;
-  }
+    dd {
+      @include text(h4);
 
-  &__phone-number {
-    @include font(20px, 500, 1.3, 'phone-number', true);
+      margin: 6px 0 0;
+    }
 
-    @include mobile {
-      @include font(16px, 500, 1.3, 'phone-number', true);
+    a {
+      color: $color-white;
+
+      &:hover,
+      &:focus-visible {
+        color: $color-quantum-glow;
+      }
     }
   }
 }

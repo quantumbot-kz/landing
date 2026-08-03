@@ -40,8 +40,9 @@ $button-variants: [
 .ui-button {
   $self: &;
 
-  @include font(16px, 500, 1);
-
+  font-size: fluid(15px, 16px);
+  font-weight: 500;
+  line-height: 1;
   letter-spacing: -0.01em;
   display: inline-flex;
   align-items: center;
@@ -60,7 +61,12 @@ $button-variants: [
   min-height: 52px;
   border: 1px solid var(--button-border-color, transparent);
   white-space: nowrap;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
   box-shadow: none;
 
   &:visited {
@@ -77,8 +83,8 @@ $button-variants: [
   }
 
   &:focus-visible {
-    outline: 2px solid rgba($color-quantum-green, 0.4);
-    outline-offset: 2px;
+    outline: 2px solid $color-quantum-green;
+    outline-offset: 3px;
   }
 
   &:active {
@@ -99,13 +105,30 @@ $button-variants: [
 
   &--primary:not(.is-disabled) {
     box-shadow: $shadow-cta;
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: $shadow-cta-hover;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    @include reduced-motion {
+      &:hover,
+      &:focus-visible,
+      &:active {
+        transform: none;
+      }
+    }
   }
 
   &--secondary {
-    border-radius: $radius-secondary;
     padding: 14px 24px;
     min-height: 48px;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   &__icon {

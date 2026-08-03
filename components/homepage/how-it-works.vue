@@ -1,70 +1,47 @@
 <template>
   <HomepageSection
     id="how-it-works"
-    class="how-it-works"
+    class="how"
+    eyebrow="Процесс"
     title="Как работает наш сервис"
     description="Четыре простых шага для увеличения ваших продаж"
   >
-    <div class="how-it-works__cards">
-      <div class="how-it-works-card">
-        <div class="how-it-works-card__step">Шаг 1</div>
-        <div class="how-it-works-card__title">Подключение</div>
-        <div class="how-it-works-card__description">
-          Подключите свой аккаунт Kaspi.kz к нашему сервису
-        </div>
-      </div>
+    <ol class="how__steps">
+      <li v-for="(step, index) in steps" :key="step.title" class="how__step">
+        <span class="how__step-index">{{ String(index + 1).padStart(2, '0') }}</span>
 
-      <div class="how-it-works-card">
-        <div class="how-it-works-card__step">Шаг 2</div>
-        <div class="how-it-works-card__title">Настройка</div>
-        <div class="how-it-works-card__description">
-          Настройте минимальные цены для товаров
-        </div>
-      </div>
+        <p class="how__step-title">
+          {{ step.title }}
+        </p>
 
-      <div class="how-it-works-card">
-        <div class="how-it-works-card__step">Шаг 3</div>
-        <div class="how-it-works-card__title">Мониторинг</div>
-        <div class="how-it-works-card__description">
-          Наш сервис автоматически мониторит конкурентов и обновляет цены
-        </div>
-      </div>
+        <p class="how__step-text">
+          {{ step.text }}
+        </p>
+      </li>
+    </ol>
 
-      <div class="how-it-works-card">
-        <div class="how-it-works-card__step">Шаг 4</div>
-        <div class="how-it-works-card__title">Прирост</div>
-        <div class="how-it-works-card__description">
-          Получите кратный прирост продаж и прибыли
-        </div>
-      </div>
-    </div>
-
-    <div class="how-it-works-demo">
-      <div class="how-it-works-demo__copy">
-        <div class="how-it-works-demo__title">
+    <div class="how__demo">
+      <div class="how__demo-copy">
+        <h3 class="how__demo-title">
           Демо видео о продукте
-        </div>
+        </h3>
 
-        <ul class="how-it-works-demo__list">
+        <ul class="how__demo-list">
           <li>Оцените интерфейс приложения для ПК и мобильных девайсов</li>
           <li>Ознакомьтесь с примером добавления товара на предзаказ</li>
           <li>Просмотрите пример добавления товаров и управления ими через приложение</li>
         </ul>
 
-        <UiButton class="how-it-works-demo__action" :href="app.appUrl" rel="noopener noreferrer">
+        <UiButton class="how__demo-action" :href="app.appUrl" rel="noopener noreferrer">
           Попробовать бесплатно
         </UiButton>
       </div>
 
-      <iframe
-        class="how-it-works-demo__video"
+      <UiVideoEmbed
+        class="how__demo-video"
         :src="app.videoUrl"
-        title="Демо видео о продукте"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        loading="lazy"
+        :poster="videoPoster"
+        title="Демо видео о продукте QuantumBot"
       />
     </div>
   </HomepageSection>
@@ -72,119 +49,127 @@
 
 <script setup lang="ts">
 const app = useAppConfig()
+
+const steps = [
+  { title: 'Подключение', text: 'Подключите свой аккаунт Kaspi.kz к нашему сервису' },
+  { title: 'Настройка', text: 'Настройте минимальные цены для товаров' },
+  { title: 'Мониторинг', text: 'Наш сервис автоматически мониторит конкурентов и обновляет цены' },
+  { title: 'Прирост', text: 'Получите кратный прирост продаж и прибыли' },
+]
+
+const videoPoster = computed(() => {
+  const id = app.videoUrl.split('/').pop()
+  return id ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg` : undefined
+})
 </script>
 
 <style lang="scss">
-.how-it-works {
-  &__cards {
+.how {
+  &__steps {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(20px, 2.6vw, 40px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include narrow {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
     @include mobile {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
     }
   }
-}
 
-.how-it-works-card {
-  padding: 24px 20px;
-  background-color: $color-white;
-  border: 1px solid $color-hairline;
-  border-radius: $radius-card;
-  text-align: left;
-
+  // A hairline rule per step instead of four bordered boxes: the row reads as
+  // one sequence rather than four unrelated cards.
   &__step {
-    @include font(12px, 500, 1);
+    padding-top: 18px;
+    border-top: 1px solid $color-hairline;
 
-    display: inline-block;
-    padding: 6px 10px;
-    border-radius: 8px;
-    background: $color-quantum-green;
-    color: $color-white;
-    margin-bottom: 16px;
+    @include mobile {
+      padding-block: 18px;
+    }
   }
 
-  &__title {
-    @include font(20px, 500, 1.3);
+  &__step-index {
+    @include text(caption);
 
+    display: block;
+    color: $color-quantum-green;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+  }
+
+  &__step-title {
+    @include text(h4);
+
+    margin-top: 10px;
     color: $color-ink;
-    padding-bottom: 10px;
-    border-bottom: 2px solid $color-hairline;
   }
 
-  &__description {
-    @include font(14px, 400, 1.5);
+  &__step-text {
+    @include text(body-sm);
 
+    margin-top: 6px;
     color: $color-slate;
-    margin-top: 12px;
   }
-}
 
-.how-it-works-demo {
-  margin-top: 48px;
-  padding: 32px;
-  background-color: $color-linen;
-  border-radius: $radius-card;
-  border: 1px solid $color-hairline;
-
-  @include desktop {
+  &__demo {
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 40px;
-    align-items: center;
+    gap: clamp(24px, 3vw, 48px);
+    margin-top: clamp(40px, 5vw, 72px);
+    padding: clamp(20px, 2.6vw, 40px);
+    background-color: $color-linen;
+    border: 1px solid $color-hairline;
+    border-radius: $radius-panel;
+
+    @include wide {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      align-items: center;
+    }
   }
 
-  @include mobile {
-    padding: 16px;
-    margin-top: 32px;
-  }
+  &__demo-title {
+    @include text(h3);
 
-  &__title {
-    @include font(32px, 300, 1.2);
-
-    letter-spacing: -0.02em;
     color: $color-ink;
-
-    @include mobile {
-      @include font(22px, 300, 1.2);
-
-      margin-bottom: 16px;
-    }
   }
 
-  &__video {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: 0;
-    border-radius: $radius-image;
-    background: $color-charcoal;
+  &__demo-list {
+    @include text(body-sm);
 
-    @include mobile {
-      margin-top: 20px;
-    }
-  }
-
-  &__list {
-    @include font(15px, 400, 1.6);
-
+    display: grid;
+    gap: 10px;
     color: $color-carbon;
     margin: 20px 0 0;
-    padding-left: 1.1em;
+    padding: 0;
+    list-style: none;
 
-    @include mobile {
-      @include font(13px, 400, 1.55);
+    li {
+      position: relative;
+      padding-left: 22px;
 
-      margin-top: 16px;
+      &::before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 0.55em;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        border: 1px solid $color-quantum-green;
+      }
     }
   }
 
-  &__action {
+  &__demo-action.ui-button {
     margin-top: 28px;
 
-    @include mobile {
+    @include compact {
       width: 100%;
-      margin-top: 20px;
     }
   }
 }

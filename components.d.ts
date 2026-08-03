@@ -7,17 +7,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    IDuoFlipChart: typeof import('~icons/duo/flip-chart')['default']
-    IDuoGroupChat: typeof import('~icons/duo/group-chat')['default']
-    IDuoLightning: typeof import('~icons/duo/lightning')['default']
-    IDuoMail: typeof import('~icons/duo/mail')['default']
     IDuoPhone: typeof import('~icons/duo/phone')['default']
-    IDuoThumbsUp: typeof import('~icons/duo/thumbs-up')['default']
-    IDuoThunderMove: typeof import('~icons/duo/thunder-move')['default']
     IMonoArrowUp: typeof import('~icons/mono/arrow-up')['default']
-    IMonoChevronLeft: typeof import('~icons/mono/chevron-left')['default']
-    IMonoChevronRight: typeof import('~icons/mono/chevron-right')['default']
-    IMonoInfo: typeof import('~icons/mono/info')['default']
     IMonoInstagram: typeof import('~icons/mono/instagram')['default']
     IMonoPlay: typeof import('~icons/mono/play')['default']
     IMonoTelegram: typeof import('~icons/mono/telegram')['default']

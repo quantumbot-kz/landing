@@ -1,126 +1,137 @@
 <template>
-  <div class="homepage-hero">
+  <div id="top" class="hero">
     <div class="container">
       <a
-        class="homepage-hero__badge-link"
+        class="hero__badge"
         :href="app.astanaHubUrl"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <UiBadge class="homepage-hero__badge">
-          Участник Astana Hub
-        </UiBadge>
+        <span class="hero__badge-dot" aria-hidden="true" />
+        Участник Astana Hub
       </a>
 
-      <h1 class="homepage-hero__title">
+      <h1 class="hero__title">
         Сервис умных закупок и эффективного управления продажами на <span>Kaspi.kz</span>
       </h1>
 
-      <p class="homepage-hero__subtitle">
+      <p class="hero__subtitle">
         Помогаем выгодно закупать товары, автоматизировать продажи и сохранять конкурентоспособность
       </p>
 
-      <div class="homepage-hero__actions">
-        <InfoButton />
+      <div class="hero__actions">
+        <div class="hero__buttons">
+          <UiButton :href="app.appUrl" rel="noopener noreferrer">
+            Начать бесплатно
+          </UiButton>
 
-        <UiButton type="secondary" href="#hero-cards">
-          Узнать подробности
-        </UiButton>
+          <UiButton type="secondary" href="#how-it-works">
+            Узнать подробности
+          </UiButton>
+        </div>
+
+        <p class="hero__hint">
+          Зарегистрируйтесь и получите 3 дня бесплатной подписки для ознакомления с сервисом
+        </p>
       </div>
+    </div>
 
-      <div class="homepage-hero__media">
+    <div class="hero__media">
+      <div class="hero__frame">
         <NuxtImg
-          class="homepage-hero__image desktop-only"
+          class="hero__image hero__image--desktop"
           src="/hero-desktop.png"
           height="650"
           draggable="false"
           format="webp"
-          alt="Интерфейс QuantumBot"
+          alt="Интерфейс QuantumBot: таблица товаров с автокорректировкой цен"
         />
         <NuxtImg
-          class="homepage-hero__image mobile-only"
+          class="hero__image hero__image--mobile"
           src="/hero-mobile.png"
           height="650"
           draggable="false"
           format="webp"
-          alt="Интерфейс QuantumBot"
+          alt="Интерфейс QuantumBot на мобильном устройстве"
         />
       </div>
+    </div>
 
-      <div id="hero-cards" class="homepage-hero__cards">
-        <div class="homepage-hero-card">
-          <IDuoThumbsUp class="homepage-hero-card__icon" />
-          <div class="homepage-hero-card__title">Удобно</div>
-          <div class="homepage-hero-card__description">
-            Автоматическое обновление цен в реальном времени
-          </div>
-        </div>
+    <div class="container">
+      <ul class="hero__benefits">
+        <li v-for="benefit in benefits" :key="benefit.title" class="hero__benefit">
+          <component :is="benefit.icon" class="hero__benefit-icon" />
 
-        <div class="homepage-hero-card">
-          <IDuoLightning class="homepage-hero-card__icon" />
-          <div class="homepage-hero-card__title">Быстро</div>
-          <div class="homepage-hero-card__description">
-            Простота интеграции с Kaspi.kz
-          </div>
-        </div>
+          <p class="hero__benefit-title">
+            {{ benefit.title }}
+          </p>
 
-        <div class="homepage-hero-card">
-          <IDuoFlipChart class="homepage-hero-card__icon" />
-          <div class="homepage-hero-card__title">Выгодно</div>
-          <div class="homepage-hero-card__description">
-            Увеличение продаж за счет конкурентных цен
-          </div>
-        </div>
-
-        <div class="homepage-hero-card">
-          <IDuoGroupChat class="homepage-hero-card__icon" />
-          <div class="homepage-hero-card__title">Без проблем</div>
-          <div class="homepage-hero-card__description">
-            Поддержка 24/7
-          </div>
-        </div>
-      </div>
+          <p class="hero__benefit-text">
+            {{ benefit.text }}
+          </p>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import IDuoFlipChart from '~icons/duo/flip-chart'
+import IDuoGroupChat from '~icons/duo/group-chat'
+import IDuoLightning from '~icons/duo/lightning'
+import IDuoThumbsUp from '~icons/duo/thumbs-up'
+
 const app = useAppConfig()
+
+const benefits = [
+  { icon: IDuoThumbsUp, title: 'Удобно', text: 'Автоматическое обновление цен в реальном времени' },
+  { icon: IDuoLightning, title: 'Быстро', text: 'Простота интеграции с Kaspi.kz' },
+  { icon: IDuoFlipChart, title: 'Выгодно', text: 'Увеличение продаж за счет конкурентных цен' },
+  { icon: IDuoGroupChat, title: 'Без проблем', text: 'Поддержка 24/7' },
+]
 </script>
 
 <style lang="scss">
-.homepage-hero {
-  padding-top: 64px;
+.hero {
+  padding-top: clamp(40px, 6vw, 88px);
   text-align: center;
 
-  @include mobile {
-    padding-top: 32px;
+  &__badge {
+    @include text(caption);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 12px;
+    border: 1px solid $color-hairline;
+    border-radius: $radius-pill;
+    background-color: $color-white;
+    color: $color-carbon;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $color-mint-line;
+      color: $color-ink;
+    }
   }
 
-  &__badge-link {
-    display: inline-block;
-    margin-bottom: 24px;
-
-    &:hover {
-      color: inherit;
-    }
+  &__badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: $color-quantum-green;
   }
 
   &__title {
-    @include font(56px, 300, 1.1);
+    @include text(display);
 
-    letter-spacing: -0.036em;
     color: $color-ink;
-    max-width: min(34ch, 100%);
-    margin-inline: auto;
+    max-width: 19ch;
+    margin: clamp(20px, 2.4vw, 28px) auto 0;
     text-wrap: balance;
-
-    @include mobile {
-      @include font(28px, 300, 1.15);
-
-      letter-spacing: -0.02em;
-      max-width: none;
-    }
 
     span {
       color: $color-quantum-green;
@@ -129,119 +140,149 @@ const app = useAppConfig()
   }
 
   &__subtitle {
-    @include font(18px, 400, 1.5);
+    @include text(lead);
 
     color: $color-slate;
-    margin-top: 20px;
-    max-width: 42ch;
-    margin-inline: auto;
-
-    @include mobile {
-      @include font(15px, 400, 1.5);
-
-      margin-top: 16px;
-    }
+    margin: clamp(16px, 1.8vw, 22px) auto 0;
+    max-width: 52ch;
   }
 
   &__actions {
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+    margin-top: clamp(24px, 3vw, 36px);
+  }
+
+  &__buttons {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    margin-top: 32px;
+    gap: 12px;
 
-    @include mobile {
+    @include compact {
       flex-direction: column;
-      align-items: stretch;
-      gap: 12px;
-      margin-top: 24px;
+      align-self: stretch;
+
+      .ui-button {
+        width: 100%;
+      }
     }
+  }
+
+  &__hint {
+    @include text(caption);
+
+    color: $color-slate;
+    max-width: 44ch;
   }
 
   &__media {
-    margin-top: 48px;
+    margin-top: clamp(36px, 5vw, 64px);
+    padding-inline: $page-gutter;
 
     @include mobile {
-      margin-top: 32px;
+      padding-inline: $page-gutter-mobile;
     }
+  }
+
+  // The screenshot is the proof, so it gets the only ambient elevation on the
+  // page and a masked bottom edge instead of being chopped by the fold.
+  &__frame {
+    max-width: 1060px;
+    margin-inline: auto;
+    padding: 8px;
+    border: 1px solid $color-hairline;
+    border-radius: calc(#{$radius-panel} + 8px);
+    background-color: rgba($color-linen, 0.7);
+    box-shadow: $shadow-panel;
   }
 
   &__image {
+    display: block;
     width: 100%;
-    max-width: 980px;
     height: auto;
-    border-radius: $radius-image;
+    border-radius: $radius-panel;
     border: 1px solid $color-hairline;
 
-    @include mobile {
-      margin-top: 0;
+    &--desktop {
+      @include compact {
+        display: none;
+      }
+    }
+
+    &--mobile {
+      @include from($bp-md) {
+        display: none;
+      }
     }
   }
 
-  &__cards {
+  &__benefits {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-top: 40px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    list-style: none;
+    margin: clamp(40px, 5vw, 72px) 0 0;
+    padding: 0;
     text-align: left;
+    border: 1px solid $color-hairline;
+    border-radius: $radius-card;
+    overflow: hidden;
+
+    @include narrow {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
     @include mobile {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 24px;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
-}
 
-.homepage-hero-card {
-  padding: 20px;
-  border: 1px solid $color-hairline;
-  border-radius: $radius-card;
-  background: $color-white;
+  // One bordered container with hairline dividers, not four separate boxes.
+  &__benefit {
+    padding: clamp(18px, 2vw, 26px);
+    border-inline-start: 1px solid $color-hairline;
 
-  @include mobile {
-    display: grid;
-    grid-template-columns: 24px 1fr;
-    column-gap: 12px;
-    row-gap: 8px;
-    padding: 16px;
+    &:first-child {
+      border-inline-start: 0;
+    }
+
+    @include narrow {
+      &:nth-child(odd) {
+        border-inline-start: 0;
+      }
+
+      &:nth-child(n + 3) {
+        border-block-start: 1px solid $color-hairline;
+      }
+    }
+
+    @include mobile {
+      border-inline-start: 0;
+
+      &:not(:first-child) {
+        border-block-start: 1px solid $color-hairline;
+      }
+    }
   }
 
-  &__icon {
-    font-size: 28px;
+  &__benefit-icon {
+    font-size: 26px;
     color: $color-quantum-green;
-
-    @include mobile {
-      font-size: 22px;
-    }
   }
 
-  &__title {
-    @include font(18px, 500, 1.3);
+  &__benefit-title {
+    @include text(h4);
 
-    margin-top: 16px;
+    margin-top: 14px;
     color: $color-ink;
-
-    @include mobile {
-      @include font(16px, 500, 1.3);
-
-      margin-top: 0;
-      align-self: center;
-    }
   }
 
-  &__description {
-    @include font(14px, 400, 1.5);
+  &__benefit-text {
+    @include text(body-sm);
 
-    margin-top: 8px;
+    margin-top: 6px;
     color: $color-slate;
-
-    @include mobile {
-      @include font(13px, 400, 1.45);
-
-      margin-top: 0;
-      grid-column: span 2;
-    }
   }
 }
 </style>

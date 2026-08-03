@@ -29,7 +29,7 @@ const app = useAppConfig()
   }
 
   &__number {
-    @include font(14px, 500, 1.3, 'phone-number');
+    @include text(body-sm, 500);
 
     color: $color-ink;
 

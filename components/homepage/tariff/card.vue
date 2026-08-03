@@ -1,22 +1,21 @@
 <template>
-  <div
-    class="tariff-card"
-    :class="{
-      'tariff-card--popular': popular,
-    }"
-  >
-    <div class="tariff-card__title">
-      {{ title }}
+  <div class="tariff-card" :class="{ 'tariff-card--popular': popular }">
+    <div class="tariff-card__head">
+      <span v-if="popular" class="tariff-card__flag">Популярный</span>
+
+      <p class="tariff-card__title">
+        {{ title }}
+      </p>
     </div>
 
-    <div class="tariff-card__description">
+    <p class="tariff-card__description">
       <slot />
-    </div>
+    </p>
 
-    <div class="tariff-card__price">
-      <span class="tariff-card__amount">₸ {{ pricePerMonth }}</span>
-      <span class="tariff-card__period">/месяц</span>
-    </div>
+    <p class="tariff-card__price">
+      <span class="tariff-card__amount">₸&nbsp;{{ pricePerMonth }}</span>
+      <span class="tariff-card__period">в месяц</span>
+    </p>
 
     <UiButton
       class="tariff-card__action"
@@ -45,49 +44,70 @@ const app = useAppConfig()
 
 <style lang="scss">
 .tariff-card {
-  $self: &;
-
   display: flex;
   flex-direction: column;
-  padding: 28px;
+  height: 100%;
+  padding: clamp(20px, 2vw, 28px);
   border-radius: $radius-card;
   border: 1px solid $color-hairline;
   background-color: $color-white;
-  height: 100%;
+  transition: border-color 0.2s ease;
 
-  @include mobile {
-    width: 260px;
-    padding: 16px;
+  &:hover {
+    border-color: $color-fog;
   }
 
   &--popular {
-    background-color: $color-mint-wash;
     border-color: $color-quantum-green;
+    box-shadow: inset 0 0 0 1px $color-quantum-green;
+
+    --tariff-feature-mark-bg: #{$color-mint-wash};
+    --tariff-feature-mark-color: #{$color-quantum-green};
+
+    &:hover {
+      border-color: $color-quantum-green;
+    }
+  }
+
+  // The flag row is always reserved, flagged or not, so every plan keeps its
+  // title, price, CTA and feature list on a shared baseline.
+  &__head {
+    display: grid;
+    justify-items: start;
+    gap: 10px;
+    grid-template-rows: 22px auto;
   }
 
   &__title {
-    @include font(24px, 500, 1.2);
+    @include text(h3);
 
+    grid-row: 2;
     color: $color-ink;
+    // "Seller Ultimate" wraps at four columns; reserving both lines keeps the
+    // row aligned instead of pushing one card's price down.
+    min-height: calc(1.26em * 2);
+  }
 
-    @include mobile {
-      @include font(20px, 500, 1.2);
-    }
+  &__flag {
+    @include text(eyebrow);
+
+    grid-row: 1;
+    align-self: center;
+    padding: 4px 10px;
+    border-radius: $radius-pill;
+    background-color: $color-quantum-green;
+    color: $color-white;
+    text-transform: uppercase;
   }
 
   &__description {
-    @include font(14px, 400, 1.45);
+    @include text(body-sm);
 
     color: $color-slate;
-    // 3 lines — longest copy in the row; keeps price/CTA/list on one baseline
-    min-height: calc(1.45em * 3);
-    margin-top: 8px;
-
-    @include mobile {
-      @include font(12px, 400, 1.4);
-
-      min-height: calc(1.4em * 3);
-    }
+    // Longest copy in the row is three lines; reserving them keeps every price
+    // and CTA on a shared baseline without a wrapper grid.
+    min-height: calc(1.55em * 3);
+    margin-top: 10px;
   }
 
   &__price {
@@ -95,61 +115,36 @@ const app = useAppConfig()
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
-    margin-top: 28px;
+    margin-top: clamp(20px, 2vw, 28px);
     color: $color-ink;
-
-    @include mobile {
-      margin-top: 16px;
-      gap: 4px;
-    }
   }
 
   &__amount {
-    @include font(40px, 300, 1.05);
+    @include text(price);
 
-    letter-spacing: -0.03em;
-
-    @include mobile {
-      @include font(32px, 300, 1.05);
-    }
+    font-variant-numeric: tabular-nums;
   }
 
   &__period {
-    @include font(14px, 400, 1);
+    @include text(caption);
 
     color: $color-slate;
   }
 
   &__action.ui-button {
-    margin-top: 24px;
+    margin-top: 20px;
     width: 100%;
-    // Primary/secondary differ (52 vs 48); unify so feature lists share a baseline
-    min-height: 48px;
-    padding: 14px 12px;
-    border-radius: $radius-pill;
+    min-height: 46px;
+    padding: 13px 12px;
     font-size: 14px;
-    white-space: nowrap;
-
-    @include mobile {
-      margin-top: 16px;
-      min-height: 40px;
-      font-size: 12px;
-      padding: 10px 14px;
-    }
+    white-space: normal;
   }
 
   &__list {
-    margin-top: 28px;
+    margin: clamp(20px, 2vw, 26px) 0 0;
+    padding-top: clamp(20px, 2vw, 26px);
+    border-top: 1px solid $color-hairline;
     list-style: none;
-    padding: 0;
-
-    @include mobile {
-      margin-top: 16px;
-    }
-
-    #{$self}--popular & {
-      --tariff-card-list-item-checkmark-color: #{$color-quantum-green};
-    }
   }
 }
 </style>

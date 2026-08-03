@@ -4,69 +4,63 @@
 .ui-accordion {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .ui-accordion-item {
   $self: &;
 
-  border-radius: $radius-card;
-  background-color: $color-white;
-  border: 1px solid $color-hairline;
-  transition: border-color 0.2s ease;
+  background-color: transparent;
+  border-top: 1px solid $color-hairline;
   -webkit-tap-highlight-color: transparent;
 
-  &:hover,
-  &.is-active {
-    border-color: $color-fog;
-  }
-
-  &.is-active {
-    border-color: $color-quantum-green;
+  &:last-child {
+    border-bottom: 1px solid $color-hairline;
   }
 
   &__head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 16px;
     width: 100%;
     text-align: left;
     border: none;
-    padding: 20px 24px;
+    padding: 22px 0;
     background: transparent;
     cursor: pointer;
     outline: none;
     user-select: none;
     color: $color-ink;
     font-family: inherit;
+    transition: color 0.2s ease;
 
-    @include mobile {
-      padding: 16px;
+    &:hover {
+      color: $color-quantum-deep;
     }
 
     &:focus-visible {
-      outline: 2px solid rgba($color-quantum-green, 0.4);
-      outline-offset: 2px;
+      outline: 2px solid $color-quantum-green;
+      outline-offset: -2px;
     }
 
     #{$self}.is-active & {
-      padding-bottom: 8px;
+      padding-bottom: 12px;
     }
   }
 
   &__title {
-    @include font(16px, 500, 1.4);
-
-    @include mobile {
-      @include font(14px, 500, 1.4);
-    }
+    @include text(h4);
   }
 
   &__icon {
     flex-shrink: 0;
-    font-size: 20px;
+    font-size: 18px;
     color: $color-slate;
+    transition: color 0.2s ease;
+
+    #{$self}.is-active & {
+      color: $color-quantum-green;
+    }
   }
 
   &__wrapper {
@@ -75,13 +69,10 @@
   }
 
   &__content {
-    @include font(14px, 400, 1.55);
+    @include text(body);
 
     color: $color-slate;
-    padding: 0 24px 20px;
-
-    @include mobile {
-      padding: 0 16px 16px;
-    }
+    padding: 0 48px 24px 0;
+    max-width: 76ch;
   }
 }

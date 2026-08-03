@@ -1,76 +1,121 @@
 <template>
-  <div class="homepage-section">
+  <section
+    class="section"
+    :class="[`section--${surface}`, { 'section--centered': centered }]"
+  >
     <div class="container">
-      <h2 class="homepage-section__title">
-        {{ title }}
-      </h2>
+      <header class="section__head">
+        <div class="section__headings">
+          <p v-if="eyebrow" class="section__eyebrow">
+            {{ eyebrow }}
+          </p>
 
-      <p v-if="description" class="homepage-section__description">
-        {{ description }}
-      </p>
+          <h2 class="section__title">
+            {{ title }}
+          </h2>
+        </div>
 
-      <div class="homepage-section__rule" aria-hidden="true" />
+        <p v-if="description" class="section__description">
+          {{ description }}
+        </p>
+      </header>
 
-      <div class="homepage-section__content">
+      <div class="section__body">
         <slot />
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-defineProps<{
+withDefaults(defineProps<{
   title: string
+  eyebrow?: string
   description?: string
-}>()
+  surface?: 'plain' | 'band'
+  centered?: boolean
+}>(), {
+  surface: 'plain',
+  centered: false,
+})
 </script>
 
 <style lang="scss">
-.homepage-section {
-  &__title {
-    @include font(48px, 300, 1.2);
+.section {
+  &--band {
+    padding-block: $section-pad;
+    background-color: $color-linen;
+    border-block: 1px solid $color-hairline;
+  }
 
-    letter-spacing: -0.03em;
-    text-align: center;
-    color: $color-ink;
-    max-width: 18ch;
-    margin-inline: auto;
+  &__head {
+    display: grid;
+    gap: 16px;
 
-    @include mobile {
-      @include font(28px, 300, 1.2);
-
-      letter-spacing: -0.02em;
-      max-width: none;
+    // Heading left, supporting line right: the split removes the orphaned words
+    // a centred, character-capped heading produced in Russian.
+    @include wide {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      align-items: end;
+      column-gap: 48px;
     }
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $color-slate;
+    margin-bottom: 14px;
+
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: $color-quantum-green;
+    }
+  }
+
+  &__title {
+    @include text(h2);
+
+    color: $color-ink;
+    text-wrap: balance;
+    max-width: 22ch;
   }
 
   &__description {
-    @include font(16px, 400, 1.5);
+    @include text(lead);
 
-    text-align: center;
-    margin-top: 12px;
     color: $color-slate;
-    max-width: 48ch;
-    margin-inline: auto;
+    max-width: 46ch;
 
-    @include mobile {
-      @include font(14px, 400, 1.5);
+    @include wide {
+      padding-bottom: 4px;
     }
   }
 
-  &__rule {
-    width: 120px;
-    height: 2px;
-    margin: 24px auto 0;
-    background: $color-quantum-green;
-    border-radius: 2px;
+  &__body {
+    margin-top: $block-gap;
   }
 
-  &__content {
-    margin-top: 48px;
+  &--centered {
+    .section__head {
+      grid-template-columns: none;
+      justify-items: center;
+      text-align: center;
+    }
 
-    @include mobile {
-      margin-top: 32px;
+    .section__eyebrow {
+      justify-content: center;
+    }
+
+    .section__title,
+    .section__description {
+      margin-inline: auto;
     }
   }
 }

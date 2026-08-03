@@ -21,7 +21,10 @@ const { y } = useWindowScroll()
   color: $color-carbon;
   width: 48px;
   height: 48px;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
   z-index: 1000;
   background-color: $color-white;
   border: 1px solid $color-hairline;
@@ -40,7 +43,9 @@ const { y } = useWindowScroll()
 
 .scroll-to-top-leave-active,
 .scroll-to-top-enter-active {
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .scroll-to-top-enter-from,

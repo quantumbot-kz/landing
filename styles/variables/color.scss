@@ -1,46 +1,35 @@
-// QuantumBot design tokens — amp system remapped to brand green
+// QuantumBot colour tokens.
+// One chromatic hue. Green marks actions and proof, never decoration.
 
 $color-quantum-green: #008574;
+$color-quantum-deep: #056e62;
 $color-quantum-glow: #5cb8a8;
-$color-mint-wash: #d8f0eb;
+$color-mint-wash: #edf7f4;
+$color-mint-line: #bfded6;
 
 $color-ink: #0a0a0a;
 $color-carbon: #292b2a;
-$color-slate: #7a7b7b;
-$color-ash: #a2a3a2;
-$color-hairline: #e5e5e5;
+// 5.9:1 on white — the previous #7a7b7b sat at 4.2:1 and failed AA for body copy.
+$color-slate: #636564;
+$color-ash: #8f9190;
+$color-hairline: #e7e8e7;
 $color-fog: #dfe0df;
 $color-bone: #e5e7eb;
-$color-linen: #f3f4f3;
-$color-charcoal: #202120;
+$color-linen: #f7f8f7;
+$color-charcoal: #141615;
 $color-smoke: #3c3e3d;
 
 $color-white: #ffffff;
 $color-black: #0a0a0a;
 
-// Brand greens (legacy names kept for existing selectors)
-$color-green-400: #008574;
-$color-green-500: #056e62;
-
-// Soft highlight (replaces lemon — never a second accent)
-$color-lemon-400: #d8f0eb;
-$color-lemon-500: #b8e5db;
-
-// Neutral ladder remapped to amp surfaces
-$color-gray-200: #ffffff;
-$color-gray-300: #f3f4f3;
-$color-gray-400: #e5e5e5;
-$color-gray-500: #e5e5e5;
-$color-gray-600: #7a7b7b;
-$color-gray-700: #292b2a;
-
-$shadow-cta: rgba(0, 133, 116, 0.45) 1px 6px 14px 0px, rgba(0, 0, 0, 0.06) 0px 1px 4px 0px;
-
-$radius-card: 5px;
-$radius-image: 8px;
-$radius-secondary: 24px;
-$radius-pill: 50px;
-$radius-nav: 40px;
-
-$page-max-width: 1200px;
-$section-gap: 80px;
+// Legacy aliases kept so existing selectors keep compiling.
+$color-green-400: $color-quantum-green;
+$color-green-500: $color-quantum-deep;
+$color-lemon-400: $color-mint-wash;
+$color-lemon-500: $color-mint-line;
+$color-gray-200: $color-white;
+$color-gray-300: $color-linen;
+$color-gray-400: $color-hairline;
+$color-gray-500: $color-hairline;
+$color-gray-600: $color-slate;
+$color-gray-700: $color-carbon;

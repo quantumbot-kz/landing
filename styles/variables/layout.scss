@@ -1,0 +1,32 @@
+// Shape, elevation and rhythm tokens.
+
+// Radius ladder: controls 8, cards 12, large panels 20, pills fully round.
+// The old flat 5px read as an unmade decision at every scale.
+$radius-control: 8px;
+$radius-card: 12px;
+$radius-image: 10px;
+$radius-panel: 20px;
+$radius-secondary: 999px;
+$radius-pill: 999px;
+$radius-nav: 999px;
+
+// Elevation is a privilege of the primary action. Cards stay flat with hairlines.
+$shadow-cta:
+  0 1px 2px rgba(10, 10, 10, 0.06),
+  0 10px 24px -12px rgba(0, 133, 116, 0.5);
+$shadow-cta-hover:
+  0 1px 2px rgba(10, 10, 10, 0.08),
+  0 14px 30px -12px rgba(0, 133, 116, 0.55);
+$shadow-panel:
+  0 1px 2px rgba(10, 10, 10, 0.04),
+  0 24px 48px -32px rgba(10, 10, 10, 0.28);
+
+$page-max-width: 1200px;
+$page-gutter: 24px;
+$page-gutter-mobile: 20px;
+
+// Vertical rhythm scales with the viewport instead of a fixed 80px everywhere.
+$section-gap: clamp(72px, 9vw, 128px);
+$section-pad: clamp(56px, 7vw, 104px);
+$block-gap: clamp(28px, 3.4vw, 48px);
+$grid-gap: clamp(12px, 1.4vw, 20px);

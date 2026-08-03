@@ -1,11 +1,63 @@
+// Breakpoint ladder. `sm` is the phone cut, `md` tablets, `lg` small laptops.
+// Everything between 481px and 1024px used to fall through to the 1200px desktop
+// layout, which is why headers and 4-column grids collapsed there.
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// The header's own cut. Logo + four links + login + CTA need ~740px of content
+// width, so the nav survives iPad landscape (1024) and only collapses below 900.
+$bp-header: 900px;
+
+// Max-width query: styles apply at $bp and below.
+@mixin until($bp) {
+  @media (max-width: $bp) {
+    @content;
+  }
+}
+
+// Min-width query: styles apply above $bp.
+@mixin from($bp) {
+  @media (min-width: $bp + 1px) {
+    @content;
+  }
+}
+
 @mixin mobile {
-  @media (max-width: 480px) {
+  @include until($bp-sm) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media (min-width: 481px) {
+  @include from($bp-sm) {
+    @content;
+  }
+}
+
+// Phone plus small tablet — the range where multi-column grids must collapse.
+@mixin compact {
+  @include until($bp-md) {
+    @content;
+  }
+}
+
+// Everything narrower than a laptop: tablets in both orientations.
+@mixin narrow {
+  @include until($bp-lg) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @include from($bp-lg) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
     @content;
   }
 }

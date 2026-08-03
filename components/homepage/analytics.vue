@@ -1,123 +1,121 @@
 <template>
   <HomepageSection
+    id="analytics"
     class="analytics"
-    title="Аналитика продаж"
-    description="на Kaspi.kz"
+    surface="band"
+    eyebrow="Данные"
+    title="Аналитика продаж на Kaspi.kz"
+    description="Получите полную картину по продажам на Kaspi.kz с помощью нашего сервиса! Наша аналитика – на 100% точная"
   >
-    <div class="analytics__inner">
-      <NuxtImg
-        class="analytics__background desktop-only"
-        src="/analytics-bg.png"
-        height="420px"
-        format="webp"
-        draggable="false"
-        alt=""
-      />
+    <div class="analytics__grid">
+      <div class="analytics__visual">
+        <NuxtImg
+          src="/analytics-bg.png"
+          width="1400"
+          height="1108"
+          sizes="sm:100vw md:100vw lg:520px"
+          format="webp"
+          draggable="false"
+          loading="lazy"
+          alt="Дашборд аналитики продаж QuantumBot"
+        />
+      </div>
 
-      <div class="analytics__content">
-        <div class="analytics__header">
-          <NuxtImg class="mobile-only" src="/analytics-bg.png" height="76px" format="webp" draggable="false" alt="" />
+      <div class="analytics__panel">
+        <p class="analytics__panel-title">
+          Что вы узнаете
+        </p>
 
-          <div class="analytics__title">
-            Получите полную картину по продажам на Kaspi.kz с помощью нашего сервиса! Наша аналитика – на 100% точная
+        <dl class="analytics__list">
+          <div v-for="item in insights" :key="item.term" class="analytics__item">
+            <dt class="analytics__term">
+              {{ item.term }}
+            </dt>
+            <dd class="analytics__definition">
+              {{ item.definition }}
+            </dd>
           </div>
-        </div>
-
-        <div class="analytics__list-title">
-          Что вы узнаете?
-        </div>
-        <ul class="analytics__list">
-          <li>Выручка – анализ доходности по категориям и товарам</li>
-          <li>Средний чек – оценка покупательской способности</li>
-          <li>Количество заказов – динамика продаж за выбранный период</li>
-          <li>Популярные категории – какие товары продаются лучше всего</li>
-          <li>Конкуренция – число продавцов в каждом товаре</li>
-        </ul>
+        </dl>
       </div>
     </div>
   </HomepageSection>
 </template>
 
+<script setup lang="ts">
+const insights = [
+  { term: 'Выручка', definition: 'анализ доходности по категориям и товарам' },
+  { term: 'Средний чек', definition: 'оценка покупательской способности' },
+  { term: 'Количество заказов', definition: 'динамика продаж за выбранный период' },
+  { term: 'Популярные категории', definition: 'какие товары продаются лучше всего' },
+  { term: 'Конкуренция', definition: 'число продавцов в каждом товаре' },
+]
+</script>
+
 <style lang="scss">
 .analytics {
-  &__inner {
-    position: relative;
-    display: flex;
+  &__grid {
+    display: grid;
+    gap: clamp(24px, 3vw, 48px);
     align-items: center;
-    min-height: 380px;
-    padding: 40px 48px;
-    border-radius: $radius-card;
-    border: 1px solid $color-hairline;
-    background-color: $color-linen;
-    overflow: hidden;
 
-    @include mobile {
-      padding: 16px;
-      min-height: unset;
+    @include wide {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
     }
   }
 
-  &__background {
-    position: absolute;
-    left: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    max-height: 320px;
-    width: auto;
-    opacity: 0.95;
-  }
+  // The asset is a cut-out isometric device render with its own shadow, so a card
+  // frame around it would read as a box inside a box. It sits on the band directly.
+  &__visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  &__content {
-    position: relative;
-    width: min(560px, 100%);
-    margin-left: auto;
-    background: rgba($color-white, 0.92);
-    border: 1px solid $color-hairline;
-    border-radius: $radius-card;
-    padding: 28px;
-
-    @include mobile {
+    img {
+      display: block;
       width: 100%;
-      margin-left: 0;
-      padding: 16px;
-      background: $color-white;
+      height: auto;
     }
   }
 
-  &__header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 20px;
+  &__panel {
+    padding: clamp(20px, 2.4vw, 32px);
+    background-color: $color-white;
+    border: 1px solid $color-hairline;
+    border-radius: $radius-card;
   }
 
-  &__title {
-    @include font(18px, 400, 1.5);
+  &__panel-title {
+    @include eyebrow;
 
-    color: $color-ink;
-
-    @include mobile {
-      @include font(14px, 400, 1.45);
-    }
-  }
-
-  &__list-title {
-    @include font(14px, 500, 1.4);
-
-    color: $color-ink;
-    margin-bottom: 8px;
+    color: $color-slate;
+    padding-bottom: 14px;
+    border-bottom: 1px solid $color-hairline;
   }
 
   &__list {
-    @include font(14px, 400, 1.7);
-
-    color: $color-slate;
     margin: 0;
-    padding-left: 1.1em;
+  }
 
-    @include mobile {
-      @include font(13px, 400, 1.6);
+  &__item {
+    padding-block: 14px;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-hairline;
     }
+  }
+
+  &__term {
+    @include text(body);
+
+    font-weight: 500;
+    color: $color-ink;
+  }
+
+  &__definition {
+    @include text(body-sm);
+
+    margin: 2px 0 0;
+    color: $color-slate;
   }
 }
 </style>

@@ -1,10 +1,6 @@
-@use 'floating-vue/dist/style.css';
-@use '@splidejs/vue-splide/css/core';
-
 @use 'mixins';
 @use 'normalize';
 @use 'utility';
-@use 'floating-vue';
 
 *,
 *::before,
@@ -12,16 +8,19 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+
+  @include reduced-motion {
+    scroll-behavior: auto;
+  }
 }
 
 body {
-  @include font(16px, 400, 1.56);
+  @include text(body);
 
   font-family: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: -0.01em;
   color: $color-ink;
   background-color: $color-white;
   -webkit-font-smoothing: antialiased;
@@ -45,30 +44,46 @@ a {
   outline: none;
 
   &:focus-visible {
-    outline: 2px solid rgba($color-quantum-green, 0.4);
-    outline-offset: 2px;
+    outline: 2px solid $color-quantum-green;
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   &:hover {
-    color: $color-green-500;
-  }
-
-  &:active {
-    color: $color-quantum-green;
+    color: $color-quantum-deep;
   }
 }
 
 button {
   outline: none;
   font-family: inherit;
+
+  &:focus-visible {
+    outline: 2px solid $color-quantum-green;
+    outline-offset: 3px;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+@include reduced-motion {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .container {
   max-width: $page-max-width;
   margin: 0 auto;
-  padding-inline: 24px;
+  padding-inline: $page-gutter;
 
   @include mobile {
-    padding-inline: 16px;
+    padding-inline: $page-gutter-mobile;
   }
 }

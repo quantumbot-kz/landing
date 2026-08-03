@@ -1,218 +1,144 @@
 <template>
   <HomepageSection
     class="results"
+    surface="band"
+    eyebrow="Цифры"
     title="Результаты наших клиентов"
     description="Усредненные улучшения, которые отмечают наши клиенты"
   >
-    <div class="results__cards">
-      <div class="result-card">
-        <p class="result-card__text">
-          <strong>Увеличение продаж</strong>
-        </p>
-        <p class="result-card__sub">
-          + 100%
-        </p>
+    <dl class="results__metrics">
+      <div v-for="metric in metrics" :key="metric.label" class="results__metric">
+        <dt class="results__value">
+          {{ metric.value }}
+        </dt>
 
-        <NuxtImg class="result-card__image" src="/results/1.png" height="110px" loading="lazy" draggable="false" format="webp" />
+        <dd class="results__label">
+          {{ metric.label }}
+
+          <span v-if="metric.note" class="results__note">{{ metric.note }}</span>
+        </dd>
       </div>
+    </dl>
 
-      <div class="result-card">
-        <p class="result-card__text">
-          <strong>Увеличение прибыли</strong>
-        </p>
-        <p class="result-card__sub">
-          на 15%
-        </p>
-
-        <NuxtImg class="result-card__image" src="/results/2.png" height="110px" loading="lazy" draggable="false" format="webp" />
-      </div>
-
-      <div class="result-card">
-        <p class="result-card__text">
-          <strong>+30% конверсия</strong>
-          заказов
-        </p>
-        <p class="result-card__sub">
-          заказов
-        </p>
-
-        <NuxtImg class="result-card__image" src="/results/3.png" height="110px" loading="lazy" draggable="false" format="webp" />
-      </div>
-
-      <div class="result-card">
-        <p class="result-card__text">
-          <strong>Экономия 10+ часов</strong>
-        </p>
-        <p class="result-card__sub">
-          в неделю на ручном <br> мониторинге
-        </p>
-
-        <NuxtImg class="result-card__image" src="/results/4.png" height="110px" loading="lazy" draggable="false" format="webp" />
-      </div>
-    </div>
-
-    <div class="results__contact-us results-contact-us">
-      <div class="results-contact-us__left">
-        <IDuoThunderMove class="results-contact-us__icon" />
-
-        <div class="results-contact-us__title">
+    <div class="results__cta">
+      <div class="results__cta-copy">
+        <p class="results__cta-title">
           Хотите таких же результатов?
-        </div>
+        </p>
 
-        <div class="results-contact-us__description">
+        <p class="results__cta-text">
           Подключите наш сервис уже сегодня и начните увеличивать свои продажи на Kaspi.kz
-        </div>
+        </p>
       </div>
 
-      <InfoButton class="results-contact-us__action" />
+      <UiButton
+        class="results__cta-action"
+        :href="app.appUrl"
+        rel="noopener noreferrer"
+      >
+        Начать бесплатно
+      </UiButton>
     </div>
   </HomepageSection>
 </template>
 
 <script setup lang="ts">
-import InfoButton from '~/components/info-button.vue'
+const app = useAppConfig()
+
+// One shape for every metric — value, label, optional qualifier. The previous
+// markup put prose in the large-number slot on two of four cards.
+const metrics = [
+  { value: '+100%', label: 'Увеличение продаж' },
+  { value: '+15%', label: 'Увеличение прибыли' },
+  { value: '+30%', label: 'Конверсия заказов' },
+  { value: '10+', label: 'Часов экономии', note: 'в неделю на ручном мониторинге' },
+]
 </script>
 
 <style lang="scss">
 .results {
-  &__cards {
+  &__metrics {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0;
+    background-color: $color-hairline;
+    border: 1px solid $color-hairline;
+    border-radius: $radius-card;
+    overflow: hidden;
+
+    @include narrow {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
     @include mobile {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 
-  &__contact-us {
-    margin-top: 32px;
-
-    @include desktop {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-  }
-}
-
-.result-card {
-  position: relative;
-  padding: 24px;
-  background-color: $color-white;
-  border: 1px solid $color-hairline;
-  border-radius: $radius-card;
-  overflow: hidden;
-
-  @include desktop {
-    min-height: 200px;
+  &__metric {
+    padding: clamp(20px, 2.4vw, 32px);
+    background-color: $color-white;
   }
 
-  @include mobile {
+  &__value {
+    @include text(metric);
+
+    color: $color-quantum-green;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__label {
+    @include text(body);
+
     display: grid;
-    grid-template-columns: 50px 1fr;
-    grid-template-rows: auto 1fr;
-    column-gap: 16px;
-    padding: 16px;
+    gap: 2px;
+    margin: 10px 0 0;
+    color: $color-ink;
   }
 
-  &__text {
-    @include font(16px, 500, 1.35);
+  &__note {
+    @include text(caption);
+
+    color: $color-slate;
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(20px, 3vw, 40px);
+    margin-top: $grid-gap;
+    padding: clamp(20px, 2.4vw, 32px);
+    background-color: $color-white;
+    border: 1px solid $color-mint-line;
+    border-radius: $radius-card;
+
+    @include compact {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &__cta-title {
+    @include text(h3);
 
     color: $color-ink;
-
-    @include mobile {
-      @include font(15px, 500, 1.35);
-
-      grid-row: 1;
-      grid-column: 2;
-    }
   }
 
-  &__sub {
-    @include font(28px, 300, 1.2);
+  &__cta-text {
+    @include text(body-sm);
 
-    letter-spacing: -0.02em;
-    margin-top: 8px;
-    color: $color-quantum-green;
-
-    @include mobile {
-      @include font(22px, 300, 1.2);
-
-      grid-column: 2;
-      grid-row: 2;
-    }
+    margin-top: 6px;
+    color: $color-slate;
+    max-width: 56ch;
   }
 
-  &__image {
-    @include desktop {
-      position: absolute;
-      bottom: 12px;
-      right: 16px;
-      opacity: 0.9;
-    }
+  &__cta-action.ui-button {
+    flex-shrink: 0;
 
-    @include mobile {
-      height: auto;
-      grid-column: 1;
-      grid-row: span 2;
-    }
-  }
-}
-
-.results-contact-us {
-  background-color: $color-mint-wash;
-  border-radius: $radius-card;
-  padding: 28px 32px;
-
-  @include mobile {
-    padding: 20px 16px;
-  }
-
-  &__left {
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    column-gap: 16px;
-    row-gap: 8px;
-  }
-
-  &__icon {
-    font-size: 48px;
-    color: $color-quantum-green;
-
-    @include desktop {
-      grid-row: span 2;
-    }
-  }
-
-  &__title {
-    @include font(22px, 500, 1.3);
-
-    color: $color-ink;
-
-    @include mobile {
-      @include font(18px, 500, 1.3);
-
-      align-self: center;
-    }
-  }
-
-  &__description {
-    @include font(15px, 400, 1.5);
-
-    color: $color-carbon;
-
-    @include mobile {
-      @include font(14px, 400, 1.45);
-
-      grid-column: span 2;
-    }
-  }
-
-  &__action {
-    @include mobile {
-      margin-top: 20px;
+    @include compact {
+      width: 100%;
     }
   }
 }

@@ -6,6 +6,7 @@ import {
   runSVGO,
   SVG,
 } from '@iconify/tools'
+// parseColors stays in use for the mono collection below.
 import { createResolver } from '@nuxt/kit'
 import IconsResolver from 'unplugin-icons/resolver'
 import ViteComponents from 'unplugin-vue-components/vite'
@@ -13,6 +14,10 @@ import ViteComponents from 'unplugin-vue-components/vite'
 const { resolve } = createResolver(import.meta.url)
 
 const baseUrl = import.meta.env.URL || 'https://quantumbot.kz'
+
+const DUO_SECONDARY_TONES = /#E7EAF3|#CFD5F0/gi
+const DUO_PRIMARY_TONES = /#056E62|#008574|#46AEA2/gi
+const DUO_SECONDARY_COLOR = '#BFDED6'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -74,9 +79,9 @@ export default defineNuxtConfig({
                 k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
             })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111122100', 'ym');
         
-            ym(111122100, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});`
-        }
-      ]
+            ym(111122100, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});`,
+        },
+      ],
     },
   },
 
@@ -109,7 +114,15 @@ export default defineNuxtConfig({
           },
           duo: async (name: string) => {
             const filename = `./assets/icons/duo/${name}.svg`
-            const content = await fs.readFile(filename, 'utf8')
+            const source = await fs.readFile(filename, 'utf8')
+
+            // The source set ships a pale blue secondary tone that is all but
+            // invisible on white and off-palette. Primary strokes follow
+            // currentColor; the secondary tone maps onto the brand mint.
+            const content = source
+              .replace(DUO_SECONDARY_TONES, DUO_SECONDARY_COLOR)
+              .replace(DUO_PRIMARY_TONES, 'currentColor')
+
             const svg = new SVG(content)
 
             cleanupSVG(svg)
@@ -144,7 +157,9 @@ export default defineNuxtConfig({
   },
 
   image: {
-    quality: 100,
+    // quality: 100 kept analytics-bg.png near its 4.6 MB source weight after
+    // conversion; 82 is visually indistinguishable at these sizes.
+    quality: 82,
     densities: [1, 2],
     format: ['webp'],
   },
