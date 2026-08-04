@@ -66,11 +66,15 @@ const insights = [
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 0;
 
     img {
       display: block;
       width: 100%;
       height: auto;
+      border: 1px solid $color-hairline;
+      border-radius: $radius-image;
+      background-color: $color-white;
     }
   }
 

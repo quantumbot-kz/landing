@@ -7,8 +7,9 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <span class="hero__badge-dot" aria-hidden="true" />
-        Участник Astana Hub
+        <span class="hero__badge-label">Участник</span>
+        <span class="hero__badge-divider" aria-hidden="true" />
+        <span class="hero__badge-name">Astana Hub</span>
       </a>
 
       <h1 class="hero__title">
@@ -111,28 +112,41 @@ const benefits = [
 
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 14px 6px 12px;
-    border: 1px solid $color-hairline;
-    border-radius: $radius-pill;
-    background-color: $color-white;
+    gap: 10px;
+    padding: 8px 14px;
+    border: 1px solid $color-mint-line;
+    border-radius: $radius-control;
+    background-color: $color-mint-wash;
     color: $color-carbon;
     transition:
       border-color 0.2s ease,
-      color 0.2s ease;
+      color 0.2s ease,
+      background-color 0.2s ease;
 
     &:hover,
     &:focus-visible {
-      border-color: $color-mint-line;
+      border-color: $color-quantum-green;
       color: $color-ink;
+      background-color: $color-white;
     }
   }
 
-  &__badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: $color-quantum-green;
+  &__badge-label {
+    color: $color-slate;
+    letter-spacing: 0.04em;
+  }
+
+  &__badge-divider {
+    width: 1px;
+    height: 12px;
+    background-color: $color-mint-line;
+    flex-shrink: 0;
+  }
+
+  &__badge-name {
+    font-weight: 500;
+    color: $color-ink;
+    letter-spacing: -0.01em;
   }
 
   &__title {
