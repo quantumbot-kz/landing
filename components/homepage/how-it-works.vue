@@ -3,7 +3,7 @@
     id="how-it-works"
     class="how"
     eyebrow="Процесс"
-    title="Как работает QuantumBot"
+    title="Как работает Quantum"
     description="От подключения магазина Kaspi.kz до цен, закупок с Wildberries и регистрации в НКТ - в одном кабинете"
   >
     <ol class="how__steps">
@@ -29,7 +29,7 @@
         <ul class="how__demo-list">
           <li>Оцените интерфейс кабинета на компьютере и телефоне</li>
           <li>Посмотрите управление товарами, ценами и предзаказами</li>
-          <li>Поймите, как устроены сценарии работы в QuantumBot</li>
+          <li>Поймите, как устроены сценарии работы в Quantum</li>
         </ul>
 
         <UiButton class="how__demo-action" :href="app.appUrl" rel="noopener noreferrer">
@@ -41,7 +41,7 @@
         class="how__demo-video"
         :src="app.videoUrl"
         :poster="videoPoster"
-        title="Демо видео о сервисе QuantumBot"
+        title="Демо видео о сервисе Quantum"
       />
     </div>
   </HomepageSection>

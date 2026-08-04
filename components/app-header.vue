@@ -2,8 +2,8 @@
   <header class="header">
     <div class="container">
       <div class="header__inner">
-        <a class="header__brand" href="#top" aria-label="QuantumBot - на главную">
-          <NuxtImg src="/logo.svg" alt="QuantumBot" class="header__logo" draggable="false" />
+        <a class="header__brand" href="#top" aria-label="Quantum - на главную">
+          <NuxtImg src="/logo.svg" alt="Quantum" class="header__logo" draggable="false" />
         </a>
 
         <nav class="header__nav" aria-label="Основная навигация">

@@ -4,7 +4,7 @@
     class="analytics"
     eyebrow="Данные"
     title="Аналитика продаж на Kaspi.kz"
-    description="Графики заказов, выручки и среднего чека по категориям и товарам на Kaspi.kz - в кабинете QuantumBot"
+    description="Графики заказов, выручки и среднего чека по категориям и товарам на Kaspi.kz - в кабинете Quantum"
   >
     <div class="analytics__grid">
       <div class="analytics__visual">
@@ -16,7 +16,7 @@
           format="webp"
           draggable="false"
           loading="lazy"
-          alt="Дашборд аналитики QuantumBot: график заказов, выручки и среднего чека на Kaspi.kz"
+          alt="Дашборд аналитики Quantum: график заказов, выручки и среднего чека на Kaspi.kz"
         />
       </div>
 

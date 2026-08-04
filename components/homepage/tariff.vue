@@ -3,7 +3,7 @@
     id="tariffs"
     class="tariff"
     eyebrow="Цены"
-    title="Тарифы QuantumBot"
+    title="Тарифы Quantum"
     description="Подписка на бот автокорректировки цен на Kaspi.kz - выберите объём товаров под ваш магазин"
   >
     <div class="tariff__grid">

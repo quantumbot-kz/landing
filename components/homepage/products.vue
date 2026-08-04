@@ -4,7 +4,7 @@
     class="products"
     surface="band"
     eyebrow="Продукты"
-    title="Инструменты QuantumBot для продавцов Kaspi.kz"
+    title="Инструменты Quantum для продавцов Kaspi.kz"
     description="Бот цен, закупки с Wildberries и регистрация в НКТ - каждый модуль решает свою задачу."
   >
     <div class="products__list">
@@ -39,7 +39,7 @@ const products = [
     image: '/products/bot.png',
     imageWidth: 2262,
     imageHeight: 1632,
-    imageAlt: 'Интерфейс бота QuantumBot: автокорректировка цен на Kaspi.kz',
+    imageAlt: 'Интерфейс Quantum: автокорректировка цен на Kaspi.kz',
   },
   {
     kind: 'Расширение',

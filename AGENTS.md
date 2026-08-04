@@ -1,4 +1,4 @@
-# AGENTS.md - QuantumBot Landing
+# AGENTS.md - Quantum Landing
 
 Project skills live in `.agents/skills/` (see `skills-lock.json`). Both are
 gitignored - they are installed per machine rather than vendored, so expect to

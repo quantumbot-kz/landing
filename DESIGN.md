@@ -1,4 +1,4 @@
-# QuantumBot - Style Reference
+# Quantum - Style Reference
 
 > One green, one typeface, hairlines instead of boxes. A clean B2B SaaS marketing page where the product UI is the proof and green only ever marks an action.
 
