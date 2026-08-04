@@ -159,12 +159,14 @@ const reviews = [
       display: flex;
       grid-template-columns: none;
       max-width: none;
-      gap: $grid-gap;
+      gap: 28px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-padding-inline: $page-gutter-mobile;
       margin-inline: -#{$page-gutter-mobile};
       padding-inline: $page-gutter-mobile;
+      // Trailing inset so the last card can snap with air after it.
+      padding-block: 2px;
       scrollbar-width: none;
 
       &::-webkit-scrollbar {
@@ -179,7 +181,8 @@ const reviews = [
     min-width: 0;
 
     @include mobile {
-      flex: 0 0 min(58%, 200px);
+      // One full phone + peek of the next — same scroll affordance as team cards.
+      flex: 0 0 min(72%, 240px);
       max-width: none;
       scroll-snap-align: start;
     }
