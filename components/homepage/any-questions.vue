@@ -1,5 +1,5 @@
 <template>
-  <div class="contact">
+  <div id="contacts" class="contact">
     <div class="container">
       <div class="contact__inner">
         <div class="contact__copy">

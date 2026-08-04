@@ -1,5 +1,6 @@
 <template>
   <HomepageSection
+    id="results"
     class="results"
     surface="band"
     eyebrow="Цифры"

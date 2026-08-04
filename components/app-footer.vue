@@ -32,11 +32,13 @@
             Разделы
           </p>
 
-          <a href="#products">Продукты</a>
-          <a href="#how-it-works">Как работает</a>
-          <a href="#analytics">Аналитика</a>
-          <a href="#tariffs">Тарифы</a>
-          <a href="#faq">Вопросы</a>
+          <a
+            v-for="link in navLinks"
+            :key="link.href"
+            :href="link.href"
+          >
+            {{ link.label }}
+          </a>
         </nav>
 
         <div class="footer__column">
@@ -68,7 +70,10 @@
 </template>
 
 <script setup lang="ts">
+import { siteNavLinks } from '~/utils/site-nav'
+
 const app = useAppConfig()
+const navLinks = siteNavLinks
 
 const COPYRIGHT_START_YEAR = 2024
 const currentYear = new Date().getFullYear()

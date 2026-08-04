@@ -103,14 +103,11 @@
 </template>
 
 <script lang="ts" setup>
+import { siteNavLinks } from '~/utils/site-nav'
+
 const app = useAppConfig()
 
-const navLinks = [
-  { href: '#products', label: 'Продукты' },
-  { href: '#how-it-works', label: 'Как работает' },
-  { href: '#tariffs', label: 'Тарифы' },
-  { href: '#faq', label: 'Вопросы' },
-]
+const navLinks = siteNavLinks
 
 const menuOpen = ref(false)
 
@@ -175,7 +172,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
   &__nav {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
 
     @include until($bp-header) {
       display: none;

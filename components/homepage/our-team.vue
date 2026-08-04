@@ -1,5 +1,6 @@
 <template>
   <HomepageSection
+    id="team"
     class="team"
     eyebrow="О нас"
     title="Наша команда"
