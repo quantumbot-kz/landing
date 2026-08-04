@@ -29,6 +29,7 @@
         @click="billingPeriod = 'year'"
       >
         Год
+        <span class="tariff__billing-save">−{{ maxYearlySavingsPercent }}%</span>
       </button>
     </div>
 
@@ -98,6 +99,8 @@ const periodLabel = computed(() =>
   billingPeriod.value === 'month' ? 'в месяц' : 'в год',
 )
 
+const parsePrice = (value: string) => Number(value.replace(/\s/g, ''))
+
 const plans: {
   title: string
   description: string
@@ -160,6 +163,17 @@ const plans: {
   },
 ]
 
+// Versus 12× monthly: max discount is on Supreme (~40.6% → 41%).
+const maxYearlySavingsPercent = computed(() =>
+  Math.max(
+    ...plans.map((plan) => {
+      const monthlyTotal = parsePrice(plan.prices.month) * 12
+      const yearly = parsePrice(plan.prices.year)
+      return Math.round((1 - yearly / monthlyTotal) * 100)
+    }),
+  ),
+)
+
 const addons = [
   {
     title: 'Работа с маркетплейсами',
@@ -197,6 +211,10 @@ const addons = [
   &__billing-option {
     @include text(body-sm);
 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     min-width: 96px;
     padding: 8px 16px;
     border: 0;
@@ -218,6 +236,18 @@ const addons = [
       color: $color-ink;
       font-weight: 500;
     }
+  }
+
+  &__billing-save {
+    @include text(caption);
+
+    padding: 2px 7px;
+    border-radius: $radius-pill;
+    background-color: $color-quantum-green;
+    color: $color-white;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
   }
 
   &__grid {
