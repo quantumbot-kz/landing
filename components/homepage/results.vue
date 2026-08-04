@@ -20,6 +20,27 @@
       </div>
     </dl>
 
+    <ul class="results__reviews">
+      <li
+        v-for="review in reviews"
+        :key="review.src"
+        class="results__review"
+      >
+        <NuxtImg
+          class="results__review-image"
+          :src="review.src"
+          :alt="review.alt"
+          :width="review.width"
+          :height="review.height"
+          fit="inside"
+          sizes="sm:220px md:200px lg:200px"
+          format="webp"
+          loading="lazy"
+          draggable="false"
+        />
+      </li>
+    </ul>
+
     <div class="results__cta">
       <div class="results__cta-copy">
         <p class="results__cta-title">
@@ -52,6 +73,27 @@ const metrics = [
   { value: 'до +15%', label: 'Рост прибыли', note: 'при стабильной марже' },
   { value: 'до +30%', label: 'Конверсия заказов', note: 'при конкурентной цене' },
   { value: 'до 10 ч', label: 'Экономия времени', note: 'в неделю без ручного мониторинга' },
+]
+
+const reviews = [
+  {
+    src: '/reviews/review-1.png',
+    width: 879,
+    height: 1832,
+    alt: 'Кабинет продавца Kaspi.kz: продажи за день свыше 5,5 млн ₸ и показатель качества «Отлично»',
+  },
+  {
+    src: '/reviews/review-2.png',
+    width: 879,
+    height: 1832,
+    alt: 'Кабинет продавца Kaspi.kz: продажи за день свыше 215 тыс. ₸ и показатель качества «Отлично»',
+  },
+  {
+    src: '/reviews/review-3.png',
+    width: 879,
+    height: 1832,
+    alt: 'Кабинет продавца Kaspi.kz: продажи за день свыше 1,6 млн ₸ и показатель качества «Отлично»',
+  },
 ]
 </script>
 
@@ -103,12 +145,41 @@ const metrics = [
     color: $color-slate;
   }
 
+  &__reviews {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 40px);
+    margin: clamp(28px, 3.4vw, 48px) auto 0;
+    padding: 0;
+    list-style: none;
+    justify-items: center;
+    max-width: 720px;
+
+    @include compact {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 220px;
+      margin-inline: auto;
+    }
+  }
+
+  &__review {
+    width: 100%;
+    max-width: 200px;
+    min-width: 0;
+  }
+
+  &__review-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   &__cta {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: clamp(20px, 3vw, 40px);
-    margin-top: $grid-gap;
+    margin-top: clamp(28px, 3.4vw, 48px);
     padding: clamp(20px, 2.4vw, 32px);
     background-color: $color-white;
     border: 1px solid $color-mint-line;
