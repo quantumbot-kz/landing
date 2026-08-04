@@ -172,8 +172,10 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
   &__nav {
     display: flex;
     align-items: center;
-    gap: 18px;
-    flex-wrap: wrap;
+    gap: 20px;
+    flex-wrap: nowrap;
+    flex: 1 1 auto;
+    min-width: 0;
     justify-content: center;
 
     @include until($bp-header) {
@@ -183,10 +185,12 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
     a {
       @include text(body-sm);
 
+      flex-shrink: 0;
       color: $color-carbon;
       position: relative;
       // Keeps the pointer target at 24px minimum without changing the visual size.
       padding-block: 6px;
+      white-space: nowrap;
 
       &::after {
         content: '';
