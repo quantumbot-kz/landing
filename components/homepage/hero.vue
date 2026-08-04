@@ -47,7 +47,7 @@
             loop
             playsinline
             preload="metadata"
-            poster="/hero-demo-poster.jpg?v=4"
+            poster="/hero-demo-poster.jpg?v=5"
             aria-label="Демонстрация интерфейса Quantum"
           >
             <source src="/hero-demo.mp4?v=4" type="video/mp4">
@@ -61,6 +61,9 @@
             height="2474"
             sizes="100vw lg:1100px"
             format="webp"
+            loading="eager"
+            :preload="{ fetchPriority: 'high' }"
+            fetchpriority="high"
             draggable="false"
             alt=""
           />

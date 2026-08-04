@@ -126,6 +126,22 @@ export default defineNuxtConfig({
           rel: 'manifest',
           href: '/site.webmanifest',
         },
+        // Break font discovery chain (HTML → CSS → woff2). Display weight first;
+        // Cyrillic still uses system-ui (Public Sans has no Cyrillic).
+        {
+          rel: 'preload',
+          href: '/fonts/public-sans-300-latin.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous',
+        },
+        {
+          rel: 'preload',
+          href: '/fonts/public-sans-300-latin-ext.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous',
+        },
       ],
       script: [
         {
@@ -143,7 +159,6 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '@nuxtjs/google-fonts',
     '@nuxt/image',
     [
       'unplugin-icons/nuxt',
@@ -206,12 +221,6 @@ export default defineNuxtConfig({
           trigger: 'onNuxtReady',
         },
       },
-    },
-  },
-
-  googleFonts: {
-    families: {
-      'Public Sans': [300, 400, 500],
     },
   },
 
