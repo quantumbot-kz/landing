@@ -2,40 +2,36 @@
 
 > Сервис автоматизации продаж для продавцов Kaspi.kz в Казахстане: автокорректировка цен, умный предзаказ, аналитика, закупки с Wildberries и регистрация товаров в НКТ.
 
-- Сайт: https://www.quantumbot.kz/
-- Кабинет: https://app.quantumbot.kz
-- Документация: https://docs.quantumbot.kz
-- Контакт: support@quantumbot.kz
-- Телефон: +7 707 189 14 77
-- Юрлицо: ТОО Quantum Technology
-- Участник Astana Hub: https://astanahub.com/account/company/17721/
+ТОО Quantum Technology, участник Astana Hub. Язык сайта: ru-KZ. География: Казахстан, маркетплейс Kaspi.kz. Пробный период: 3 дня бесплатной подписки после регистрации.
 
-## Продукт
+## Docs
 
-- Бот автокорректировки цен на Kaspi.kz с настройкой минимумов и стратегии
-- Умный предзаказ по складам
-- Расширение «Работа с маркетплейсами»: закупки с Wildberries, расчёт прибыли, алерты в Telegram
-- Регистрация товаров в НКТ (Национальный каталог товаров РК) с AI-заполнением атрибутов
-- Аналитика продаж на старших тарифах
+- [Сайт](https://www.quantumbot.kz/): лендинг продукта и тарифы
+- [Кабинет](https://app.quantumbot.kz/): вход и регистрация в сервисе
+- [Документация](https://docs.quantumbot.kz/): руководства по настройке и использованию
+- [Демо на YouTube](https://www.youtube.com/watch?v=gQkEWI9Cwuw): обзор интерфейса Quantum
 
-## Тарифы (KZT)
+## Product
 
-Месяц / год:
-- Seller: 19 990 / 144 990 - до 50 товаров
-- Seller Pro: 39 990 / 294 990 - до 300 товаров
-- Seller Ultimate: 54 990 / 409 990 - до 3500 товаров + аналитика + НКТ
-- Seller Supreme: 79 990 / 569 990 - до 7000 товаров + персональный менеджер + НКТ
-- Пробный период: 3 дня бесплатной подписки после регистрации
+- [Бот автокорректировки цен](https://www.quantumbot.kz/#products): цены на Kaspi.kz с минимумами и стратегией
+- [Умный предзаказ](https://www.quantumbot.kz/#products): предзаказ по складам
+- [Работа с маркетплейсами](https://www.quantumbot.kz/#products): закупки с Wildberries, расчёт прибыли, алерты в Telegram
+- [НКТ](https://www.quantumbot.kz/#products): регистрация товаров в Национальном каталоге товаров РК с AI-заполнением атрибутов
+- [Аналитика](https://www.quantumbot.kz/#analytics): аналитика продаж на старших тарифах
+- [Тарифы](https://www.quantumbot.kz/#tariff): Seller / Seller Pro / Seller Ultimate / Seller Supreme (KZT)
 
-## Расширения (KZT / месяц)
+## Contact
 
-- Работа с маркетплейсами: от 24 990
-- Создатель карточек из товаров с Wildberries: от 6 690
-- Работа с НКТ: от 19 990 (входит в Ultimate и Supreme)
+- [Email support@quantumbot.kz](mailto:support@quantumbot.kz): поддержка
+- [Телефон +7 707 189 14 77](tel:+77071891477): контактный номер
+- [Astana Hub](https://astanahub.com/account/company/17721/): карточка компании
+- [YouTube](https://www.youtube.com/@QuantumBotMedia): канал QuantumBotMedia
+- [Instagram](https://www.instagram.com/quantumbot_kz/): @quantumbot_kz
+- [Telegram](https://t.me/+vOQDGC3VoUJmY2Qy): сообщество
 
-## Ключевые факты
+## Optional
 
-- География: Казахстан, маркетплейс Kaspi.kz
-- Язык сайта: ru-KZ
-- Демо: https://www.youtube.com/watch?v=gQkEWI9Cwuw
-- YouTube: https://www.youtube.com/@QuantumBotMedia
+- [Тариф Seller](https://www.quantumbot.kz/#tariff): 19 990 / 144 990 ₸ — до 50 товаров
+- [Тариф Seller Pro](https://www.quantumbot.kz/#tariff): 39 990 / 294 990 ₸ — до 300 товаров
+- [Тариф Seller Ultimate](https://www.quantumbot.kz/#tariff): 54 990 / 409 990 ₸ — до 3500 товаров + аналитика + НКТ
+- [Тариф Seller Supreme](https://www.quantumbot.kz/#tariff): 79 990 / 569 990 ₸ — до 7000 товаров + персональный менеджер + НКТ
