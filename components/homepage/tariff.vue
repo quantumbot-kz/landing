@@ -108,7 +108,7 @@ const plans: {
   {
     title: 'Seller',
     description: 'Идеально для небольших или узкоспециализированных магазинов',
-    prices: { month: '19 990', year: '119 990' },
+    prices: { month: '19 990', year: '144 990' },
     features: [
       { before: 'Автокорректировка цен до ', emphasis: '50 товаров' },
       { text: 'Настройка предзаказа' },
@@ -120,7 +120,7 @@ const plans: {
   {
     title: 'Seller Pro',
     description: 'Подойдет тем, кто активно торгует на Kaspi',
-    prices: { month: '39 990', year: '249 990' },
+    prices: { month: '39 990', year: '294 990' },
     features: [
       { before: 'Автокорректировка цен до ', emphasis: '300 товаров' },
       { text: 'Настройка предзаказа' },
@@ -133,7 +133,7 @@ const plans: {
     title: 'Seller Ultimate',
     description: 'Для крупных игроков и магазинов с большим ассортиментом товаров',
     popular: true,
-    prices: { month: '54 990', year: '379 990' },
+    prices: { month: '54 990', year: '409 990' },
     features: [
       { before: 'Автокорректировка цен до ', emphasis: '3500 товаров' },
       { text: 'Настройка предзаказа' },
@@ -147,7 +147,7 @@ const plans: {
   {
     title: 'Seller Supreme',
     description: 'Для профессионалов с огромным ассортиментом',
-    prices: { month: '79 990', year: '450 990' },
+    prices: { month: '79 990', year: '569 990' },
     features: [
       { before: 'Автокорректировка цен до ', emphasis: '7000 товаров' },
       { text: 'Настройка предзаказа' },
