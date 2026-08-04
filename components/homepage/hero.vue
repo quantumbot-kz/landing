@@ -38,29 +38,32 @@
 
     <div class="hero__media">
       <div class="hero__device">
-        <NuxtImg
-          class="hero__image hero__image--desktop"
-          src="/hero-desktop.png"
-          width="4096"
-          height="2474"
-          sizes="sm:100vw md:100vw lg:1100px"
-          draggable="false"
-          format="webp"
-          alt="QuantumBot на ноутбуке: управление товарами и автокорректировка цен на Kaspi.kz"
-        />
-      </div>
+        <div class="hero__laptop">
+          <video
+            class="hero__screen-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="/hero-demo-poster.jpg?v=3"
+            aria-label="Демонстрация интерфейса QuantumBot"
+          >
+            <source src="/hero-demo.mp4?v=3" type="video/mp4">
+            <source src="/hero-demo.webm?v=3" type="video/webm">
+          </video>
 
-      <div class="hero__frame">
-        <NuxtImg
-          class="hero__image hero__image--mobile"
-          src="/hero-mobile.png"
-          width="472"
-          height="1024"
-          sizes="sm:100vw md:100vw"
-          draggable="false"
-          format="webp"
-          alt="Интерфейс QuantumBot на мобильном устройстве"
-        />
+          <NuxtImg
+            class="hero__laptop-frame"
+            src="/hero-macbook-frame-v3.png"
+            width="4096"
+            height="2474"
+            sizes="100vw lg:1100px"
+            format="webp"
+            draggable="false"
+            alt=""
+          />
+        </div>
       </div>
     </div>
 
@@ -194,40 +197,39 @@ const benefits = [
   }
 
   // Laptop cut-out already has a baked-in shadow - no card frame around it.
+  // Same MacBook + screen video on all breakpoints (fits via page gutters).
   &__device {
     max-width: 1100px;
     margin-inline: auto;
-
-    @include compact {
-      display: none;
-    }
   }
 
-  // Flat mobile screenshot still needs the framed treatment.
-  &__frame {
-    display: none;
-    max-width: 360px;
-    margin-inline: auto;
-    padding: 8px;
-    border: 1px solid $color-hairline;
-    border-radius: calc(#{$radius-panel} + 8px);
-    background-color: rgba($color-linen, 0.7);
-    box-shadow: $shadow-panel;
-
-    @include compact {
-      display: block;
-    }
+  &__laptop {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4096 / 2474;
   }
 
-  &__image {
+  // Screen hole measured from the punched MacBook frame (v3).
+  &__screen-video {
+    position: absolute;
+    left: 10.23%;
+    top: 2.47%;
+    width: 79.54%;
+    height: 85.41%;
+    object-fit: cover;
+    object-position: center;
+    background-color: $color-ink;
+  }
+
+  &__laptop-frame {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     display: block;
     width: 100%;
-    height: auto;
-
-    &--mobile {
-      border-radius: $radius-panel;
-      border: 1px solid $color-hairline;
-    }
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
   }
 
   &__benefits {
