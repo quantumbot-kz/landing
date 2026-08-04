@@ -155,10 +155,21 @@ const reviews = [
     justify-items: center;
     max-width: 720px;
 
-    @include compact {
-      grid-template-columns: minmax(0, 1fr);
-      max-width: 220px;
-      margin-inline: auto;
+    @include mobile {
+      display: flex;
+      grid-template-columns: none;
+      max-width: none;
+      gap: $grid-gap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: $page-gutter-mobile;
+      margin-inline: -#{$page-gutter-mobile};
+      padding-inline: $page-gutter-mobile;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 
@@ -166,6 +177,12 @@ const reviews = [
     width: 100%;
     max-width: 200px;
     min-width: 0;
+
+    @include mobile {
+      flex: 0 0 min(58%, 200px);
+      max-width: none;
+      scroll-snap-align: start;
+    }
   }
 
   &__review-image {
