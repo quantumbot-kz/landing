@@ -54,11 +54,18 @@ const active = ref(false)
   overflow: hidden;
   background-color: $color-charcoal;
 
+  // YouTube source is pillarboxed inside 16:9 - zoom past the baked-in bars.
+  $crop-scale: 1.14;
+
   &__frame {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
     border: 0;
+    transform: scale($crop-scale);
+    transform-origin: center center;
   }
 
   &__facade {
@@ -69,6 +76,7 @@ const active = ref(false)
     border: 0;
     background: none;
     cursor: pointer;
+    overflow: hidden;
 
     &:hover .video-embed__play,
     &:focus-visible .video-embed__play {
@@ -82,6 +90,9 @@ const active = ref(false)
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    transform: scale($crop-scale);
+    transform-origin: center center;
   }
 
   &__scrim {
