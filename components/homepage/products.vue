@@ -37,6 +37,8 @@ const products = [
     ctaHref: '#tariffs',
     ctaType: 'primary' as const,
     image: '/products/bot.png',
+    imageWidth: 2262,
+    imageHeight: 1632,
     imageAlt: 'Интерфейс бота QuantumBot: автокорректировка цен на Kaspi.kz',
   },
   {
@@ -52,6 +54,8 @@ const products = [
     ctaLabel: 'К тарифам',
     ctaHref: '#tariffs',
     image: '/products/marketplaces.png',
+    imageWidth: 2888,
+    imageHeight: 1472,
     imageAlt: 'Модуль «Работа с маркетплейсами»: расчёт прибыли WB → Kaspi',
   },
   {
@@ -68,6 +72,8 @@ const products = [
     ctaLabel: 'Подключить',
     ctaHref: app.appUrl,
     image: '/products/nkt.png',
+    imageWidth: 1686,
+    imageHeight: 1162,
     imageAlt: 'Модуль НКТ: регистрация товаров в Национальном каталоге',
   },
 ]

@@ -38,8 +38,9 @@
         class="product__image"
         :src="image"
         :alt="imageAlt"
-        width="960"
-        height="600"
+        :width="imageWidth"
+        :height="imageHeight"
+        fit="inside"
         sizes="sm:100vw md:100vw lg:560px"
         format="webp"
         loading="lazy"
@@ -74,9 +75,14 @@ const props = withDefaults(defineProps<{
   ctaType?: 'primary' | 'secondary'
   image?: string
   imageAlt: string
+  /** Intrinsic pixel size — keep real aspect so IPX does not cover-crop UI. */
+  imageWidth?: number
+  imageHeight?: number
   reversed?: boolean
 }>(), {
   ctaType: 'secondary',
+  imageWidth: 1200,
+  imageHeight: 900,
   reversed: false,
 })
 
@@ -163,10 +169,17 @@ const isExternal = computed(() => /^https?:\/\//.test(props.ctaHref))
     }
   }
 
+  &__media {
+    min-width: 0;
+  }
+
   &__image {
     display: block;
     width: 100%;
     height: auto;
+    border: 1px solid $color-hairline;
+    border-radius: $radius-image;
+    background-color: $color-white;
   }
 
   &__placeholder {
