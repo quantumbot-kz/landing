@@ -46,11 +46,11 @@
             loop
             playsinline
             preload="metadata"
-            poster="/hero-demo-poster.jpg?v=3"
+            poster="/hero-demo-poster.jpg?v=4"
             aria-label="Демонстрация интерфейса QuantumBot"
           >
-            <source src="/hero-demo.mp4?v=3" type="video/mp4">
-            <source src="/hero-demo.webm?v=3" type="video/webm">
+            <source src="/hero-demo.mp4?v=4" type="video/mp4">
+            <source src="/hero-demo.webm?v=4" type="video/webm">
           </video>
 
           <NuxtImg
