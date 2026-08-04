@@ -67,7 +67,7 @@
       </h3>
 
       <p class="tariff__addons-text">
-        Подключаются отдельно. Работа с НКТ уже входит в Ultimate и Supreme - на младших тарифах её можно докупить.
+        Подключаются отдельно. Работа с НКТ уже входит в Ultimate и Supreme - на младших тарифах её можно докупить
       </p>
 
       <div class="tariff__addons-grid">
@@ -182,7 +182,7 @@ const addons = [
   },
   {
     title: 'Создатель карточек из товаров с Wildberries',
-    description: 'Создание карточек на Kaspi.kz на основе товаров с Wildberries',
+    description: 'Создание карточек на Kaspi.kz на основе товаров с Wildberries с помощью AI',
     price: 'от 6 690',
   },
   {
