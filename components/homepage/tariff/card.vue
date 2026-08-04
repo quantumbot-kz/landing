@@ -13,8 +13,8 @@
     </p>
 
     <p class="tariff-card__price">
-      <span class="tariff-card__amount">₸&nbsp;{{ pricePerMonth }}</span>
-      <span class="tariff-card__period">в месяц</span>
+      <span class="tariff-card__amount">₸&nbsp;{{ price }}</span>
+      <span class="tariff-card__period">{{ period }}</span>
     </p>
 
     <UiButton
@@ -35,7 +35,8 @@
 <script lang="ts" setup>
 defineProps<{
   title: string
-  pricePerMonth: string
+  price: string
+  period: string
   popular?: boolean
 }>()
 

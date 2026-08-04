@@ -6,78 +6,182 @@
     title="Тарифы Quantum"
     description="Подписка на бот автокорректировки цен на Kaspi.kz - выберите объём товаров под ваш магазин"
   >
+    <div
+      class="tariff__billing"
+      role="group"
+      aria-label="Период оплаты"
+    >
+      <button
+        type="button"
+        class="tariff__billing-option"
+        :class="{ 'tariff__billing-option--active': billingPeriod === 'month' }"
+        :aria-pressed="billingPeriod === 'month'"
+        @click="billingPeriod = 'month'"
+      >
+        Месяц
+      </button>
+
+      <button
+        type="button"
+        class="tariff__billing-option"
+        :class="{ 'tariff__billing-option--active': billingPeriod === 'year' }"
+        :aria-pressed="billingPeriod === 'year'"
+        @click="billingPeriod = 'year'"
+      >
+        Год
+      </button>
+    </div>
+
     <div class="tariff__grid">
-      <HomepageTariffCard title="Seller" price-per-month="19 990">
-        Идеально для небольших или узкоспециализированных магазинов
+      <HomepageTariffCard
+        v-for="plan in plans"
+        :key="plan.title"
+        :title="plan.title"
+        :price="plan.prices[billingPeriod]"
+        :period="periodLabel"
+        :popular="plan.popular"
+      >
+        {{ plan.description }}
 
         <template #list>
-          <HomepageTariffCardListItem>
-            Автокорректировка цен до <strong>50 товаров</strong>
+          <HomepageTariffCardListItem
+            v-for="(feature, index) in plan.features"
+            :key="`${plan.title}-${index}`"
+            :hot="'hot' in feature ? feature.hot : false"
+          >
+            <template v-if="'emphasis' in feature">
+              {{ feature.before }}<strong>{{ feature.emphasis }}</strong>{{ feature.after }}
+            </template>
+            <template v-else>
+              {{ feature.text }}
+            </template>
           </HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Настройка предзаказа</HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Поддержка 24/7</HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Не конкурировать со своими магазинами</HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Высокая скорость обновления цен</HomepageTariffCardListItem>
-        </template>
-      </HomepageTariffCard>
-
-      <HomepageTariffCard title="Seller Pro" price-per-month="39 990">
-        Подойдет тем, кто активно торгует на Kaspi
-
-        <template #list>
-          <HomepageTariffCardListItem>
-            Автокорректировка цен до <strong>300 товаров</strong>
-          </HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Настройка предзаказа</HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Поддержка 24/7</HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Не конкурировать со своими магазинами</HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Высокая скорость обновления цен</HomepageTariffCardListItem>
-        </template>
-      </HomepageTariffCard>
-
-      <HomepageTariffCard title="Seller Ultimate" price-per-month="54 990" popular>
-        Для крупных игроков и магазинов с большим ассортиментом товаров
-
-        <template #list>
-          <HomepageTariffCardListItem>
-            Автокорректировка цен до <strong>3500 товаров</strong>
-          </HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Настройка предзаказа</HomepageTariffCardListItem>
-          <HomepageTariffCardListItem hot>
-            Приоритетная поддержка 24/7
-          </HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Не конкурировать со своими магазинами</HomepageTariffCardListItem>
-          <HomepageTariffCardListItem hot>
-            Турбо скорость обновления цен
-          </HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Детальная аналитика продаж на Kaspi.kz</HomepageTariffCardListItem>
-        </template>
-      </HomepageTariffCard>
-
-      <HomepageTariffCard title="Seller Supreme" price-per-month="79 990">
-        Для профессионалов с огромным ассортиментом
-
-        <template #list>
-          <HomepageTariffCardListItem>
-            Автокорректировка цен до <strong>7000 товаров</strong>
-          </HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Настройка предзаказа</HomepageTariffCardListItem>
-          <HomepageTariffCardListItem hot>
-            Персональный менеджер
-          </HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Не конкурировать со своими магазинами</HomepageTariffCardListItem>
-          <HomepageTariffCardListItem hot>
-            Турбо скорость обновления цен
-          </HomepageTariffCardListItem>
-          <HomepageTariffCardListItem>Детальная аналитика продаж на Kaspi.kz</HomepageTariffCardListItem>
         </template>
       </HomepageTariffCard>
     </div>
   </HomepageSection>
 </template>
 
+<script setup lang="ts">
+type BillingPeriod = 'month' | 'year'
+
+type TariffFeature =
+  | { text: string, hot?: boolean }
+  | { before: string, emphasis: string, after?: string, hot?: boolean }
+
+const billingPeriod = ref<BillingPeriod>('month')
+
+const periodLabel = computed(() =>
+  billingPeriod.value === 'month' ? 'в месяц' : 'в год',
+)
+
+const plans: {
+  title: string
+  description: string
+  popular?: boolean
+  prices: Record<BillingPeriod, string>
+  features: TariffFeature[]
+}[] = [
+  {
+    title: 'Seller',
+    description: 'Идеально для небольших или узкоспециализированных магазинов',
+    prices: { month: '19 990', year: '119 990' },
+    features: [
+      { before: 'Автокорректировка цен до ', emphasis: '50 товаров' },
+      { text: 'Настройка предзаказа' },
+      { text: 'Поддержка 24/7' },
+      { text: 'Не конкурировать со своими магазинами' },
+      { text: 'Высокая скорость обновления цен' },
+    ],
+  },
+  {
+    title: 'Seller Pro',
+    description: 'Подойдет тем, кто активно торгует на Kaspi',
+    prices: { month: '39 990', year: '249 990' },
+    features: [
+      { before: 'Автокорректировка цен до ', emphasis: '300 товаров' },
+      { text: 'Настройка предзаказа' },
+      { text: 'Поддержка 24/7' },
+      { text: 'Не конкурировать со своими магазинами' },
+      { text: 'Высокая скорость обновления цен' },
+    ],
+  },
+  {
+    title: 'Seller Ultimate',
+    description: 'Для крупных игроков и магазинов с большим ассортиментом товаров',
+    popular: true,
+    prices: { month: '54 990', year: '379 990' },
+    features: [
+      { before: 'Автокорректировка цен до ', emphasis: '3500 товаров' },
+      { text: 'Настройка предзаказа' },
+      { text: 'Приоритетная поддержка 24/7', hot: true },
+      { text: 'Не конкурировать со своими магазинами' },
+      { text: 'Турбо скорость обновления цен', hot: true },
+      { text: 'Детальная аналитика продаж на Kaspi.kz' },
+    ],
+  },
+  {
+    title: 'Seller Supreme',
+    description: 'Для профессионалов с огромным ассортиментом',
+    prices: { month: '79 990', year: '450 990' },
+    features: [
+      { before: 'Автокорректировка цен до ', emphasis: '7000 товаров' },
+      { text: 'Настройка предзаказа' },
+      { text: 'Персональный менеджер', hot: true },
+      { text: 'Не конкурировать со своими магазинами' },
+      { text: 'Турбо скорость обновления цен', hot: true },
+      { text: 'Детальная аналитика продаж на Kaspi.kz' },
+    ],
+  },
+]
+</script>
+
 <style lang="scss">
 .tariff {
+  .section__body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__billing {
+    display: inline-flex;
+    align-self: center;
+    align-items: center;
+    gap: 4px;
+    margin: 0 0 clamp(24px, 3vw, 36px);
+    padding: 4px;
+    border: 1px solid $color-hairline;
+    border-radius: $radius-control;
+    background-color: $color-white;
+  }
+
+  &__billing-option {
+    @include text(body-sm);
+
+    min-width: 96px;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: calc(#{$radius-control} - 2px);
+    background: transparent;
+    color: $color-slate;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-ink;
+    }
+
+    &--active {
+      background-color: $color-mint-wash;
+      color: $color-ink;
+      font-weight: 500;
+    }
+  }
+
   &__grid {
     display: grid;
     gap: $grid-gap;
