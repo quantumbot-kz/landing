@@ -59,6 +59,29 @@
         </template>
       </HomepageTariffCard>
     </div>
+
+    <div class="tariff__addons">
+      <h3 class="tariff__addons-title">
+        Расширения
+      </h3>
+
+      <p class="tariff__addons-text">
+        Подключаются отдельно к любому тарифу. Работа с НКТ уже входит в Ultimate и Supreme.
+      </p>
+
+      <div class="tariff__addons-grid">
+        <HomepageTariffCard
+          v-for="addon in addons"
+          :key="addon.title"
+          :title="addon.title"
+          :price="addon.price"
+          period="в месяц"
+          action-label="Подключить"
+        >
+          {{ addon.description }}
+        </HomepageTariffCard>
+      </div>
+    </div>
   </HomepageSection>
 </template>
 
@@ -118,6 +141,7 @@ const plans: {
       { text: 'Не конкурировать со своими магазинами' },
       { text: 'Турбо скорость обновления цен', hot: true },
       { text: 'Детальная аналитика продаж на Kaspi.kz' },
+      { text: 'Работа с НКТ включена', hot: true },
     ],
   },
   {
@@ -131,7 +155,21 @@ const plans: {
       { text: 'Не конкурировать со своими магазинами' },
       { text: 'Турбо скорость обновления цен', hot: true },
       { text: 'Детальная аналитика продаж на Kaspi.kz' },
+      { text: 'Работа с НКТ включена', hot: true },
     ],
+  },
+]
+
+const addons = [
+  {
+    title: 'Работа с маркетплейсами',
+    description: 'Закупки с Wildberries, расчёт прибыли на Kaspi и алерты, когда закупка становится невыгодной',
+    price: 'от 24 990',
+  },
+  {
+    title: 'Создатель карточек из товаров с Wildberries',
+    description: 'Создание карточек на Kaspi.kz на основе товаров с Wildberries',
+    price: 'от 6 690',
   },
 ]
 </script>
@@ -213,6 +251,39 @@ const plans: {
         flex: 0 0 min(84%, 300px);
         scroll-snap-align: start;
       }
+    }
+  }
+
+  &__addons {
+    margin-top: clamp(40px, 5vw, 64px);
+    padding-top: clamp(32px, 4vw, 48px);
+    border-top: 1px solid $color-hairline;
+  }
+
+  &__addons-title {
+    @include text(h3);
+
+    color: $color-ink;
+    text-align: center;
+  }
+
+  &__addons-text {
+    @include text(body-sm);
+
+    margin: 8px auto 0;
+    color: $color-slate;
+    text-align: center;
+    max-width: 52ch;
+  }
+
+  &__addons-grid {
+    display: grid;
+    gap: $grid-gap;
+    margin-top: clamp(24px, 3vw, 36px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    @include mobile {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 }

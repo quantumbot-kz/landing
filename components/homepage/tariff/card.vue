@@ -23,22 +23,25 @@
       :href="app.appUrl"
       rel="noopener noreferrer"
     >
-      Попробовать 3 дня бесплатно
+      {{ actionLabel }}
     </UiButton>
 
-    <ul class="tariff-card__list">
+    <ul v-if="$slots.list" class="tariff-card__list">
       <slot name="list" />
     </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
-defineProps<{
+withDefaults(defineProps<{
   title: string
   price: string
   period: string
   popular?: boolean
-}>()
+  actionLabel?: string
+}>(), {
+  actionLabel: 'Попробовать 3 дня бесплатно',
+})
 
 const app = useAppConfig()
 </script>
