@@ -39,6 +39,7 @@
         :key="plan.title"
         :title="plan.title"
         :price="plan.prices[billingPeriod]"
+        :original-price="billingPeriod === 'year' ? formatPrice(parsePrice(plan.prices.month) * 12) : undefined"
         :period="periodLabel"
         :popular="plan.popular"
       >
@@ -100,6 +101,8 @@ const periodLabel = computed(() =>
 )
 
 const parsePrice = (value: string) => Number(value.replace(/\s/g, ''))
+
+const formatPrice = (value: number) => value.toLocaleString('ru-RU').replace(/\u00A0/g, ' ')
 
 const plans: {
   title: string
