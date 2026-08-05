@@ -13,6 +13,13 @@
     </p>
 
     <p class="tariff-card__price">
+      <del
+        v-if="originalPrice"
+        class="tariff-card__original-price"
+        :aria-label="`Исходная цена: ₸ ${originalPrice} ${period}`"
+      >
+        ₸&nbsp;{{ originalPrice }}
+      </del>
       <span class="tariff-card__amount">₸&nbsp;{{ price }}</span>
       <span class="tariff-card__period">{{ period }}</span>
     </p>
@@ -36,6 +43,7 @@
 withDefaults(defineProps<{
   title: string
   price: string
+  originalPrice?: string
   period: string
   popular?: boolean
   actionLabel?: string
@@ -127,6 +135,16 @@ const app = useAppConfig()
     @include text(price);
 
     font-variant-numeric: tabular-nums;
+  }
+
+  &__original-price {
+    @include text(caption);
+
+    color: $color-slate;
+    font-variant-numeric: tabular-nums;
+    text-decoration-thickness: 1px;
+    text-decoration-color: currentColor;
+    text-underline-offset: 0.12em;
   }
 
   &__period {
