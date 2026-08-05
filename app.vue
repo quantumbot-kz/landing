@@ -132,7 +132,7 @@ useHead({
             thumbnailUrl: `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
             embedUrl: app.videoUrl,
             contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
-            uploadDate: '2025-10-13',
+            uploadDate: '2025-10-13T15:59:36Z',
             publisher: { '@id': `${siteUrl}/#organization` },
           },
           {
