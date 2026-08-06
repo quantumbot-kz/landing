@@ -109,6 +109,78 @@ const app = useAppConfig()
 const siteUrl = app.baseUrl.replace(/\/$/, '')
 const pageUrl = `${siteUrl}${props.content.path}`
 const dateModified = '2026-08-06'
+const service = props.content.schemaService
+
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: props.content.title,
+    description: props.content.description,
+    inLanguage: 'ru-KZ',
+    isPartOf: { '@id': `${siteUrl}/#website` },
+    dateModified,
+    publisher: { '@id': `${siteUrl}/#organization` },
+    ...(service ? { about: { '@id': `${pageUrl}#service` } } : {}),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${pageUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Quantum',
+        item: `${siteUrl}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: props.content.eyebrow,
+        item: pageUrl,
+      },
+    ],
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${pageUrl}#faq`,
+    mainEntity: props.content.faq.map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  },
+]
+
+if (service) {
+  graph.push({
+    '@type': ['Service', 'SoftwareApplication'],
+    '@id': `${pageUrl}#service`,
+    name: service.name,
+    ...(service.alternateName?.length ? { alternateName: service.alternateName } : {}),
+    description: service.description,
+    url: pageUrl,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    provider: { '@id': `${siteUrl}/#organization` },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Kazakhstan',
+    },
+    offers: {
+      '@type': 'AggregateOffer',
+      lowPrice: service.lowPrice,
+      highPrice: service.highPrice,
+      priceCurrency: 'KZT',
+      offerCount: 4,
+      url: `${siteUrl}/#tariffs`,
+    },
+  })
+}
 
 useSeoMeta({
   title: props.content.title,
@@ -129,49 +201,7 @@ useHead({
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
-        '@graph': [
-          {
-            '@type': 'WebPage',
-            '@id': `${pageUrl}#webpage`,
-            url: pageUrl,
-            name: props.content.title,
-            description: props.content.description,
-            inLanguage: 'ru-KZ',
-            isPartOf: { '@id': `${siteUrl}/#website` },
-            dateModified,
-            publisher: { '@id': `${siteUrl}/#organization` },
-          },
-          {
-            '@type': 'BreadcrumbList',
-            '@id': `${pageUrl}#breadcrumb`,
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Quantum',
-                item: `${siteUrl}/`,
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: props.content.eyebrow,
-                item: pageUrl,
-              },
-            ],
-          },
-          {
-            '@type': 'FAQPage',
-            '@id': `${pageUrl}#faq`,
-            mainEntity: props.content.faq.map(item => ({
-              '@type': 'Question',
-              name: item.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: item.answer,
-              },
-            })),
-          },
-        ],
+        '@graph': graph,
       }),
     },
   ],

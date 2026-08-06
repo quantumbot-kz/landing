@@ -21,10 +21,11 @@ const videoId = app.videoUrl.split('/').pop() || 'gQkEWI9Cwuw'
 const dateModified = '2026-08-06'
 
 useSeoMeta({
-  title: 'Quantum - бот цен и автоматизация продаж на Kaspi.kz',
-  description: 'Kaspi bot и аналитика для продавцов Kaspi.kz в Казахстане: автокорректировка цен, предзаказ, закупки с Wildberries и регистрация товаров в НКТ. 3 дня бесплатно.',
+  title: 'Quantum — каспи бот и автоматизация цен на Kaspi.kz',
+  description: 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика, закупки с Wildberries и регистрация в НКТ. 3 дня бесплатно.',
   ogUrl: `${siteUrl}/`,
 })
+
 
 useHead({
   link: [
@@ -40,8 +41,9 @@ useHead({
             '@type': 'WebPage',
             '@id': `${siteUrl}/#webpage`,
             url: `${siteUrl}/`,
-            name: 'Quantum - бот цен и автоматизация продаж на Kaspi.kz',
-            description: 'Сервис для продавцов Kaspi.kz в Казахстане: автокорректировка цен, предзаказ, аналитика, закупки с Wildberries и регистрация товаров в НКТ.',
+            name: 'Quantum — каспи бот и автоматизация цен на Kaspi.kz',
+            description: 'Каспи бот и сервис для продавцов Kaspi.kz в Казахстане: автоснижение цен, предзаказ, аналитика, закупки с Wildberries и регистрация товаров в НКТ.',
+
             inLanguage: 'ru-KZ',
             isPartOf: { '@id': `${siteUrl}/#website` },
             about: { '@id': `${siteUrl}/#app` },
@@ -61,7 +63,8 @@ useHead({
             applicationCategory: 'BusinessApplication',
             operatingSystem: 'Web',
             url: app.appUrl,
-            description: 'Сервис автоматизации продаж на Kaspi.kz: автокорректировка цен, предзаказ, аналитика, закупки с Wildberries и регистрация в НКТ. После регистрации доступны 3 дня бесплатной подписки.',
+            description: 'Каспи бот и автоматизация продаж на Kaspi.kz: автоснижение цен, предзаказ, аналитика, закупки с Wildberries и регистрация в НКТ. После регистрации доступны 3 дня бесплатной подписки.',
+
             offers: {
               '@type': 'AggregateOffer',
               lowPrice: '19990',
