@@ -16,7 +16,7 @@ const { resolve } = createResolver(import.meta.url)
 const baseUrl = import.meta.env.URL || 'https://www.quantumbot.kz'
 
 const siteTitle = 'Quantum - бот цен и автоматизация продаж на Kaspi.kz'
-const siteDescription = 'Сервис для продавцов Kaspi.kz в Казахстане: автокорректировка цен, предзаказ, аналитика, закупки с Wildberries и регистрация товаров в НКТ. 3 дня бесплатно.'
+const siteDescription = 'Kaspi bot и аналитика для продавцов Kaspi.kz в Казахстане: автокорректировка цен, предзаказ, закупки с Wildberries и регистрация товаров в НКТ. 3 дня бесплатно.'
 
 const DUO_SECONDARY_TONES = /#E7EAF3|#CFD5F0/gi
 const DUO_PRIMARY_TONES = /#056E62|#008574|#46AEA2/gi
@@ -26,7 +26,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   // ssr: false,
-  pages: false,
   app: {
     head: {
       htmlAttrs: {
@@ -104,10 +103,6 @@ export default defineNuxtConfig({
         },
       ],
       link: [
-        {
-          rel: 'canonical',
-          href: `${baseUrl}/`,
-        },
         {
           rel: 'icon',
           href: '/favicon.ico',

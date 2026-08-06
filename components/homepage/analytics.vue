@@ -4,7 +4,7 @@
     class="analytics"
     eyebrow="Данные"
     title="Аналитика продаж на Kaspi.kz"
-    description="Графики заказов, выручки и среднего чека по категориям и товарам на Kaspi.kz - в кабинете Quantum"
+    description="Графики заказов, выручки и среднего чека по категориям и товарам — подробнее на странице аналитики Kaspi"
   >
     <div class="analytics__grid">
       <div class="analytics__visual">
@@ -35,6 +35,10 @@
             </dd>
           </div>
         </dl>
+
+        <NuxtLink to="/analitika-kaspi/" class="analytics__more">
+          Аналитика Kaspi — подробно
+        </NuxtLink>
       </div>
     </div>
   </HomepageSection>
@@ -117,6 +121,20 @@ const insights = [
 
     margin: 2px 0 0;
     color: $color-slate;
+  }
+
+  &__more {
+    @include text(body-sm);
+
+    display: inline-block;
+    margin-top: 18px;
+    font-weight: 500;
+    color: $color-quantum-green;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-ink;
+    }
   }
 }
 </style>

@@ -39,6 +39,14 @@
           >
             {{ link.label }}
           </a>
+
+          <NuxtLink
+            v-for="link in pillarLinks"
+            :key="link.href"
+            :to="link.href"
+          >
+            {{ link.label }}
+          </NuxtLink>
         </nav>
 
         <div class="footer__column">
@@ -70,10 +78,11 @@
 </template>
 
 <script setup lang="ts">
-import { siteNavLinks } from '~/utils/site-nav'
+import { siteNavLinks, sitePillarLinks } from '~/utils/site-nav'
 
 const app = useAppConfig()
 const navLinks = siteNavLinks
+const pillarLinks = sitePillarLinks
 
 const COPYRIGHT_START_YEAR = 2024
 const currentYear = new Date().getFullYear()

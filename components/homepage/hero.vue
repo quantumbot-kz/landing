@@ -26,7 +26,7 @@
             Начать бесплатно
           </UiButton>
 
-          <UiButton type="secondary" href="#how-it-works">
+          <UiButton type="secondary" href="/#how-it-works">
             Узнать подробности
           </UiButton>
         </div>

@@ -2,9 +2,9 @@
   <header class="header">
     <div class="container">
       <div class="header__inner">
-        <a class="header__brand" href="#top" aria-label="Quantum - на главную">
+        <NuxtLink class="header__brand" to="/" aria-label="Quantum - на главную">
           <NuxtImg src="/logo.svg" alt="Quantum" class="header__logo" draggable="false" />
-        </a>
+        </NuxtLink>
 
         <nav class="header__nav" aria-label="Основная навигация">
           <a
