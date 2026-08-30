@@ -16,7 +16,7 @@ const { resolve } = createResolver(import.meta.url)
 const baseUrl = import.meta.env.URL || 'https://www.quantumbot.kz'
 
 const siteTitle = 'Quantum — каспи бот и автоматизация цен на Kaspi.kz'
-const siteDescription = 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика, закупки с Wildberries и регистрация в НКТ. 3 дня бесплатно.'
+const siteDescription = 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика каспи, закупки с Wildberries и регистрация в НКТ. 3 дня бесплатно.'
 
 
 const DUO_SECONDARY_TONES = /#E7EAF3|#CFD5F0/gi
@@ -122,34 +122,6 @@ export default defineNuxtConfig({
           rel: 'manifest',
           href: '/site.webmanifest',
         },
-        // Break font discovery chain (HTML → CSS → woff2). Display weight first;
-        // Cyrillic still uses system-ui (Public Sans has no Cyrillic).
-        {
-          rel: 'preload',
-          href: '/fonts/public-sans-300-latin.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossorigin: 'anonymous',
-        },
-        {
-          rel: 'preload',
-          href: '/fonts/public-sans-300-latin-ext.woff2',
-          as: 'font',
-          type: 'font/woff2',
-          crossorigin: 'anonymous',
-        },
-      ],
-      script: [
-        {
-          innerHTML: `(function(m,e,t,r,i,k,a){
-                m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                m[i].l=1*new Date();
-                for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-                k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-            })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111122100', 'ym');
-        
-            ym(111122100, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});`,
-        },
       ],
     },
   },
@@ -207,18 +179,6 @@ export default defineNuxtConfig({
     ],
     '@nuxt/scripts',
   ],
-
-  $production: {
-    scripts: {
-      registry: {
-        // Defer pixel until after hydration so it does not compete with LCP.
-        metaPixel: {
-          id: '2310206252799727',
-          trigger: 'onNuxtReady',
-        },
-      },
-    },
-  },
 
   image: {
     // quality: 100 kept analytics-bg.png near its 4.6 MB source weight after

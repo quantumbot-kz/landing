@@ -3,7 +3,7 @@
     <div class="container">
       <div class="footer__top">
         <div class="footer__brand">
-          <NuxtImg src="/logo.svg" alt="Quantum" class="footer__logo" draggable="false" />
+          <NuxtImg src="/logo.svg" alt="Quantum" class="footer__logo" width="124" height="22" draggable="false" />
 
           <div class="footer__socials">
             <SocialLink :href="app.instagramUrl" aria-label="Instagram">

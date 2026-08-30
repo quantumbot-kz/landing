@@ -19,6 +19,7 @@ useHead({
             '@type': 'Organization',
             '@id': `${siteUrl}/#organization`,
             name: 'Quantum',
+            alternateName: ['квантум бот', 'Quantum bot'],
             legalName: 'ТОО Quantum Technology',
             url: `${siteUrl}/`,
             logo: `${siteUrl}/logo.svg`,

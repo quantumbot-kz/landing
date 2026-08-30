@@ -13,11 +13,11 @@
       </a>
 
       <h1 class="hero__title">
-        Сервис умных закупок и эффективного управления продажами на <span>Kaspi.kz</span>
+        Каспи бот для продавцов на <span>Kaspi.kz</span>
       </h1>
 
       <p class="hero__subtitle">
-        Каспи бот с автоснижением цен на Kaspi.kz, умный предзаказ, закупки с Wildberries и регистрация товаров в НКТ — в одном кабинете
+        Квантум бот с автоснижением цен, аналитика каспи-магазина на старших тарифах, закупки с Wildberries и регистрация в НКТ — в одном кабинете
       </p>
 
 
@@ -42,17 +42,18 @@
       <div class="hero__device">
         <div class="hero__laptop">
           <video
+            ref="heroVideo"
             class="hero__screen-video"
-            autoplay
             muted
             loop
             playsinline
-            preload="metadata"
+            preload="none"
             poster="/hero-demo-poster.jpg?v=5"
             aria-label="Демонстрация интерфейса Quantum"
+            @click="playHero"
           >
-            <source src="/hero-demo.mp4?v=4" type="video/mp4">
             <source src="/hero-demo.webm?v=4" type="video/webm">
+            <source src="/hero-demo.mp4?v=4" type="video/mp4">
           </video>
 
           <NuxtImg
@@ -97,6 +98,18 @@ import IDuoLightning from '~icons/duo/lightning'
 import IDuoThumbsUp from '~icons/duo/thumbs-up'
 
 const app = useAppConfig()
+const heroVideo = ref<HTMLVideoElement | null>(null)
+
+function playHero() {
+  void heroVideo.value?.play().catch(() => {})
+}
+
+onMounted(() => {
+  const allowMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+  const isDesktop = window.matchMedia('(min-width: 1024px)').matches
+  if (allowMotion && isDesktop)
+    playHero()
+})
 
 const benefits = [
   { icon: IDuoThumbsUp, title: 'Удобно', text: 'Автоматическое обновление цен в реальном времени' },
@@ -237,6 +250,7 @@ const benefits = [
     object-fit: cover;
     object-position: center;
     background-color: $color-ink;
+    cursor: pointer;
   }
 
   &__laptop-frame {

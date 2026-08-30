@@ -18,11 +18,11 @@ import { homepageFaqItems } from '~/utils/homepage-faq'
 const app = useAppConfig()
 const siteUrl = app.baseUrl.replace(/\/$/, '')
 const videoId = app.videoUrl.split('/').pop() || 'gQkEWI9Cwuw'
-const dateModified = '2026-08-06'
+const dateModified = '2026-08-30'
 
 useSeoMeta({
   title: 'Quantum — каспи бот и автоматизация цен на Kaspi.kz',
-  description: 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика, закупки с Wildberries и регистрация в НКТ. 3 дня бесплатно.',
+  description: 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика каспи, закупки с Wildberries и регистрация в НКТ. 3 дня бесплатно.',
   ogUrl: `${siteUrl}/`,
 })
 
@@ -42,7 +42,7 @@ useHead({
             '@id': `${siteUrl}/#webpage`,
             url: `${siteUrl}/`,
             name: 'Quantum — каспи бот и автоматизация цен на Kaspi.kz',
-            description: 'Каспи бот и сервис для продавцов Kaspi.kz в Казахстане: автоснижение цен, предзаказ, аналитика, закупки с Wildberries и регистрация товаров в НКТ.',
+            description: 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика каспи-магазина, закупки с Wildberries и регистрация товаров в НКТ.',
 
             inLanguage: 'ru-KZ',
             isPartOf: { '@id': `${siteUrl}/#website` },
@@ -60,10 +60,11 @@ useHead({
             '@type': 'SoftwareApplication',
             '@id': `${siteUrl}/#app`,
             name: 'Quantum',
+            alternateName: ['квантум бот', 'каспи бот', 'Quantum bot'],
             applicationCategory: 'BusinessApplication',
             operatingSystem: 'Web',
             url: app.appUrl,
-            description: 'Каспи бот и автоматизация продаж на Kaspi.kz: автоснижение цен, предзаказ, аналитика, закупки с Wildberries и регистрация в НКТ. После регистрации доступны 3 дня бесплатной подписки.',
+            description: 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика каспи-магазина, закупки с Wildberries и регистрация в НКТ. После регистрации доступны 3 дня бесплатной подписки.',
 
             offers: {
               '@type': 'AggregateOffer',

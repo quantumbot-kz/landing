@@ -22,6 +22,8 @@
         class="video-embed__poster"
         :src="poster"
         :alt="`Превью: ${title}`"
+        width="1280"
+        height="720"
         loading="lazy"
         draggable="false"
       >

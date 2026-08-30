@@ -1,7 +1,7 @@
 <template>
   <article class="team-member">
     <div class="team-member__photo">
-      <NuxtImg :src="avatarUrl" width="360" height="360" format="webp" draggable="false" :alt="name" />
+      <NuxtImg :src="avatarUrl" width="360" height="360" format="webp" loading="lazy" draggable="false" :alt="name" />
     </div>
 
     <p class="team-member__name">

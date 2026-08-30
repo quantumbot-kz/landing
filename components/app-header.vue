@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header__inner">
         <NuxtLink class="header__brand" to="/" aria-label="Quantum - на главную">
-          <NuxtImg src="/logo.svg" alt="Quantum" class="header__logo" draggable="false" />
+          <NuxtImg src="/logo.svg" alt="Quantum" class="header__logo" width="124" height="22" draggable="false" />
         </NuxtLink>
 
         <nav class="header__nav" aria-label="Основная навигация">

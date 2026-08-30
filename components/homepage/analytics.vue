@@ -3,8 +3,8 @@
     id="analytics"
     class="analytics"
     eyebrow="Данные"
-    title="Аналитика продаж на Kaspi.kz"
-    description="Графики заказов, выручки и среднего чека по категориям и товарам — подробнее на странице аналитики Kaspi"
+    title="Аналитика каспи: продажи и товары магазина"
+    description="Каспи аналитика в кабинете Quantum — заказы, выручка, средний чек и конкуренция по товарам. Подробнее на странице аналитики каспи"
   >
     <div class="analytics__grid">
       <div class="analytics__visual">
@@ -16,7 +16,7 @@
           format="webp"
           draggable="false"
           loading="lazy"
-          alt="Дашборд аналитики Quantum: график заказов, выручки и среднего чека на Kaspi.kz"
+          alt="Каспи аналитика Quantum: график заказов, выручки и среднего чека магазина на Kaspi.kz"
         />
       </div>
 
@@ -37,7 +37,7 @@
         </dl>
 
         <NuxtLink to="/analitika-kaspi/" class="analytics__more">
-          Аналитика Kaspi — подробно
+          Аналитика каспи — подробно
         </NuxtLink>
       </div>
     </div>

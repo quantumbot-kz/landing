@@ -7,3 +7,11 @@
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>
+
+# Hashed Nuxt assets and media: long cache. HTML stays validators/ETag only
+# so a deploy is visible without waiting a year.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(?:js|css|woff2|webp|png|jpe?g|svg|ico|mp4|webm)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
