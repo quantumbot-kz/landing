@@ -1,10 +1,10 @@
 <template>
   <div class="tariff-card" :class="{ 'tariff-card--popular': popular }">
     <div class="tariff-card__head">
-      <span v-if="badge || popular" class="tariff-card__flag">{{ badge || 'Популярный' }}</span>
+      <span v-if="popular" class="tariff-card__flag">Популярный</span>
 
       <p class="tariff-card__title">
-        {{ title }}
+        <slot name="title">{{ title }}</slot>
       </p>
     </div>
 
@@ -46,7 +46,6 @@ withDefaults(defineProps<{
   originalPrice?: string
   period: string
   popular?: boolean
-  badge?: string
   actionLabel?: string
 }>(), {
   actionLabel: 'Попробовать 3 дня бесплатно',
@@ -111,6 +110,26 @@ const app = useAppConfig()
     background-color: $color-quantum-green;
     color: $color-white;
     text-transform: uppercase;
+  }
+
+  // Keep the marketplace name and its New mark on one line so the badge
+  // cannot wrap away from the word it qualifies.
+  &__marked {
+    white-space: nowrap;
+  }
+
+  &__inline-new {
+    @include text(eyebrow);
+
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.45em;
+    padding: 3px 7px;
+    border-radius: $radius-pill;
+    background-color: $color-quantum-green;
+    color: $color-white;
+    text-transform: uppercase;
+    vertical-align: 0.15em;
   }
 
   &__description {

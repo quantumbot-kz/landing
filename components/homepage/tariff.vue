@@ -77,10 +77,16 @@
           :key="addon.title"
           :title="addon.title"
           :price="addon.price"
-          :badge="addon.badge"
           period="в месяц"
           action-label="Подключить"
         >
+          <template
+            v-if="addon.marked"
+            #title
+          >
+            {{ addon.titleBefore }}<span class="tariff-card__marked">{{ addon.marked }}<span class="tariff-card__inline-new">New</span></span>
+          </template>
+
           {{ addon.description }}
         </HomepageTariffCard>
       </div>
@@ -182,7 +188,8 @@ const addons: {
   title: string
   description: string
   price: string
-  badge?: string
+  titleBefore?: string
+  marked?: string
 }[] = [
   {
     title: 'Работа с маркетплейсами',
@@ -190,10 +197,11 @@ const addons: {
     price: 'от 24 990',
   },
   {
-    title: 'Создатель карточек из товаров с Wildberries',
+    title: 'Создатель карточек из товаров с Wildberries и Ozon',
+    titleBefore: 'Создатель карточек из товаров с Wildberries и ',
+    marked: 'Ozon',
     description: 'Создание карточек на Kaspi.kz на основе товаров с Wildberries и Ozon с помощью AI',
     price: 'от 6 690',
-    badge: 'New',
   },
   {
     title: 'Работа с НКТ',
@@ -326,6 +334,11 @@ const addons: {
     gap: $grid-gap;
     margin-top: clamp(24px, 3vw, 36px);
     grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    // The Ozon title wraps to three lines; reserve them so addon prices stay aligned.
+    .tariff-card__title {
+      min-height: calc(1.26em * 3);
+    }
 
     @include narrow {
       grid-template-columns: repeat(2, minmax(0, 1fr));
