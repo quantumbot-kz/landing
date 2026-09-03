@@ -98,6 +98,12 @@ const app = useAppConfig()
     // "Seller Ultimate" wraps at four columns; reserving both lines keeps the
     // row aligned instead of pushing one card's price down.
     min-height: calc(1.26em * 2);
+
+    // Addon cards use subgrid for row alignment; don't force a 2-line box
+    // that the Ozon mark can still overflow.
+    .tariff__addons-grid & {
+      min-height: 0;
+    }
   }
 
   &__flag {

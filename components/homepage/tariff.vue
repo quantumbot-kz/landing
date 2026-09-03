@@ -197,8 +197,8 @@ const addons: {
     price: 'от 24 990',
   },
   {
-    title: 'Создатель карточек из товаров с Wildberries и Ozon',
-    titleBefore: 'Создатель карточек из товаров с Wildberries и ',
+    title: 'Создатель карточек с Wildberries и Ozon',
+    titleBefore: 'Создатель карточек с Wildberries и ',
     marked: 'Ozon',
     description: 'Создание карточек на Kaspi.kz на основе товаров с Wildberries и Ozon с помощью AI',
     price: 'от 6 690',
@@ -335,9 +335,12 @@ const addons: {
     margin-top: clamp(24px, 3vw, 36px);
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    // The Ozon title wraps to three lines; reserve them so addon prices stay aligned.
-    .tariff-card__title {
-      min-height: calc(1.26em * 3);
+    // Subgrid keeps title / description / price / CTA on one baseline even
+    // when one addon title wraps further than the others.
+    .tariff-card {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 4;
     }
 
     @include narrow {
