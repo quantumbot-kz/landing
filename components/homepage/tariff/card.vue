@@ -1,7 +1,7 @@
 <template>
   <div class="tariff-card" :class="{ 'tariff-card--popular': popular }">
     <div class="tariff-card__head">
-      <span v-if="popular" class="tariff-card__flag">Популярный</span>
+      <span v-if="badge || popular" class="tariff-card__flag">{{ badge || 'Популярный' }}</span>
 
       <p class="tariff-card__title">
         {{ title }}
@@ -46,6 +46,7 @@ withDefaults(defineProps<{
   originalPrice?: string
   period: string
   popular?: boolean
+  badge?: string
   actionLabel?: string
 }>(), {
   actionLabel: 'Попробовать 3 дня бесплатно',

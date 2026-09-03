@@ -77,6 +77,7 @@
           :key="addon.title"
           :title="addon.title"
           :price="addon.price"
+          :badge="addon.badge"
           period="в месяц"
           action-label="Подключить"
         >
@@ -177,7 +178,12 @@ const maxYearlySavingsPercent = computed(() =>
   ),
 )
 
-const addons = [
+const addons: {
+  title: string
+  description: string
+  price: string
+  badge?: string
+}[] = [
   {
     title: 'Работа с маркетплейсами',
     description: 'Закупки с Wildberries, расчёт прибыли на Kaspi и алерты, когда закупка становится невыгодной',
@@ -185,8 +191,9 @@ const addons = [
   },
   {
     title: 'Создатель карточек из товаров с Wildberries',
-    description: 'Создание карточек на Kaspi.kz на основе товаров с Wildberries с помощью AI',
+    description: 'Создание карточек на Kaspi.kz на основе товаров с Wildberries и Ozon с помощью AI',
     price: 'от 6 690',
+    badge: 'New',
   },
   {
     title: 'Работа с НКТ',
