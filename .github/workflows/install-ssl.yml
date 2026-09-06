@@ -1,0 +1,187 @@
+name: Install landing SSL
+
+on:
+  workflow_dispatch:
+
+jobs:
+  install-ssl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Let's Encrypt cert on nginx
+        uses: appleboy/ssh-action@v1.2.2
+        env:
+          FULLCHAIN_B64: ${{ secrets.LANDING_SSL_FULLCHAIN_B64 }}
+          PRIVKEY_B64: ${{ secrets.LANDING_SSL_KEY_B64 }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          envs: FULLCHAIN_B64,PRIVKEY_B64
+          command_timeout: 2m
+          script_stop: true
+          script: |
+            set -euo pipefail
+            umask 077
+            echo "whoami=$(whoami) id=$(id -u) host=$(hostname)"
+
+            if [ "$(id -u)" -eq 0 ]; then
+              run() { "$@"; }
+            elif sudo -n true 2>/dev/null; then
+              run() { sudo "$@"; }
+            else
+              echo "NO_ROOT"
+              id
+              pwd
+              ls -la
+              exit 2
+            fi
+
+            TMP=$(mktemp -d)
+            trap 'rm -rf "$TMP"' EXIT
+            printf '%s' "$FULLCHAIN_B64" | tr -d '\n' | base64 -d > "$TMP/fullchain.pem"
+            printf '%s' "$PRIVKEY_B64" | tr -d '\n' | base64 -d > "$TMP/privkey.pem"
+            openssl x509 -in "$TMP/fullchain.pem" -noout -subject -dates -ext subjectAltName
+            MOD_C=$(openssl x509 -noout -modulus -in "$TMP/fullchain.pem" | openssl md5)
+            MOD_K=$(openssl rsa -noout -modulus -in "$TMP/privkey.pem" | openssl md5)
+            echo "modulus_match $( [ "$MOD_C" = "$MOD_K" ] && echo yes || echo no )"
+            test "$MOD_C" = "$MOD_K"
+
+            DEST=/etc/nginx/ssl/quantumbot.kz
+            run mkdir -p "$DEST"
+            run cp "$TMP/fullchain.pem" "$DEST/fullchain.pem"
+            run cp "$TMP/privkey.pem" "$DEST/privkey.pem"
+            run chmod 644 "$DEST/fullchain.pem"
+            run chmod 600 "$DEST/privkey.pem"
+            echo "wrote $DEST"
+
+            echo '=== nginx conf files mentioning quantum or ssl_certificate ==='
+            run grep -RIlE 'quantumbot|ssl_certificate' /etc/nginx 2>/dev/null || true
+
+            run python3 - "$DEST" <<'PY'
+            import pathlib, re, shutil, sys, datetime
+            cert_dir = pathlib.Path(sys.argv[1])
+            cert = str(cert_dir / 'fullchain.pem')
+            key = str(cert_dir / 'privkey.pem')
+            nginx_root = pathlib.Path('/etc/nginx')
+            files = []
+            for p in nginx_root.rglob('*'):
+                if not p.is_file():
+                    continue
+                if p.suffix not in {'.conf', '.inc', ''} and 'vhost' not in str(p) and 'sites-' not in str(p):
+                    # still read likely text configs
+                    if p.suffix in {'.bak', '.dpkg-dist', '.rpmnew'}:
+                        continue
+                try:
+                    text = p.read_text(encoding='utf-8', errors='ignore')
+                except Exception:
+                    continue
+                if 'server_name' in text or 'ssl_certificate' in text:
+                    files.append(p)
+
+            def server_blocks(text):
+                i = 0
+                while True:
+                    m = re.search(r'\bserver\s*\{', text[i:])
+                    if not m:
+                        return
+                    start = i + m.start()
+                    brace = i + m.end() - 1
+                    depth = 0
+                    for j in range(brace, len(text)):
+                        ch = text[j]
+                        if ch == '{':
+                            depth += 1
+                        elif ch == '}':
+                            depth -= 1
+                            if depth == 0:
+                                yield start, j + 1, text[start:j + 1]
+                                i = j + 1
+                                break
+                    else:
+                        return
+
+            def names(block):
+                found = []
+                for m in re.finditer(r'\bserver_name\s+([^;]+);', block):
+                    found.extend(m.group(1).split())
+                return found
+
+            def listens_443(block):
+                return bool(re.search(r'\blisten\s+[^\n;]*443', block))
+
+            def is_default(block):
+                return 'default_server' in block or '_' in names(block)
+
+            changed = []
+            for path in files:
+                original = path.read_text(encoding='utf-8', errors='ignore')
+                text = original
+                new_parts = []
+                last = 0
+                file_changed = False
+                for start, end, block in server_blocks(text):
+                    ns = names(block)
+                    quantum = any(n in {'quantumbot.kz', 'www.quantumbot.kz'} or n.endswith('quantumbot.kz') for n in ns)
+                    should = quantum or (listens_443(block) and is_default(block) and ('quantumbot' in block or 'ssl_certificate' in block))
+                    if not should and quantum is False:
+                        # If this IP only hosts landing, still retarget 443 default certs
+                        if listens_443(block) and is_default(block):
+                            should = True
+                    if not should:
+                        continue
+                    new_block = block
+                    if re.search(r'\bssl_certificate\s+', new_block):
+                        new_block = re.sub(r'\bssl_certificate\s+[^;]+;', f'ssl_certificate {cert};', new_block, count=1)
+                        new_block = re.sub(r'\bssl_certificate_key\s+[^;]+;', f'ssl_certificate_key {key};', new_block, count=1)
+                    else:
+                        insert = (
+                            f'\n    listen 443 ssl;\n'
+                            f'    listen [::]:443 ssl;\n'
+                            f'    ssl_certificate {cert};\n'
+                            f'    ssl_certificate_key {key};\n'
+                        )
+                        new_block, nsub = re.subn(r'(\bserver_name\s+[^;]+;)', r'\1' + insert, new_block, count=1)
+                        if nsub == 0:
+                            new_block = new_block.replace('{', '{' + insert, 1)
+                    if new_block != block:
+                        new_parts.append((start, end, new_block))
+                        file_changed = True
+                if not file_changed:
+                    continue
+                out = []
+                last = 0
+                for start, end, new_block in new_parts:
+                    out.append(text[last:start])
+                    out.append(new_block)
+                    last = end
+                out.append(text[last:])
+                patched = ''.join(out)
+                bak = path.with_name(path.name + '.bak.sslfix')
+                if not bak.exists():
+                    shutil.copy2(path, bak)
+                path.write_text(patched)
+                changed.append(str(path))
+                print(f'patched {path}')
+
+            if not changed:
+                print('NO_VHOST_PATCHED')
+                for path in files:
+                    text = path.read_text(encoding='utf-8', errors='ignore')
+                    if 'listen' in text and ('443' in text or 'quantumbot' in text or 'ssl_certificate' in text):
+                        print(f'--- {path} ---')
+                        print('\n'.join(text.splitlines()[:80]))
+                sys.exit(3)
+            print('changed_files', changed)
+            PY
+
+            echo '=== nginx -t ==='
+            run nginx -t
+            if run systemctl reload nginx; then
+              echo reloaded_via_systemctl
+            elif run service nginx reload; then
+              echo reloaded_via_service
+            else
+              run nginx -s reload
+              echo reloaded_via_nginx_s
+            fi
+            echo DONE
