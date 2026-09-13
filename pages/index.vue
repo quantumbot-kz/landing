@@ -1,6 +1,7 @@
 <template>
   <main>
     <HomepageHero />
+    <HomepageDefinition />
     <HomepageResults />
     <HomepageHowItWorks />
     <HomepageProducts />
@@ -14,15 +15,16 @@
 
 <script setup lang="ts">
 import { homepageFaqItems } from '~/utils/homepage-faq'
+import { siteDescription, siteTitle } from '~/utils/seo/site-meta'
 
 const app = useAppConfig()
 const siteUrl = app.baseUrl.replace(/\/$/, '')
 const videoId = app.videoUrl.split('/').pop() || 'gQkEWI9Cwuw'
-const dateModified = '2026-08-30'
+const dateModified = '2026-09-13'
 
 useSeoMeta({
-  title: 'Quantum — каспи бот и автоматизация цен на Kaspi.kz',
-  description: 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика каспи, закупки с Wildberries и регистрация в НКТ. 3 дня бесплатно.',
+  title: siteTitle,
+  description: siteDescription,
   ogUrl: `${siteUrl}/`,
 })
 
@@ -41,8 +43,8 @@ useHead({
             '@type': 'WebPage',
             '@id': `${siteUrl}/#webpage`,
             url: `${siteUrl}/`,
-            name: 'Quantum — каспи бот и автоматизация цен на Kaspi.kz',
-            description: 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика каспи-магазина, закупки с Wildberries и регистрация товаров в НКТ.',
+            name: siteTitle,
+            description: siteDescription,
 
             inLanguage: 'ru-KZ',
             isPartOf: { '@id': `${siteUrl}/#website` },
@@ -64,7 +66,7 @@ useHead({
             applicationCategory: 'BusinessApplication',
             operatingSystem: 'Web',
             url: app.appUrl,
-            description: 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика каспи-магазина, закупки с Wildberries и регистрация в НКТ. После регистрации доступны 3 дня бесплатной подписки.',
+            description: 'Каспи бот для продавцов Kaspi.kz: автоснижение и автоповышение цен до заданного минимума, умный предзаказ. После регистрации доступны 3 дня бесплатной подписки. От 19 990 ₸/мес.',
 
             offers: {
               '@type': 'AggregateOffer',

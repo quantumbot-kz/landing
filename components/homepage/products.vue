@@ -33,7 +33,7 @@ const products = [
       'Аналитика продаж на Kaspi.kz на старших тарифах',
       'Подключение магазина за минуты через аккаунт с ограниченными правами',
     ],
-    ctaLabel: 'Подробнее о каспи боте',
+    ctaLabel: 'Как задать минимум и стратегию',
     ctaHref: '/kaspi-bot/',
     ctaType: 'primary' as const,
     image: '/products/bot.png',

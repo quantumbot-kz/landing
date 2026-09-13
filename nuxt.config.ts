@@ -10,13 +10,11 @@ import {
 import { createResolver } from '@nuxt/kit'
 import IconsResolver from 'unplugin-icons/resolver'
 import ViteComponents from 'unplugin-vue-components/vite'
+import { siteDescription, siteTitle } from './utils/seo/site-meta'
 
 const { resolve } = createResolver(import.meta.url)
 
 const baseUrl = import.meta.env.URL || 'https://www.quantumbot.kz'
-
-const siteTitle = 'Quantum — каспи бот и автоматизация цен на Kaspi.kz'
-const siteDescription = 'Каспи бот для продавцов Kaspi.kz: автоснижение цен, предзаказ, аналитика каспи, закупки с Wildberries и регистрация в НКТ. 3 дня бесплатно.'
 
 
 const DUO_SECONDARY_TONES = /#E7EAF3|#CFD5F0/gi
@@ -80,7 +78,7 @@ export default defineNuxtConfig({
         },
         {
           property: 'og:image:alt',
-          content: 'Интерфейс Quantum: автокорректировка цен на Kaspi.kz',
+          content: 'Каспи бот Quantum: автоснижение цен на Kaspi.kz',
         },
         {
           name: 'twitter:card',

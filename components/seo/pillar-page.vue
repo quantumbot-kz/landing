@@ -108,7 +108,7 @@ const props = defineProps<{
 const app = useAppConfig()
 const siteUrl = app.baseUrl.replace(/\/$/, '')
 const pageUrl = `${siteUrl}${props.content.path}`
-const dateModified = '2026-08-30'
+const dateModified = props.content.dateModified ?? '2026-09-13'
 const service = props.content.schemaService
 
 const graph: Record<string, unknown>[] = [

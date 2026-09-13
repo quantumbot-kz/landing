@@ -6,8 +6,8 @@
 
 ## Docs
 
-- [Сайт](https://www.quantumbot.kz/): каспи бот для продавцов, тарифы, команда
-- [Каспи бот](https://www.quantumbot.kz/kaspi-bot/): бот каспи / бот для каспи-магазина, автоснижение цен, не бесконтрольный демпинг
+- [Сайт](https://www.quantumbot.kz/): каспи бот для продавцов Kaspi.kz, тарифы, команда
+- [Автоснижение цен](https://www.quantumbot.kz/kaspi-bot/): минимум, стратегия, как не уйти в минус
 - [Аналитика каспи](https://www.quantumbot.kz/analitika-kaspi/): каспи аналитика, аналитика товаров и магазина на Kaspi.kz
 - [Кабинет](https://app.quantumbot.kz/): вход и регистрация в сервисе
 - [Документация](https://docs.quantumbot.kz/): руководства по настройке и использованию
@@ -15,7 +15,8 @@
 
 ## Product
 
-- [Каспи бот](https://www.quantumbot.kz/kaspi-bot/): автоснижение цен на Kaspi.kz с минимумами и стратегией
+- [Каспи бот](https://www.quantumbot.kz/): автоснижение цен на Kaspi.kz с минимумами и стратегией
+- [Как задать минимум](https://www.quantumbot.kz/kaspi-bot/): правила автоснижения, чтобы не уйти в минус
 - [Умный предзаказ](https://www.quantumbot.kz/#products): предзаказ по складам
 - [Работа с маркетплейсами](https://www.quantumbot.kz/#products): закупки с Wildberries, расчёт прибыли, алерты в Telegram
 - [НКТ](https://www.quantumbot.kz/#products): регистрация товаров в Национальном каталоге товаров РК с AI-заполнением атрибутов
