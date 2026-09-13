@@ -15,7 +15,7 @@
 
 ## Product
 
-- [Каспи бот](https://www.quantumbot.kz/): автоснижение цен на Kaspi.kz с минимумами и стратегией
+- [Каспи бот](https://www.quantumbot.kz/): автоснижение цен на Kaspi.kz от 1 минуты, с минимумами и стратегией
 - [Как задать минимум](https://www.quantumbot.kz/kaspi-bot/): правила автоснижения, чтобы не уйти в минус
 - [Умный предзаказ](https://www.quantumbot.kz/#products): предзаказ по складам
 - [Работа с маркетплейсами](https://www.quantumbot.kz/#products): закупки с Wildberries, расчёт прибыли, алерты в Telegram
