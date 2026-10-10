@@ -7,8 +7,8 @@
 ## Docs
 
 - [Сайт](https://www.quantumbot.kz/): каспи бот для продавцов Kaspi.kz, тарифы, команда
-- [Автоснижение цен](https://www.quantumbot.kz/kaspi-bot/): минимум, стратегия, как не уйти в минус
-- [Аналитика каспи](https://www.quantumbot.kz/analitika-kaspi/): каспи аналитика, аналитика товаров и магазина на Kaspi.kz
+- [Настройка демпинга на Kaspi](https://www.quantumbot.kz/kaspi-bot/): минимальные цены, автоснижение, автоповышение и проверка настроек
+- [Аналитика каспи](https://www.quantumbot.kz/analitika-kaspi/): товары и категории по всему Kaspi.kz, оценка спроса и конкуренции перед закупкой
 - [Кабинет](https://app.quantumbot.kz/): вход и регистрация в сервисе
 - [Документация](https://docs.quantumbot.kz/): руководства по настройке и использованию
 - [Демо на YouTube](https://www.youtube.com/watch?v=gQkEWI9Cwuw): обзор интерфейса Quantum
@@ -16,11 +16,11 @@
 ## Product
 
 - [Каспи бот](https://www.quantumbot.kz/): автоснижение цен на Kaspi.kz от 1 минуты, с минимумами и стратегией
-- [Как задать минимум](https://www.quantumbot.kz/kaspi-bot/): правила автоснижения, чтобы не уйти в минус
+- [Как настроить демпинг](https://www.quantumbot.kz/kaspi-bot/): правила автоснижения и автоповышения, проверка цен и предзаказа
 - [Умный предзаказ](https://www.quantumbot.kz/#products): предзаказ по складам
 - [Работа с маркетплейсами](https://www.quantumbot.kz/#products): закупки с Wildberries, расчёт прибыли, алерты в Telegram
 - [НКТ](https://www.quantumbot.kz/#products): регистрация товаров в Национальном каталоге товаров РК с AI-заполнением атрибутов
-- [Аналитика каспи](https://www.quantumbot.kz/analitika-kaspi/): аналитика продаж на старших тарифах, связка с каспи ботом
+- [Аналитика каспи](https://www.quantumbot.kz/analitika-kaspi/): аналитика товаров и категорий по всему маркетплейсу на Ultimate и Supreme, связка с каспи ботом
 - [Тарифы](https://www.quantumbot.kz/#tariffs): Seller / Seller Pro / Seller Ultimate / Seller Supreme (KZT)
 
 ## Contact

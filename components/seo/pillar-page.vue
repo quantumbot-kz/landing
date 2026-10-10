@@ -34,6 +34,19 @@
       </div>
     </section>
 
+    <figure v-if="content.illustration" class="pillar__illustration container">
+      <NuxtImg
+        :src="content.illustration.src"
+        :alt="content.illustration.alt"
+        :width="content.illustration.width"
+        :height="content.illustration.height"
+        sizes="sm:100vw md:100vw lg:960px"
+        format="webp"
+        loading="lazy"
+      />
+      <figcaption>{{ content.illustration.caption }}</figcaption>
+    </figure>
+
     <section
       v-for="(section, index) in content.sections"
       :key="section.title"
@@ -115,42 +128,43 @@ const graph: Record<string, unknown>[] = [
   {
     '@type': 'WebPage',
     '@id': `${pageUrl}#webpage`,
-    url: pageUrl,
-    name: props.content.title,
-    description: props.content.description,
-    inLanguage: 'ru-KZ',
-    isPartOf: { '@id': `${siteUrl}/#website` },
+    'url': pageUrl,
+    'name': props.content.title,
+    'description': props.content.description,
+    'inLanguage': 'ru-KZ',
+    'isPartOf': { '@id': `${siteUrl}/#website` },
     dateModified,
-    publisher: { '@id': `${siteUrl}/#organization` },
+    'publisher': { '@id': `${siteUrl}/#organization` },
+    'breadcrumb': { '@id': `${pageUrl}#breadcrumb` },
     ...(service ? { about: { '@id': `${pageUrl}#service` } } : {}),
   },
   {
     '@type': 'BreadcrumbList',
     '@id': `${pageUrl}#breadcrumb`,
-    itemListElement: [
+    'itemListElement': [
       {
         '@type': 'ListItem',
-        position: 1,
-        name: 'Quantum',
-        item: `${siteUrl}/`,
+        'position': 1,
+        'name': 'Quantum',
+        'item': `${siteUrl}/`,
       },
       {
         '@type': 'ListItem',
-        position: 2,
-        name: props.content.eyebrow,
-        item: pageUrl,
+        'position': 2,
+        'name': props.content.h1,
+        'item': pageUrl,
       },
     ],
   },
   {
     '@type': 'FAQPage',
     '@id': `${pageUrl}#faq`,
-    mainEntity: props.content.faq.map(item => ({
+    'mainEntity': props.content.faq.map(item => ({
       '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
+      'name': item.question,
+      'acceptedAnswer': {
         '@type': 'Answer',
-        text: item.answer,
+        'text': item.answer,
       },
     })),
   },
@@ -158,26 +172,26 @@ const graph: Record<string, unknown>[] = [
 
 if (service) {
   graph.push({
-    '@type': ['Service', 'SoftwareApplication'],
+    '@type': 'SoftwareApplication',
     '@id': `${pageUrl}#service`,
-    name: service.name,
+    'name': service.name,
     ...(service.alternateName?.length ? { alternateName: service.alternateName } : {}),
-    description: service.description,
-    url: pageUrl,
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Web',
-    provider: { '@id': `${siteUrl}/#organization` },
-    areaServed: {
+    'description': service.description,
+    'url': pageUrl,
+    'applicationCategory': 'BusinessApplication',
+    'operatingSystem': 'Web',
+    'provider': { '@id': `${siteUrl}/#organization` },
+    'areaServed': {
       '@type': 'Country',
-      name: 'Kazakhstan',
+      'name': 'Kazakhstan',
     },
-    offers: {
+    'offers': {
       '@type': 'AggregateOffer',
-      lowPrice: service.lowPrice,
-      highPrice: service.highPrice,
-      priceCurrency: 'KZT',
-      offerCount: 4,
-      url: `${siteUrl}/#tariffs`,
+      'lowPrice': service.lowPrice,
+      'highPrice': service.highPrice,
+      'priceCurrency': 'KZT',
+      'offerCount': service.offerCount,
+      'url': `${siteUrl}/#tariffs`,
     },
   })
 }
@@ -288,6 +302,26 @@ useHead({
     color: $color-ink;
     max-width: 28ch;
     text-wrap: balance;
+  }
+
+  &__illustration {
+    img {
+      display: block;
+      width: 100%;
+      max-width: 960px;
+      height: auto;
+      margin-inline: auto;
+      border: 1px solid $color-hairline;
+      border-radius: $radius-image;
+    }
+
+    figcaption {
+      @include text(body-sm);
+
+      margin-top: 12px;
+      color: $color-slate;
+      text-align: center;
+    }
   }
 
   &__prose {
