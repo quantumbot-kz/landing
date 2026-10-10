@@ -10,7 +10,6 @@ export const siteNavLinks = [
 
 /** SEO pillar pages linked from footer and related blocks. */
 export const sitePillarLinks = [
-  { href: '/kaspi-bot/', label: 'Автоснижение цен' },
+  { href: '/kaspi-bot/', label: 'Настройка демпинга на Kaspi' },
   { href: '/analitika-kaspi/', label: 'Аналитика каспи' },
 ] as const
-
