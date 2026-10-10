@@ -16,13 +16,20 @@ const { resolve } = createResolver(import.meta.url)
 
 const baseUrl = import.meta.env.URL || 'https://www.quantumbot.kz'
 
-
 const DUO_SECONDARY_TONES = /#E7EAF3|#CFD5F0/gi
 const DUO_PRIMARY_TONES = /#056E62|#008574|#46AEA2/gi
 const DUO_SECONDARY_COLOR = '#BFDED6'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
+  nitro: {
+    prerender: {
+      routes: ['/kaspi-bot/', '/analitika-kaspi/'],
+      // Slash variants share index.html; render each file only once.
+      ignore: [/^\/kaspi-bot$/, /^\/analitika-kaspi$/],
+    },
+  },
 
   // ssr: false,
   app: {
